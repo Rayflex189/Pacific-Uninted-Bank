@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="{% static 'css/Index.css' %}">
+</head>
+<body>
+    <nav>
+        
+        <div class="navbar">
+            <div class="logo">Pacific Union</div>
+            <ul>
+                <li><a class="links" href="{% url 'home' %}">Home</a></li>
+                <li><a class="links" href="{% url 'cards' %}">Rates</a></li>
+                <li><a class="links" href="{% url 'Transaction' %}">Transactions</a></li>
+                <li><a class="links" href="{% url 'add_cards' %}">Add card</a></li>
+                <li><a class="links" href="{% url 'LogOut' %}">Logout</a></li>
+            </ul>
+            <a href="" class="user_id">Hello rory</a>
+            <div class="toggle_btn" >
+                <img onclick="myFunction()" style="height: 1.5rem;" src="{% static 'images/icons8-menu.svg' %}" alt="">
+            </div>
+        </div>
+    <div class="open">
+        
+        <div id="dropdown_menu">
+            <li class="li"><a class="link" href="{% url 'home' %}">Home</a></li>
+            <li class="li"><a class="link" href="{% url 'cards' %}">Rates</a></li>
+            <li class="li"><a class="link" href="{% url 'Transaction' %}">Transactions</a></li>
+            <li class="li"><a class="link" href="{% url 'service' %}">Convenient Services</a></li>
+            <li class="li"><a class="link" href="{% url 'add_cards' %}">Add card</a></li>
+            <li class="li"><a class="link" href="{% url 'LogOut' %}">Logout</a></li>
+            <li class="li"> <a href="" class="user_id_2">Hello rory</a></li>
+        </div>
+      </div>
+    </nav>
+{% block content %}
+
+{% endblock %}
+
+<footer>
+
+  <a class="nav_link" href="{% url 'home' %}">
+      <img class="a" src="{% static 'images/bxs-home.svg' %}" alt=""> 
+      <span class="nav-text">Home</span>
+  </a>
+
+  <a class="nav_link" href="{% url 'cards' %}">
+      <img class="a" src="{% static 'images/bx-bar-chart.svg' %}" alt="">
+  <span class="nav-text">Cards</span>
+  </a>
+
+  <a class="nav_link" href="{% url 'Transaction' %}">
+      <img class="a" src="{% static 'images/bx-dollar-circle.svg' %}" alt="">
+      <span class="nav-text">Transactions</span>
+  </a>
+
+  <a class="nav_link" href="{% url 'account' %}">
+      <img class="a" src="{% static 'images/bxs-user.svg' %}" alt="">
+   <span class="nav-text">Profile</span>
+  </a>
+
+</footer>
+<script>
+ function myFunction() {
+  const btn = 
+  document.getElementById("dropdown_menu");
+  if (btn.style.display === 'none')
+  {
+      btn.style.display = "block";
+  } else {
+      btn.style.display = 'none';
+  }
+ }
+</script>
+</body>
+</html>

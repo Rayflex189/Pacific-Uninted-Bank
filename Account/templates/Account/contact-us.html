@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="{% static '/css/contact-us.css' %}">
+</head>
+<body>
+  <header>
+    <div class="logo">Pacific Union</div>
+  </header>
+
+  <div class="container">
+    <h2>Contact Us</h2>
+
+    <div class="contact-info">
+      <div class="info-item">
+        <img src="{% static '/images/facebook.png' %}" alt="facebook">
+        <p>facebook</p>
+      </div>
+      <div class="info-item">
+        <img src="{% static '/images/iconfinder-social-media-applications-23whatsapp-4102606_113811.png' %}" alt="Phone">
+        <p>gmail</p>
+      </div>
+      <div class="info-item">
+        <img src="{% static '/images/gmail.png' %}" alt="Email">
+        <p>whatsapp</p>
+      </div>
+    </div>
+
+    <form class="contact-form">
+      <input type="text" name="name" placeholder="Your Name">
+      <input type="email" name="email" placeholder="Your Email">
+      <textarea name="message" placeholder="Your Message"></textarea>
+      <button type="submit" class="btn">Submit</button>
+    </form>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Investment Page. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

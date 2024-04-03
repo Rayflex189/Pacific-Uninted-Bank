@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        nav{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom:1px solid grey ;
+        }
+
+        .header{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: bold;
+            font-size: large;
+        }
+
+        .circle{
+            width: 5rem;
+            height: 5rem;
+            border-radius: 3rem;
+            background-color: rgb(41, 201, 41);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .center{
+            padding-top: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .txt{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 900;
+            font-size: larger;
+        }
+        .space{
+            display:flex;
+            justify-content: center;
+            align-items: space-between;
+            flex-direction: column;
+        }
+        .inner_space{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .inner_text{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        @media screen and (max-width: 760px){
+            html,
+            body {
+              overflow-x: hidden;
+            }
+        
+            .acct{
+                flex-direction: column;
+            }
+        
+        footer{
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3);
+            background-color: #ffffff;
+            display: none;
+            overflow-x: auto;
+        }
+    
+    footer{
+        display: flex;
+    }
+}
+.nav_link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+    min-width: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: sans-serif;
+    font-size: 13px;
+    color: #111;
+    text-decoration: none;
+    --webkit-tap-highlight-color: transparent;
+    transition: background-color 0.1s ease-in-out;
+ }
+ 
+ .nav_link:hover{
+     background-color: grey;
+     color: #fff;
+ }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <!-- <img src="" alt=""> -->
+        <a href="" class="links"><i>back</i></a>
+        <span class="header">Transaction Detail</span>
+        <span></span>
+    </nav>
+
+    <div class="center">
+        <div class="circle">
+            <img class="arw" src="./icons8-arrow-24.png" alt="">
+        </div>
+        <br>
+        <span class="txt">Payment</span>
+    </div>
+<br>
+    <div class="space">
+        <div class="inner_space">
+            <span class="inner_text">Date</span>
+            {% for i in amount %}
+            <span class='inner_text'>{{i.date_created}}</span>
+            {% endfor %}
+        </div>
+        <br><br>
+        <div class="inner_space">
+            <span class="inner_text">Status</span>
+            <span class="inner_text">Pending</span>
+        </div>
+        <br><br>
+        <div class="inner_space">
+            <span class="inner_text">Transaction ID</span>
+            <span class="inner_text">mpW17z</span>
+        </div>
+        <br><br>
+        <div class="inner_space">
+            <span class="inner_text">Account Number</span>
+            <span class="inner_text">{{request.user}}</span>
+        </div>
+        <br><br>
+        <div class="inner_space">
+            <span class="inner_text">Transaction Type</span>
+            <span class="inner_text">Withdraw</span>
+        </div>
+        <br><br>
+        <div class="inner_space">
+            <span class="inner_text">Amount</span>
+            {% for i in amount %}
+            <span class="inner_text">${{i.main_amount}}</span>
+              {% endfor %}
+        </div>
+    </div>
+
+    <footer>
+
+        <a class="nav_link" href="{% url 'home' %}">
+            <img class="a" src="{% static 'images/bxs-home.svg' %}" alt=""> 
+            <span class="nav-text">Home</span>
+        </a>
+      
+        <a class="nav_link" href="{% url 'cards' %}">
+            <img class="a" src="{% static 'images/bx-bar-chart.svg' %}" alt="">
+        <span class="nav-text">Cards</span>
+        </a>
+      
+        <a class="nav_link" href="{% url 'transactions' %}">
+            <img class="a" src="{% static 'images/bx-dollar-circle.svg' %}" alt="">
+            <span class="nav-text">Transactions</span>
+        </a>
+      
+        <a class="nav_link" href="{% url 'account' %}">
+            <img class="a" src="{% static 'images/bxs-user.svg' %}" alt="">
+         <span class="nav-text">Profile</span>
+        </a>
+      
+      </footer>
+</body>
+</html>

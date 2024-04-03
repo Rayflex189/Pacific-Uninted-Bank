@@ -1,0 +1,491 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+     background-color: rgb(191, 205, 218);
+}
+
+nav{
+    display: flex;
+    top: 0;
+    padding: 20px 30px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background-color: #000;
+}
+
+.end{
+    color: #ffffff;
+    text-align: right;
+}
+
+.links-active{
+    color: #ffffff;
+    font-size: 1.5rem;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.links{
+    color: #a7a3a3;
+    font-size: 1.5rem;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.site_name{
+    margin-right: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+    color: azure;
+    font-weight: bolder;
+}
+
+/*container*/
+.container{
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.content_one{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem;
+    font-weight: bold;
+    font-size: 18px;
+    width: 25rem;
+    background-color: rgb(9, 58, 55);
+}
+
+.content_two{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #ffffff;
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 25px;
+    width: 25rem;
+    font-weight: bold;
+    background-color: rgb(43, 100, 81);
+}
+
+section{
+    justify-content: space-around;
+    display: flex;
+}
+
+.middle_nav{
+    justify-content: space-between;
+    display: flex;
+    align-content: center;
+    padding: 20px 30px;
+}
+
+.hr{
+margin: 20px;
+}
+
+/*tables*/
+.gap_x{
+    line-height: 3.9rem;
+}
+
+.gap{
+    line-height: 3.9rem;
+}
+
+ul{
+    list-style: none;
+}
+
+.ul{
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    border-collapse: collapse;
+    margin-left: 0.3rem;
+    margin-top: 2rem;
+}
+
+.flex{
+    display: flex;
+}
+
+.table_like{
+display: fle;
+}
+
+.table_like_inner_level{
+    display: flex;
+    flex-direction: column;
+}
+
+.table_like_inner{
+    display: flex;
+}
+
+.table{
+    background-color:rgb(130, 149, 167);
+    width: 30rem;
+    margin: 30px;
+    padding: 1rem;
+    border-radius: 3px;
+}
+
+.table_x{
+    background-color:rgb(130, 149, 167);
+    width: 48rem;
+    margin: 30px;
+    padding: 1rem;
+    border-radius: 3px;
+}
+
+sub{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2rem;
+    padding-top: 2rem;
+    padding-right: 2rem;
+}
+
+.a_but{
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 30px;
+    border-radius: 5px;
+    background-color: rgb(43, 100, 81);
+    padding: 1rem;
+    width: 24rem;
+    display: block;
+    text-align: center;
+}
+
+.link-tab-x{
+    margin-left: 30px;
+    border-radius: 5px;
+    background-color: rgb(43, 100, 81);
+    padding: 1rem;
+    width: 42rem;
+    display: block;
+    text-align: center;
+}
+
+.customer, .content_1, .cu_names{
+    list-style:none;
+    line-height: 2rem;
+}
+
+.customer{
+    font-weight: bold;
+}
+
+.cu_names{
+    color: black;
+}
+
+
+.a, .view, .remove{
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.view{
+    margin-top: 1.7rem;
+    margin-bottom: 1.2rem;
+    margin-right: 2rem;
+    padding: 0.5rem;
+    background-color: rgb(43, 100, 81);
+    border-radius: 3px;
+}
+
+.updated{
+    margin-top: 1.7rem;
+    margin-bottom: 1rem;
+    display: block;
+    color: #000;
+    text-decoration: none;
+    padding: 0.5rem;
+    background-color: orange;
+    border-radius: 3px;
+}
+
+.remove{
+    margin-top: 1.7rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: red;
+    border-radius: 3px;
+}
+
+.hr1{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.table-header{
+    display: flex;
+}
+
+@media screen and (max-width: 760px){
+    html,
+    body {
+      overflow-x: hidden;
+    }
+    
+.table{
+    background-color:rgb(130, 149, 167);
+    width: 24rem;
+    margin: 30px;
+    padding: 1rem;
+    border-radius: 3px;
+}
+
+.a_but{
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 30px;
+    border-radius: 5px;
+    background-color: rgb(43, 100, 81);
+    padding: 1rem;
+    width: 20rem;
+    display: block;
+    text-align: center;
+}
+
+    .table-x{
+        display: none;
+    }
+
+    .middle_nav{
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        padding: 20px 30px;
+    }
+
+    section{
+        justify-content: space-around;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    html {
+      box-sizing: border-box;
+      font-size: 100%;
+    }
+    
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+      scroll-behavior:smooth;
+       /* outline: 2px red ridge;  */
+    }
+
+    /* .container{
+        display: flex;
+        flex-direction: row;
+    } */
+}  
+
+/*profile page*/
+.profile_cunt{
+        border-radius: 5px;
+        color: #ffffff;
+        padding: 1.5rem;
+        /* font-weight: bold;
+        font-size: 18px; */
+        width: 25rem;
+        background-color: rgb(130, 149, 167);
+}
+
+.ul_x_y{
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+
+.customer_name{
+    padding-bottom: 2rem;
+}
+
+.update_customer{
+    padding: 0.5rem;
+    text-decoration: none;
+    text-align: center;
+    width: 22rem;
+    color:  rgb(14, 44, 54);
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    border: 1px solid rgb(14, 44, 54);
+}
+
+.place_customer_order{
+    padding: 0.5rem;
+    color: rgb(21, 21, 133);
+    text-decoration: none;
+    text-align: center;
+    width: 22rem;
+    border-radius: 5px;
+    border: 1px solid rgb(21, 21, 133);
+}
+
+.admin_list{
+    display: flex;
+    flex-direction: column;
+}
+
+.admin_order{
+    padding-left: 11rem;
+    font-size: 25px;
+    text-align: center;
+}
+
+.email{
+    margin-bottom: 2.8rem;
+}
+
+.section{
+    justify-content: space-around;
+    display: flex;
+    margin-top: 2rem;
+}
+
+.middle{
+    padding: 1.5rem;
+    border-radius: 5px;
+    margin: 2rem;
+    height: 5rem;
+    background-color: rgb(130, 149, 167);
+}
+
+.select{
+    margin: 2rem;
+}
+
+.search:hover{
+    background-color:  rgb(16, 46, 59);
+    color: rebeccapurple;
+}
+
+.search{
+    padding: 0.5rem;
+    background-color:  rgb(11, 110, 156);
+    border-radius: 3px;
+    text-decoration: none;
+    color: white;
+    border: none;
+}
+
+.table_x_y{
+    background-color:rgb(130, 149, 167);
+    margin: 30px;
+    padding: 1rem;
+    border-radius: 3px;
+}
+
+/*create_order_page*/
+
+.form_int{
+    flex-direction: row;
+    display: flex;
+}
+
+input{
+    background-color: rgb(76, 20, 133);
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.form_upd{
+    line-height: 3rem;
+    padding: 2rem;
+    height: 12rem;
+    width: 40rem;
+    border-radius: 5px;
+    background-color: rgb(130, 149, 167);
+    margin: 2rem;
+}
+
+.form{
+    line-height: 2rem;
+    padding: 2rem;
+    height: 48rem;
+    width: 30rem;
+    border-radius: 5px;
+    background-color: rgb(130, 149, 167);
+    margin: 2rem;
+}
+
+.form_x{
+    line-height: 2rem;
+    padding: 2rem;
+    width: 24rem;
+    border-radius: 5px;
+    background-color: rgb(130, 149, 167);
+    margin: 2rem;
+}
+
+.laps{
+    display: flex;
+}
+
+center{
+    margin-right: 30rem;
+    margin-left: 30rem;
+    padding: 4rem;
+    border-radius: 5px;
+    background-color: rgb(130, 149, 167);
+    margin-top: 13rem;
+}
+
+.confirm, .cancel:hover{
+color: rgb(9, 58, 55);
+}
+
+.confirm{
+    border: none;
+    padding: 0.5rem;
+    background-color: red;
+    border-radius: 2px;
+    text-decoration: none;
+    color: white;
+}
+
+.cancel{
+    padding: 0.5rem;
+    background-color: orangered;
+    border-radius: 2px;
+    text-decoration: none;
+    color: white;
+}
+
+#select_order{
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 26rem;
+}

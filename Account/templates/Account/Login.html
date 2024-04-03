@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/okay.css' %}">
+</head>
+<body>
+    <div class="banner">
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form">
+            <input type="username" name="username" placeholder="Username">
+            <input type="password" name="pass1" placeholder="Password">
+            <button class="submit">Sign in</button>
+            <br>
+    <a href="{% url 'Login' %}" class="a">Forgotten Password ? </a>
+    <a href="{% url 'register' %}" class="a">Or Sign up ? </a>
+        </div>
+    </form>
+    <br>
+    {% for message in messages %}
+    <p class="messages">{{message}}</p>
+    {% endfor %}
+    <br>
+    <span class="ff">Follow us on...</span>
+    <footer>
+       <div class="handles">
+        <a href="" class="hover_icon">
+            <img class="email" src="{% static 'images/bxl-facebook-circle.svg' %}" alt="">
+        </a>
+        <a href="" class="hover_icon">
+            <img class="email" src="{% static 'images/bxl-instagram-alt.svg' %}" alt="">
+        </a>
+        <a href="" class="hover_icon">
+            <img class="email" src="{% static 'images/bxl-whatsapp-square.svg' %}" alt="">
+        </a>
+        <a href="" class="hover_icon">
+            <img class="email" src="{% static 'images/bxs-envelope.svg' %}" alt="">
+        </a>
+       </div>
+    </footer>
+</body>
+</html>

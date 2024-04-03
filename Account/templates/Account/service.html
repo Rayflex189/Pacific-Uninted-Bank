@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{% static '/css/main_style.css' %}">
+</head>
+<body>
+    <nav>
+        <input type="checkbox" name="" id="check">
+        <label for="check" onclick="myFunction()" class="checkbtn">
+            <img class="img" src="{% static 'images/icons8-menu.svg' %}" alt="">
+        </label>
+       <label class="logo">Pacific Union</label>
+       <ul id="dropdown_menu">
+        <li><a class="active" href="{% url 'home' %}">Home</a></li>
+        <li><a class="linked" href="{% url 'cards' %}">Cards</a></li>
+        <li><a class="linked" href="{% url 'account' %}">Profile</a></li>
+        <li><a class="linked" href="{% url 'transactions' %}">Transactions</a></li>
+        <li><a class="linked" href="{% url 'service' %}">Convinient Services</a></li>
+       </ul>
+</nav>
+<!--MAIN PART-->
+<h2 class="header_tag">
+    Convenient Service In App
+</h2>
+
+<div class="list">
+    <a href="" class="list_items">
+        <span class="primary_header">Credits</span>
+        <br>
+        <span class="secondary_header">Management and payment</span>
+        <hr>
+    </a>
+
+    <a href="" class="list_items">
+        <span class="primary_header">Deposite</span>
+        <br>
+        <span class="secondary_header">Manage your pavings</span>
+        <hr>
+    </a>
+
+    <a href="" class="list_items">
+        <span class="primary_header">Tickets</span>
+        <br>
+        <span class="secondary_header">Buying tickets</span>
+        <hr>
+    </a>
+
+    <a href="" class="list_items">
+        <span class="primary_header">Cashback</span>
+        <br>
+        <span class="secondary_header">Bonus after each transactions</span>
+        <hr>
+    </a>
+
+    <a href="" class="list_items">
+        <span class="primary_header">Exchange</span>
+        <br>
+        <span class="secondary_header">Be aware, trade profitably</span>
+        <hr>
+    </a>
+
+    <a href="{% url 'settings' %}" class="list_items">
+        <span class="primary_header">Settings</span>
+        <br>
+        <span class="secondary_header">Configurable settings, with full accesibilities</span>
+        <hr>
+    </a>
+<br><br><br>
+</div>
+<footer>
+
+    <a class="nav_link" href="{% url 'home' %}">
+        <img class="a" src="{% static 'images/bxs-home.svg' %}" alt=""> 
+        <span class="nav-text">Home</span>
+    </a>
+  
+    <a class="nav_link" href="{% url 'cards' %}">
+        <img class="a" src="{% static 'images/bx-bar-chart.svg' %}" alt="">
+    <span class="nav-text">Cards</span>
+    </a>
+  
+    <a class="nav_link" href="{% url 'transactions' %}">
+        <img class="a" src="{% static 'images/bx-dollar-circle.svg' %}" alt="">
+        <span class="nav-text">Transactions</span>
+    </a>
+  
+    <a class="nav_link" href="{% url 'account' %}">
+        <img class="a" src="{% static 'images/bxs-user.svg' %}" alt="">
+     <span class="nav-text">Profile</span>
+    </a>
+  
+  </footer>
+<script>
+    function myFunction() {
+     const btn = 
+     document.getElementById("dropdown_menu");
+     if (btn.style.display === 'none')
+     {
+         btn.style.display = "block";
+     } else {
+         btn.style.display = 'none';
+     }
+    }
+   </script>
+</body>
+</html>

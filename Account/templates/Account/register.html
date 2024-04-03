@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/okay.css' %}">
+</head>
+<body>
+    <center>
+        
+      <div class="banner">
+      </div>
+      <br>
+        <div class="form">
+
+            <form  method="post" action="">
+            {% csrf_token %}
+                <input type="text" class="input-group" name="username" required>
+                <input type="text" class="input-group" name="fname" required>
+                <input type="text" class="input-group" name="lname" required>
+                <input type="text" class="input-group" name="cname" required>
+                <input type="email" class="input-group" name="email" required>
+                <input type="tel" class="input-group" name="phone" required>
+                <input type="number" class="input-group" name="age" required>
+                <input type="password" class="input-group" name="pass1" required>
+                <input type="password" class="input-group" name="pass2" required>
+                <button id="loadButton" type="submit" class="btn">
+                  Register
+                </button>
+        <br>
+          <a href="{% url 'Login' %}" class="a">Forgotten Password ? </a>
+        <a href="{% url 'Login' %}" class="a">Or Sign in ? </a>
+          </div>
+          <div class="error">{{forms.errors}}</div>
+    </form>
+    </center>
+    
+    <span class="ff">Follow us on...</span>
+<footer>
+    <div class="handles">
+        <a href="" class="hover_icon">
+            <img class="email" src="{% static 'images/bxl-facebook-circle.svg' %}" alt="">
+        </a>
+        <a href="" class="hover_icon">
+            <img class="email" src="{% static 'images/bxl-instagram-alt.svg' %}" alt="">
+        </a>
+        <a href="" class="hover_icon">
+            <img class="email" src="{% static 'images/bxl-whatsapp-square.svg' %}" alt="">
+        </a>
+        <a href="" class="hover_icon">
+            <img class="email" src="{% static 'images/bxs-envelope.svg' %}" alt="">
+        </a>
+       </div>
+    </footer>
+    <br>
+    <br>
+    <script>
+        // const loadButton = document.getElementById("loadButton");
+        // const loader = document.getElementById("loader");
+        // loadButton.addEventListener(
+        //       'click', () =>{
+        // loader.style.display = 'inline-block';
+        // setTimeout(() => {
+        //   loadButton.disabled = false;
+        //   loader.style.display = 'none';
+        //   demoForm.reset();
+        // }, 50000);
+        // })
+        
+        // Query all input fields
+          var form_fields = document.getElementsByTagName('input')
+          form_fields[1].placeholder='Username....';
+          form_fields[2].placeholder='Enter your first name...';
+          form_fields[3].placeholder='Enter your last name...';
+          form_fields[4].placeholder='Enter your country name...';
+          form_fields[5].placeholder='Enter your email...';
+          form_fields[6].placeholder='Enter your phone number...';
+          form_fields[7].placeholder='Enter your age...';
+          form_fields[8].placeholder='Enter your password...';
+          form_fields[9].placeholder='Re-Enter your password...';
+        
+          for (var fields in form_fields){
+            form_fields[field].className += 'form_control'
+          }
+          </script>
+</body>
+</html>

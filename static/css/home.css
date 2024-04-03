@@ -1,0 +1,161 @@
+
+/*global styles */
+:root{
+  --text-color: #fff;
+  --bg-color: #333;
+  --accent: #007bff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px;
+  }
+  
+  header {
+    background: var(--bg-color);
+    color: var(--text-color);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-family: cursive;
+  }
+ 
+  /* navigation */ 
+  nav ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+  }
+  
+  /* dashboard */
+  .services-box h3{
+    margin-bottom: 0;
+    font-size: 2.2rem;
+    color: var(--accent);
+}
+
+.sevices-container{
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 40px;
+  position: relative;
+  
+}
+
+.sevices-container .services-box{
+  flex: 1 1 3rem;
+  background-color: var(--bg-body);
+  padding: 1rem 1rem 1rem;
+  margin: 1rem;
+  border-radius: 2rem;
+  /* text-align: center; */
+  position: relative;
+  background-color: var(--bg-color);
+  height: 15vh;
+  width: 10vw;
+}
+
+.sevices-container .services-box:hover {
+  border: 1px solid var(--accent);
+}
+
+.services {
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+img{
+  position: absolute;
+  top: 2vh;
+  right: -10vw;
+}
+
+.payment{
+  position: absolute;
+  top: 5vh;
+  left: 2vw;
+}
+
+.number{
+  position: absolute;
+  top: 1vh;
+  left: 2vw;
+}
+
+.dots{
+  font-size: 30px;
+  position: absolute;
+  bottom: 0.2vh;
+  left: 2vw;
+}
+@media (max-width: 37.5em) {
+  .services{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  
+}
+
+  /* hero */
+  
+  .hero {
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  .hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  
+  /* footer */
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--accent);
+    color: var(--bg-color);
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  
+  footer {
+    background: #f4f4f4;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+  }
+  

@@ -1,0 +1,59 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Global styles */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: silver;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px;
+  }
+  
+  header {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-family: cursive;
+  }
+  
+  h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+  
+  .about-content {
+    margin-bottom: 40px;
+  }
+  
+  .about-content img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  .about-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  footer {
+    background: #f4f4f4;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+  }
+  

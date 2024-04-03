@@ -1,0 +1,149 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Global styles */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: silver;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px;
+  }
+  
+  header {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .hero {
+    text-align: center;
+    margin-top: 80px;
+  }
+  
+  .hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  
+  section {
+    padding: 80px 0;
+  }
+  
+  section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  section p {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  section ul {
+    list-style: disc;
+    margin-left: 20px;
+  }
+  
+  footer {
+    background: #f4f4f4;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+  }
+  
+
+  
+/* transition for the design */
+
+aside{
+  width: 180px;
+  height: 150px;
+  padding: 2rem;
+  background: linear-gradient(#333, brown);
+  transition: width 2s;
+  border-radius: 0.5rem;
+  color: #fff;
+}
+
+#div1{
+  transition-timing-function: linear;
+  font-size: 1.5rem;
+}
+
+#div2{
+   transition-timing-function: ease;
+   font-size: 1.5rem;
+}
+
+#div3{
+   transition-timing-function: ease-in;
+   font-size: 1.5rem;
+}
+
+#div4{
+  transition-timing-function: ease-out;
+  font-size: 1.5rem;
+}
+
+#div5{
+  transition-timing-function: ease-in-out;
+  font-size: 1.5rem;
+}
+
+#div6{
+  text-decoration: none;
+  color:#fff;
+}
+
+aside:hover{
+  width: 300px;
+}
+
+.pic{
+    background-image: url('/static/images/bootstrap.png');
+    height: 8rem;
+    background-repeat: no-repeat;
+}

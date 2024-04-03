@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    max-height: 100%;
+    padding: 0;
+}
+
+.banner{
+    height: 13rem;
+    background-image: url("../images/SL-110820-37810-12.jpg");
+    background-position: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.form{
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.a{
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    font-size: 12px;
+}
+
+button{
+    padding: 1rem;
+    width:18rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: purple;
+    color: #fff;
+    font-weight: bold;
+}
+
+input{
+    padding: 1rem;
+    width:18rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: rgb(224, 217, 217);
+}
+
+/* .input-group{
+    padding: 1rem;
+    width:18rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: rgb(224, 217, 217);
+} */
+
+.email{
+    padding: 0.5rem;
+    border-radius: 2rem;
+    margin: 1rem;
+    background-color: grey;
+}
+
+input:hover{
+    background-color: antiquewhite;
+}
+
+/* .input-group:hover{
+    background-color: antiquewhite;
+} */
+
+.ff{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.handles{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+footer{
+    padding-top: 1rem;
+}
+
+.email:hover{
+    background-color: blueviolet;
+}
+
+.messages{
+    padding: 1.5rem;
+    background-color: purple;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    margin-top: 2rem;
+ }
+
+  .error{
+    color: rgb(82, 0, 0);
+    list-style: none;
+    text-align: center;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    margin-top: 2rem;
+ }

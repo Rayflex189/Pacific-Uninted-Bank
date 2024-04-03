@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDEA FORUM</title>
+    <style>
+    *{
+    
+        box-sizing: border-box;
+    }
+    
+    body{
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        background-color: #1a237e;
+    }
+    
+    section{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10rem;
+        line-height: 1.5rem;
+    }
+    
+    h1{
+        text-shadow: 0 0 10px black;
+        font-size: 7rem;
+        margin: 1rem;
+        color: blueviolet;
+    }
+    
+    .text{
+        font-size: 1.2rem;
+        font-family: sans-serif;
+        color: #eee;
+    }
+    
+    .list a{
+        text-decoration: none;
+        color: antiquewhite;
+        font-family: sans-serif;
+    }
+    
+    a:hover{
+        text-shadow: 0 0 10px black;
+        color: #1a2;
+    }
+    
+    .wight{
+        color: #1a2;
+    }
+    
+    .loader{
+        /* display: none; */
+        border: 0.5rem solid rgba(255, 255, 255, 0.3);
+        border-top: 0.5rem solid blue;
+        width: 50px;
+        border-radius: 50px;
+        position: static;
+        /* hedight: 50px; */
+        padding: 2rem;
+        animation: spin 1s linear infinite;
+      }
+    
+      .load{
+        /* display: none; */
+        border: 0.5rem solid rgba(255, 255, 255, 0.3);
+        border-top: 0.5rem solid #1a2;
+        width: 50px;
+        border-radius: 50px;
+        position: absolute;
+        /* hedight: 50px; */
+        padding: 2rem;
+        animation: spin_lefts 1s linear infinite;
+      }
+    
+    
+      @keyframes spin {
+        0%{
+          transform: rotate(0deg);
+        }
+    
+        100%{
+          transform: rotate(360deg);
+        }
+      }
+    
+      @keyframes spin_lefts {
+        0%{
+          transform: rotate(0deg);
+        }
+    
+        100%{
+          transform: rotate(-360deg);
+        }
+      }
+     </style>
+</head>
+<body>
+  <section>
+    <h1>4<span class="wight">0</span>0</h1>
+    <br>
+     <p class="text">Opps!! Page note found.</p>
+    <p class="text"> We cant find the page on our Server try to..</p>
+    <p class="list">
+        <a href="">Contacting Us | </a>
+
+        <a href="{% url 'Forum' %}">Go back Home | </a>
+
+        <a href="">Check Help Center | </a>
+    </p>
+    <br><br>
+    <div class="loader" id="loader"><div class="load" id="loader"></div></div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{% static '/css/main_style.css' %}">
+</head>
+<body>
+    <nav>
+        <input type="checkbox" name="" id="check">
+        <label for="check" onclick="myFunction()" class="checkbtn">
+            <img class="img" src="{% static 'images/icons8-menu.svg' %}" alt="">
+        </label>
+       <label class="logo">Pacific Union</label>
+       <ul id="dropdown_menu">
+        <li><a class="active" href="{% url 'home' %}">Home</a></li>
+        <li><a class="linked" href="{% url 'cards' %}">Cards</a></li>
+        <li><a class="linked" href="{% url 'account' %}">Profile</a></li>
+        <li><a class="linked" href="{% url 'Logout' %}">Logout</a></li>
+        <li><a class="linked" href="{% url 'transactions' %}">Transactions</a></li>
+        <li><a class="linked" href="{% url 'service' %}">Convinient Services</a></li>
+       </ul>
+        </nav>
+            <div class="top">
+                <p class="intro">
+                    <span class="txt_wlc">Welcome <a href="" class="txt_user">{{request.user}}</a></span>
+                    <br>
+                    <span class="t_b">TOTAL BALANCE</span>
+                    <br>
+                    {% for i in amount %}
+                    <span class="amt">${{i.main_amount}}</span>
+                    {% else %}
+
+                    <span class="t_b"></span>
+                    {% for i in random_number %}
+                    <p>{{i.random_number}}</p>
+                    {% endfor %}
+                </p>
+                <br>
+                <hr>
+                <div class="space">
+<a href="{% url 'add_cards' %}" class="links">
+        <div class="box1">
+            <img src="{% static 'images/icons8-down-arrow-50.png' %}" alt="">
+        </div>
+<br>
+        <span class="crt">
+            Deposit Funds
+        </span>
+    </a>
+
+    <a href="{% url 'withdrawal' %}" class="links">
+        <div class="box2">
+            <img src="{% static 'images/icons8-dollar-sign-50.png' %}" alt="">
+        </div>
+<br>
+        <span class="crt">
+            Withdrawal Funds
+        </span>
+    </a>
+
+   <a href="" class="links">
+    <div class="box3">
+        <img src="{% static 'images/icons8-wallet.gif' %}" alt="">
+      </div>
+<br>
+      <span class="crt">
+        Bank Transfer
+    </span>
+   </a>
+
+    <a href="" class="links">
+        <div class="box4">
+            <img style="height: 3.5rem" src="{% static 'images/paypal.png' %}" alt="">
+        </div>
+<br>
+        <span class="crt">
+            Paypal
+        </span>
+       </a>
+
+       <a href="" class="links">
+        <div class="box5">
+            <img src="{% static 'images/icons8-crypto-50.png' %}" alt="">
+        </div> 
+<br>
+        <span class="crt">
+            Crypto Exchange
+        </span>
+       </a>
+
+       <a href="" class="links">
+        <div class="box6">
+            <img style="height: 3.5rem" src="{% static 'images/social.png' %}" alt="">
+        </div>
+<br>
+        <span class="crt">
+            Skrill
+        </span>
+       </a>
+
+                </div>
+
+            </div>
+
+        <section class="acct">
+            <div class="table_1">
+                <div class="box_1">
+                 <span class="blur">Current Balance</span>
+                 {% for i in amount %}
+                 <span class="blur_1">USD {{i.main_amount}}</span>
+                 {% endfor %}
+                </div>
+               </div>
+
+          <div class="table_2">
+            <div class="box_2">
+                <span class="blur">Ledger Balance</span>
+                <span class="blur_2">USD 0.00</span>
+               </div>
+          </div>
+        </section>
+
+        <section class="acct">
+            <div class="table_3">
+             <div class="box_1">
+              <span class="blur">Available Balance</span>
+              {% for i in amount %}
+              <span class="blur_3">USD {{i.main_amount}}</span>
+              {% endfor %}
+             </div>
+            </div>
+  
+            <div class="table_4">
+              <div class="box_2">
+                  <span class="blur">Refundable Balance</span>
+                  <span class="blur_4">USD 0.00</span>
+                 </div>
+            </div>
+          </section>
+
+    <div style="overflow-x: auto,">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>06/03/2024</td>
+                <td>Card</td>
+                <td>Rory ray</td>
+                <td>Successful</td>
+                <td>$500</td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br>
+    <footer>
+
+        <a class="nav_link" href="{% url 'home' %}">
+            <img class="a" src="{% static 'images/bxs-home.svg' %}" alt=""> 
+            <span class="nav-text">Home</span>
+        </a>
+      
+        <a class="nav_link" href="{% url 'cards' %}">
+            <img class="a" src="{% static 'images/bx-bar-chart.svg' %}" alt="">
+        <span class="nav-text">Cards</span>
+        </a>
+      
+        <a class="nav_link" href="{% url 'transactions' %}">
+            <img class="a" src="{% static 'images/bx-dollar-circle.svg' %}" alt="">
+            <span class="nav-text">Transactions</span>
+        </a>
+      
+        <a class="nav_link" href="{% url 'account' %}">
+            <img class="a" src="{% static 'images/bxs-user.svg' %}" alt="">
+         <span class="nav-text">Profile</span>
+        </a>
+      
+      </footer>
+    <script>
+        function myFunction() {
+         const btn = 
+         document.getElementById("dropdown_menu");
+         if (btn.style.display === 'none')
+         {
+             btn.style.display = "block";
+         } else {
+             btn.style.display = 'none';
+         }
+        }
+       </script>
+</body>
+</html>
