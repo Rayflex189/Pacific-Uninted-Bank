@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-902&c!q^r+#r12jiz2rp!$e!x*&u8_yy6^&riac&$!=ku8@y*5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['pacific-unity-microfinance-bank.onrender.com']
 
 
 # Application definition
