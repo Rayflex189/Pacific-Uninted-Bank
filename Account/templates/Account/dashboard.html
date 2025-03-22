@@ -31,8 +31,10 @@
                     <span class="t_b">TOTAL BALANCE</span>
                     <br>
                     {% for i in amount %}
-                    <span class="amt">${{i.main_amount}}</span>
-                    {% else %}
+    <span class="amt">${{ i.main_amount }}</span>
+{% empty %}
+    <span class="t_b"></span>
+{% endfor %}
 
                     <span class="t_b"></span>
                     {% for i in random_number %}
