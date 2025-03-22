@@ -50,6 +50,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+SUPERUSER_USERNAME = "admin"
+SUPERUSER_EMAIL = "admin@example.com"
+SUPERUSER_PASSWORD = "adminpassword"
+
+
 ROOT_URLCONF = 'Pacific_Union.urls'
 APPEND_SLASH = True
 
