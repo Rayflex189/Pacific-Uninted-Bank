@@ -1,419 +1,717 @@
+{% load static %}
 {% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings - Starling bank</title>
-    <script src="//code.jivosite.com/widget/1WuIx4F5Vw" async></script>
-
+    <title>Settings - Axis Capital Trust</title>
+    <script src="//code.jivosite.com/widget/U73k9r5PsR" async></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Base styles */
         body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: rgb(214, 220, 226);
+            background-color: #f5f7fa;
             height: 100%;
             overflow-x: hidden;
         }
-        .dashboard {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .dropdown-navbar {
-            position: relative;
-            width: 100%;
-            background: -webkit-linear-gradient(left, #1d3ede, #f1a10e);
-  background: -ms-linear-gradient(left, #1d3ede, #f1a10e);
-  background: -moz-linear-gradient(left, #1d3ede, #f1a10e);
-  background: -o-linear-gradient(left, #1d3ede, #f1a10e);
-            padding: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
+
+        /* Header */
+        .bank-header {
+            background-color: #003366;
+            color: white;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .navbar-header {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            justify-content: space-between;
+        .bank-header h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            padding-left: 20px;
         }
-        .menu-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
+        .notification-bell, .open-sidebar-btn {
             cursor: pointer;
-            color: #fff;
-        }
-        .bank-name {
+            color: white;
             font-size: 1.5rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #002244;
+            position: fixed;
+            right: -250px;
+            top: 0;
+            transition: right 0.4s ease;
             color: #fff;
-            margin-right: 10px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
         }
-        .navbar-links {
-            display: none;
-            flex-direction: column;
-            background: -webkit-linear-gradient(left, #1d3ede, #f1a10e);
-  background: -ms-linear-gradient(left, #1d3ede, #f1a10e);
-  background: -moz-linear-gradient(left, #1d3ede, #f1a10e);
-  background: -o-linear-gradient(left, #1d3ede, #f1a10e);
-            padding: 10px;
-            position: absolute;
-            width: 100%;
-            top: 100%;
-            left: 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            animation: slideDown 0.3s ease-out forwards;
+        .sidebar.open {
+            right: 0;
         }
-        .navbar-links a {
+        .sidebar-header, .user-details, .sidebar ul li {
+            padding: 15px 20px;
+            border-bottom: 1px solid #004080;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar ul li a {
+            color: white;
             text-decoration: none;
-            color: #fff;
-            padding: 10px 0;
             display: block;
-            text-align: left;
-            transition: background 0.3s;
         }
-        .navbar-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
+        .sidebar ul li a:hover {
+            background-color: #003366;
         }
+
+        /* Main Content */
         .main-content {
-            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 30px;
+        }
+        .page-header h1 {
+            color: #003366;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .page-header p {
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
+        /* Card Container */
+        .card-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        /* Card Header */
+        .card-header {
+            background-color: #003366;
+            color: white;
             padding: 20px;
         }
-        .settings-section {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
         }
-        .settings-section h2 {
-            color: #007bff;
-            margin-bottom: 20px;
+
+        /* Card Body */
+        .card-body {
+            padding: 25px;
         }
+
+        /* Settings Grid */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Settings Item */
         .settings-item {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #ccc;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
         }
         .settings-item:last-child {
             border-bottom: none;
         }
-        .settings-item label {
+        .settings-label {
             font-weight: bold;
-            color: #333;
+            color: #495057;
+            flex: 1;
         }
-        .settings-item input, .settings-item select {
+        .settings-value {
+            color: #6c757d;
+            flex: 1;
+            text-align: right;
+        }
+        .settings-action {
+            flex: 0 0 auto;
+            margin-left: 15px;
+        }
+
+        /* Form Elements */
+        .form-control {
+            width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
         }
-        .settings-item button {
-            background: #007bff;
-            color: white;
-            border: none;
+        .form-control:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+        }
+
+        /* Buttons */
+        .btn {
             padding: 10px 20px;
-            border-radius: 5px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
-        .settings-item button:hover {
-            background: #0056b3;
+        .btn-primary {
+            background-color: #003366;
+            color: white;
         }
+        .btn-primary:hover {
+            background-color: #002244;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        /* Select Styling */
+        select.form-control {
+            background-color: white;
+            cursor: pointer;
+        }
+
+        /* Messages */
+        .message-container {
+            margin-bottom: 20px;
+        }
+        .message {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        .message-success {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        .message-error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Bottom Navbar */
         .bottom-navbar {
             position: fixed;
             bottom: 0;
             width: 100%;
-            background: #fff;
+            background-color: #003366;
+            color: white;
             display: flex;
             justify-content: space-around;
             padding: 10px 0;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
         }
-        .nav-link {
-            text-align: center;
-            color: #000;
-            text-decoration: none;
+        .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-decoration: none;
+            color: white;
         }
-        .nav-link i {
-            font-size: 1.5rem;
+        .nav-icon {
+            font-size: 1.2rem;
             margin-bottom: 5px;
-            color: #000;
         }
-        .nav-link span {
-            font-size: 0.75rem;
-        }
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-          .message-container {
-            position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            width: 100%;
-            text-align: center;
-        }
-        .message {
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-            animation: bounce 0.5s ease;
-        }
-        .message-success {
-            color: #3c763d;
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
-        }
-                .telegram-icon {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            z-index: 1000;
+        .nav-label {
+            font-size: 0.8rem;
         }
 
-        .telegram-icon img {
-            width: 50px;
-            height: 50px;
+
+
+        /* Marquee */
+        .marquee {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            font-weight: bold;
+            padding: 10px;
+            white-space: nowrap;
+            overflow: hidden;
         }
-        .telegram-icon {
+        .marquee-content {
+            display: inline-block;
+            animation: scrollLeft 10s linear infinite;
+        }
+        @keyframes scrollLeft {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+            .settings-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .settings-value {
+                text-align: left;
+                margin: 5px 0;
+            }
+            .settings-action {
+                margin-left: 0;
+                margin-top: 10px;
+                align-self: flex-end;
+            }
+        }
+                .telegram-float {
             position: fixed;
-            bottom: 20px;
             left: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #0088cc;
-            border-radius: 50%;
+            bottom: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .telegram-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            animation: bounce 2s infinite;
-            transition: transform 0.3s;
+            width: 60px;
+            height: 60px;
+            background: #0088cc;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
-        .telegram-icon:hover {
+        .telegram-link:hover {
+            background: #0077b5;
             transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
 
-        @keyframes bounce {
-            0%, 100% {
+        .telegram-icon {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        .telegram-tooltip {
+            position: absolute;
+            left: 70px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .telegram-link:hover .telegram-tooltip {
+            opacity: 1;
+        }
+
+        @keyframes float {
+            0% {
                 transform: translateY(0);
             }
             50% {
                 transform: translateY(-10px);
             }
+            100% {
+                transform: translateY(0);
+            }
         }
 
-        .telegram-icon img {
-            width: 35px;
-            height: 35px;
+
+        @media (max-width: 768px) {
+            .telegram-float {
+                left: 10px;
+                bottom: 10px;
+            }
+
+            .telegram-link {
+                width: 50px;
+                height: 50px;
+            }
+
+            .telegram-icon {
+                width: 25px;
+                height: 25px;
+            }
         }
+            .email-float {
+        position: fixed;
+        left: 20px;
+        bottom: 90px;
+        z-index: 1000;
+        animation: floatEmail 3s ease-in-out infinite;
+    }
+
+    .email-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .email-link:hover {
+        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
+    }
+
+    .email-icon {
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .email-tooltip {
+        position: absolute;
+        left: 70px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .email-link:hover .email-tooltip {
+        opacity: 1;
+    }
+
+    @keyframes floatEmail {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .email-float {
+            left: 10px;
+            bottom: 80px;
+        }
+
+        .email-link {
+            width: 50px;
+            height: 50px;
+        }
+
+        .email-icon {
+            font-size: 1.3rem;
+        }
+    }
     </style>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Google Fonts - Roboto -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <div class="dashboard">
-            {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-        <!-- Drop-down Navigation Bar -->
-        <nav class="dropdown-navbar" id="dropdown-navbar">
-            <div class="navbar-header">
-                <button class="menu-btn" id="menu-btn">&#9776;</button>
-                <span class="bank-name">Starling bank</span>
-            </div>
-            <div class="navbar-links" id="navbar-links">
-                <a href="{% url 'dashboard' %}">Home</a>
-                <a href="{% url 'setting' %}">Accounts</a>
-                <a href="{% url 'transaction' %}">Transactions</a>
-                <a href="{% url 'setting' %}">Settings</a>
-                <a href="{% url 'loans' %}">Loans</a>
-                <a href="{% url 'logout' %}">Logout</a>
-            </div>
-        </nav>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <header>
-                <h1 style="color: #007bff;">Settings</h1>
-            </header>
-
-            <!-- Profile Information Section -->
-            <section class="settings-section">
-                <h2>Profile Information</h2>
-                <div class="settings-item">
-                    <label for="username">Username:</label>
-                    {{request.user}}
-                </div>
-                <div class="settings-item">
-                    <label for="email">Email:</label>
-                     {{user_profile.email}}
-                </div>
-                <div class="settings-item">
-                    <label for="email">First Name:</label>
-                    {{user_profile.first_name}}
-                </div>
-                <div class="settings-item">
-                    <label for="email">Middle Name:</label>
-                    {{user_profile.middle_name}}
-                </div>
-
-                <div class="settings-item">
-                    <label for="email">Last Name:</label>
-                    {{user_profile.last_name}}
-                </div>
-                <div class="settings-item">
-                    <label for="email">Mobile Number:</label>
-                    {{user_profile.phone_number}}
-                </div>
-               <div class="settings-item">
-                    <label for="email">Date of birth:</label>
-                    {{user_profile.date_of_birth}}
-                </div>
-                <div class="settings-item">
-                    <label for="email">Employment status:</label>
-                    {{user_profile.status}}
-                </div>
-                <div class="settings-item">
-                    <label for="email">Country:</label>
-                    {{user_profile.country}}
-                </div>
-                <div class="settings-item">
-                    <label for="email">Currency:</label>
-                    {{user_profile.currency}}
-                </div>
-                <div class="settings-item">
-                    <label for="email">Gender:</label>
-                    {{user_profile.Gender}}
-                </div>
-                <div class="settings-item">
-                    <label for="email">Account type:</label>
-                    {{user_profile.account_type}}
-                </div>
-
-    </form>
-                </div>
-            </section>
-
-            <!-- Security Settings Section -->
-            <section class="settings-section">
-                <h2>Security Settings</h2>
-                <div class="settings-item">
-                    <label for="password">Profile reset:</label>
-                    <a href="{% url 'reset_profile' %}">Reset</a>
-                </div>
-                <div class="settings-item">
-                    <label for="2fa">Two-Factor Authentication:</label>
-                    <select id="2fa" name="2fa">
-                        <option value="enabled">Enabled</option>
-                        <option value="disabled">Disabled</option>
-                    </select>
-                </div>
-            </section>
-
-            <!-- Notification Preferences Section -->
-            <section class="settings-section">
-                <h2>Notification Preferences</h2>
-                <div class="settings-item">
-                    <label for="email-notif">Email Notifications:</label>
-                    <select id="email-notif" name="email-notif">
-                        <option value="enabled">Enabled</option>
-                        <option value="disabled">Disabled</option>
-                    </select>
-                </div>
-                <div class="settings-item">
-                    <label for="sms-notif">SMS Notifications:</label>
-                    <select id="sms-notif" name="sms-notif">
-                        <option value="enabled">Enabled</option>
-                        <option value="disabled">Disabled</option>
-                    </select>
-                </div>
-            </section>
-
-            <!-- Account Management Section -->
-            <section class="settings-section">
-                <h2>Account Management</h2>
-                <div class="settings-item">
-                    <label for="deactivate">Deactivate Account:</label>
-                    <button id="deactivate">Deactivate</button>
-                </div>
-                <div class="settings-item">
-                    <label for="delete">Delete Account:</label>
-                    <button id="delete">Delete</button>
-                </div>
-            </section>
-        </div>
-
-        <!-- Bottom Navigation Bar -->
-        <nav class="bottom-navbar">
-            <a href="{% url 'dashboard' %}" class="nav-link">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="{% url 'setting' %}" class="nav-link">
-                <i class="fas fa-wallet"></i>
-                <span>Accounts</span>
-            </a>
-            <a href="{% url 'bank' %}" class="nav-link">
-                <i class="fas fa-exchange-alt"></i>
-                <span>Transfer</span>
-            </a>
-
-            <a href="{% url 'setting' %}" class="nav-link">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
-            </a>
-        </nav>
+    <!-- Email Floating Icon -->
+<div class="email-float">
+    <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="email-tooltip">Contact us via email</span>
+    </a>
+</div>
+  <!-- Telegram Floating Icon -->
+    <div class="telegram-float">
+        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
+            <span class="telegram-tooltip">Join our Telegram group</span>
+        </a>
     </div>
 
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const navbarLinks = document.getElementById('navbar-links');
+    <header class="bank-header">
+        <h1>Axis Capital Trust</h1>
+        <div class="notification-bell" onclick="toggleSidebar()">
+            <i class="fas fa-bell"></i>
+        </div>
+        <div class="open-sidebar-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
 
-        menuBtn.addEventListener('click', () => {
-            navbarLinks.style.display = navbarLinks.style.display === 'flex' ? 'none' : 'flex';
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Account Menu</h2>
+            <button onclick="toggleSidebar()">Close</button>
+        </div>
+        <div class="user-details">
+            <p>Username: <strong>{{ request.user }}</strong></p>
+            <p>Email: <strong>{{ user_profile.email }}</strong></p>
+        </div>
+        <ul>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'setting' %}">Profile</a></li>
+            <li><a href="{% url 'transaction' %}">Transactions</a></li>
+            <li><a href="{% url 'loans' %}">Loans</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Marquee for Stock Market -->
+    <div class="marquee">
+        <div class="marquee-content" id="stockMarquee">
+            Loading stock market data...
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Account Settings</h1>
+            <p>Manage your profile information and security preferences</p>
+        </div>
+
+        <!-- Messages -->
+        {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+            <div class="message message-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Profile Information Section -->
+        <div class="card-container">
+            <div class="card-header">
+                <h2>Profile Information</h2>
+            </div>
+            <div class="card-body">
+                <div class="settings-grid">
+                    <div class="settings-item">
+                        <div class="settings-label">Username:</div>
+                        <div class="settings-value">{{ request.user }}</div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">Email:</div>
+                        <div class="settings-value">{{ user_profile.email }}</div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">First Name:</div>
+                        <div class="settings-value">{{ user_profile.first_name }}</div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">Middle Name:</div>
+                        <div class="settings-value">{{ user_profile.middle_name }}</div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">Last Name:</div>
+                        <div class="settings-value">{{ user_profile.last_name }}</div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">Mobile Number:</div>
+                        <div class="settings-value">{{ user_profile.phone_number }}</div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">Date of Birth:</div>
+                        <div class="settings-value">{{ user_profile.date_of_birth }}</div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">Employment Status:</div>
+                        <div class="settings-value">{{ user_profile.status }}</div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">Country:</div>
+                        <div class="settings-value">{{ user_profile.country }}</div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">Currency:</div>
+                        <div class="settings-value">{{ user_profile.currency }}</div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">Gender:</div>
+                        <div class="settings-value">{{ user_profile.Gender }}</div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">Account Type:</div>
+                        <div class="settings-value">{{ user_profile.account_type }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Settings Section -->
+        <div class="card-container">
+            <div class="card-header">
+                <h2>Security Settings</h2>
+            </div>
+            <div class="card-body">
+                <div class="settings-item">
+                    <div class="settings-label">Profile Reset:</div>
+                    <div class="settings-action">
+                        <a href="{% url 'reset_profile' %}" class="btn btn-primary">Reset Profile</a>
+                    </div>
+                </div>
+                <div class="settings-item">
+                    <div class="settings-label">Two-Factor Authentication:</div>
+                    <div class="settings-action">
+                        <select class="form-control">
+                            <option value="enabled">Enabled</option>
+                            <option value="disabled">Disabled</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification Preferences Section -->
+        <div class="card-container">
+            <div class="card-header">
+                <h2>Notification Preferences</h2>
+            </div>
+            <div class="card-body">
+                <div class="settings-item">
+                    <div class="settings-label">Email Notifications:</div>
+                    <div class="settings-action">
+                        <select class="form-control">
+                            <option value="enabled">Enabled</option>
+                            <option value="disabled">Disabled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="settings-item">
+                    <div class="settings-label">SMS Notifications:</div>
+                    <div class="settings-action">
+                        <select class="form-control">
+                            <option value="enabled">Enabled</option>
+                            <option value="disabled">Disabled</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Management Section -->
+        <div class="card-container">
+            <div class="card-header">
+                <h2>Account Management</h2>
+            </div>
+            <div class="card-body">
+                <div class="settings-item">
+                    <div class="settings-label">Deactivate Account:</div>
+                    <div class="settings-action">
+                        <button class="btn btn-warning">Deactivate</button>
+                    </div>
+                </div>
+                <div class="settings-item">
+                    <div class="settings-label">Delete Account:</div>
+                    <div class="settings-action">
+                        <button class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-navbar">
+        <a href="{% url 'dashboard' %}" class="nav-item">
+            <i class="fas fa-home nav-icon"></i>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="{% url 'setting' %}" class="nav-item">
+            <i class="fas fa-wallet nav-icon"></i>
+            <span class="nav-label">Accounts</span>
+        </a>
+        <a href="{% url 'bank' %}" class="nav-item">
+            <i class="fas fa-exchange-alt nav-icon"></i>
+            <span class="nav-label">Transfer</span>
+        </a>
+        <a href="{% url 'setting' %}" class="nav-item">
+            <i class="fas fa-user nav-icon"></i>
+            <span class="nav-label">Profile</span>
+        </a>
+    </nav>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Mock API Data for stocks
+        const stockData = [
+            { symbol: "AAPL", price: 178.23 },
+            { symbol: "GOOGL", price: 123.45 },
+            { symbol: "AMZN", price: 99.12 },
+            { symbol: "TSLA", price: 246.78 }
+        ];
+
+        // Update stock marquee dynamically
+        function updateStockMarquee() {
+            const marquee = document.getElementById("stockMarquee");
+            const stockText = stockData.map(stock => `${stock.symbol}: $${stock.price.toFixed(2)}`).join(" | ");
+            marquee.innerHTML = stockText;
+        }
+
+        // Call functions after the DOM is loaded
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(updateStockMarquee, 1000);
         });
 
+        document.getElementById("telegramBtn").addEventListener("click", function() {
+            window.open("https://t.me/CRESTLINE_BANK_11", "_blank");
+        });
     </script>
 </body>
 </html>

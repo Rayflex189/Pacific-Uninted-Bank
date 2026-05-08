@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+     <script src="//code.jivosite.com/widget/U73k9r5PsR" async></script>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" href="{% static 'images/web_logo.jpg' %}" type="image/x-icon" />
-    <script src="//code.jivosite.com/widget/1WuIx4F5Vw" async></script>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Pending Transaction -  Starling bank</title>
+    <title>Pending Transaction -  Axis Capital Trust</title>
     <style>
         /* Base styles and color scheme */
         body, html {
@@ -158,49 +157,187 @@
             }
         }
 
-        .telegram-icon {
+        .telegram-float {
             position: fixed;
-            bottom: 20px;
             left: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #0088cc;
-            border-radius: 50%;
+            bottom: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .telegram-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            animation: bounce 2s infinite;
-            transition: transform 0.3s;
+            width: 60px;
+            height: 60px;
+            background: #0088cc;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
-        .telegram-icon:hover {
+        .telegram-link:hover {
+            background: #0077b5;
             transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
 
-        @keyframes bounce {
-            0%, 100% {
+        .telegram-icon {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        .telegram-tooltip {
+            position: absolute;
+            left: 70px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .telegram-link:hover .telegram-tooltip {
+            opacity: 1;
+        }
+
+        @keyframes float {
+            0% {
                 transform: translateY(0);
             }
             50% {
                 transform: translateY(-10px);
             }
+            100% {
+                transform: translateY(0);
+            }
         }
 
-        .telegram-icon img {
-            width: 35px;
-            height: 35px;
+
+
+        @media (max-width: 768px) {
+            .telegram-float {
+                left: 10px;
+                bottom: 10px;
+            }
+
+            .telegram-link {
+                width: 50px;
+                height: 50px;
+            }
+
+            .telegram-icon {
+                width: 25px;
+                height: 25px;
+            }
         }
+    .email-float {
+        position: fixed;
+        left: 20px;
+        bottom: 90px;
+        z-index: 1000;
+        animation: floatEmail 3s ease-in-out infinite;
+    }
+
+    .email-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .email-link:hover {
+        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
+    }
+
+    .email-icon {
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .email-tooltip {
+        position: absolute;
+        left: 70px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .email-link:hover .email-tooltip {
+        opacity: 1;
+    }
+
+    @keyframes floatEmail {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .email-float {
+            left: 10px;
+            bottom: 80px;
+        }
+
+        .email-link {
+            width: 50px;
+            height: 50px;
+        }
+
+        .email-icon {
+            font-size: 1.3rem;
+        }
+    }
+
     </style>
+
     <!-- Link to Font Awesome CSS for the Telegram icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Link to your CSS file -->
 </head>
 <body>
-    <div class="telegram-icon" id="telegramBtn">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+    <!-- Email Floating Icon -->
+<div class="email-float">
+    <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="email-tooltip">Contact us via email</span>
+    </a>
+</div>
+      <!-- Telegram Floating Icon -->
+    <div class="telegram-float">
+        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
+            <span class="telegram-tooltip">Join our Telegram group</span>
+        </a>
     </div>
+
     <div class="dashboard">
         <div class="loading-container">
             <main>
@@ -240,7 +377,7 @@
     </div>
     <script>
              document.getElementById("telegramBtn").addEventListener("click", function() {
-            window.open("https://t.me/CRESTLINE_BANK_11", "_blank");
+            window.open("", "_blank");
         });
     </script>
 </body>

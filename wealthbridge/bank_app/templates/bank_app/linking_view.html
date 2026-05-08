@@ -4,182 +4,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="//code.jivosite.com/widget/1WuIx4F5Vw" async></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Account Activation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//code.jivosite.com/widget/U73k9r5PsR" async></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Account Activation - Axis Capital Trust</title>
     <style>
-        body {
-            background-color: #06A3DA;
-            font-family: 'Nunito', sans-serif;
+        :root {
+            --light-blue: #E8F4F8;
+            --primary-blue: #2A6EBB;
+            --dark-blue: #1A4A7A;
+            --accent-blue: #4A90E2;
+            --soft-gray: #F5F7FA;
+            --medium-gray: #E1E8ED;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --success: #27AE60;
+            --warning: #E67E22;
+            --error: #E74C3C;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box; /* Ensures padding and border are part of element's width */
-        }
-
-        /* Header Styling */
-        .navbar {
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .navbar .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-
-        .navbar a:hover {
-            color: #ffcc00;
-        }
-
-        /* Main Content Styling */
-        .content {
-            text-align: center;
-            color: white;
-            margin-top: 50px;
-        }
-
-        .content h1, .content h2 {
-            margin: 20px 0;
-        }
-
-        .content ol {
-            text-align: left;
-            display: inline-block;
-            margin-top: 20px;
-        }
-
-        .content ol li {
-            margin-bottom: 10px;
-        }
-
-        /* Form Container */
-        .form-container {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .form-card {
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            width: 100%;
-            max-width: 500px;
             box-sizing: border-box;
         }
 
-        .form-card h4 {
-            text-align: center;
-            margin-bottom: 20px;
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--soft-gray) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            line-height: 1.6;
         }
 
-        .form-group {
-            margin-bottom: 20px;
+        /* Header Styling */
+        .bank-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--medium-gray);
+            box-shadow: 0 2px 15px rgba(42, 110, 187, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .form-group label {
+        .bank-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
             font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
+            color: var(--dark-blue);
+            margin: 0;
         }
 
-        .form-group input {
-            width: 100%;
-            padding: 12px; /* Increased padding for better input spacing */
-            font-size: 1.1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box; /* Ensures padding and border are included in width calculation */
+        .bank-header h1::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-blue);
+            margin-top: 5px;
+            border-radius: 2px;
         }
 
-        .btn-primary {
-            background-color: #ffcc00;
-            border: none;
-            padding: 12px 20px; /* Increased padding for better button size */
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 100%;
+        .header-nav {
+            display: flex;
+            gap: 20px;
         }
 
-        .btn-primary:hover {
-            background-color: #f7b300;
+        .header-nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        .alert {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f2f2f2;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+        .header-nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Welcome Section */
+        .welcome-section {
             text-align: center;
+            margin-bottom: 40px;
         }
 
-        /* Responsive Styling */
-        @media (max-width: 768px) {
-            .content h1 {
-                font-size: 1.5rem;
-            }
-
-            .content h2 {
-                font-size: 1.2rem;
-            }
-
-            .form-card {
-                padding: 20px;
-                width: 90%;
-            }
-
-            .navbar {
-                font-size: 1.2rem;
-            }
+        .welcome-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
         }
 
-        @media (max-width: 480px) {
-            .navbar {
-                font-size: 1rem;
-                padding: 10px;
-            }
-
-            .form-card {
-                padding: 15px;
-            }
-
-            .btn-primary {
-                font-size: 0.9rem;
-                padding: 10px;
-            }
+        .welcome-section h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            font-size: 2.2rem;
         }
-        .telegram-icon {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #0088cc;
-            border-radius: 50%;
+
+        .welcome-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+
+        .welcome-section p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(42, 110, 187, 0.1);
+            border: 1px solid var(--medium-gray);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(42, 110, 187, 0.15);
+        }
+
+        .info-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 i {
+            color: var(--primary-blue);
+        }
+
+        .info-card ol {
+            padding-left: 20px;
+        }
+
+        .info-card li {
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 8px 20px rgba(42, 110, 187, 0.1);
+            border: 1px solid var(--medium-gray);
+        }
+
+        .benefits-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .benefits-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--dark-blue);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .benefits-list li i {
+            color: var(--success);
+            margin-right: 12px;
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        .get-started-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(42, 110, 187, 0.25);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .get-started-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(42, 110, 187, 0.35);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Activation Form */
+        .activation-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(42, 110, 187, 0.15);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 500px;
+            border: 1px solid var(--medium-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activation-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+        }
+
+        .activation-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .activation-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        .activation-header p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label,input {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            color: var(--dark-blue);
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-control,input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .form-control:focus, input {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(42, 110, 187, 0.15);
+            background: white;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(42, 110, 187, 0.25);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(42, 110, 187, 0.35);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Alert Styling */
+        .alert {
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: rgba(39, 174, 96, 0.1);
+            color: var(--success);
+            border-left: 4px solid var(--success);
+        }
+
+        .alert-error {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--error);
+            border-left: 4px solid var(--error);
+        }
+
+        .alert-warning {
+            background: rgba(230, 126, 34, 0.1);
+            color: var(--warning);
+            border-left: 4px solid var(--warning);
+        }
+
+        /* Support Section */
+        .support-section {
+            background: rgba(42, 110, 187, 0.08);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .support-section h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+        }
+
+        .support-section p {
+            color: var(--text-dark);
+            margin-bottom: 0;
+        }
+
+        /* Support Message Section */
+        .support-message-section {
+            background: rgba(42, 110, 187, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+            border: 2px solid var(--primary-blue);
+        }
+
+        .support-message-section h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .support-message-section p {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .support-contact-info {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .support-contact-item {
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            animation: bounce 2s infinite;
-            transition: transform 0.3s;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
         }
 
-        .telegram-icon:hover {
-            transform: scale(1.1);
+        .support-contact-item i {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+        }
+
+        .support-contact-item a {
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .support-contact-item a:hover {
+            color: var(--primary-blue);
+            text-decoration: underline;
         }
 
         @keyframes bounce {
@@ -191,70 +487,383 @@
             }
         }
 
-        .telegram-icon img {
-            width: 35px;
-            height: 35px;
+        /* JivoChat Override */
+        .jivochat-container {
+            z-index: 98 !important;
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px 15px;
+            }
+
+            .welcome-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .welcome-section h2 {
+                font-size: 1.3rem;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-section {
+                padding: 25px 20px;
+            }
+
+            .activation-section {
+                padding: 30px 20px;
+                margin: 30px auto;
+            }
+
+            .bank-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .header-nav {
+                justify-content: center;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            .welcome-section h1 {
+                font-size: 1.5rem;
+            }
+
+            .benefits-section {
+                padding: 20px 15px;
+            }
+
+            .activation-section {
+                padding: 25px 15px;
+            }
+
+            .info-card {
+                padding: 20px;
+            }
+        }
+               .telegram-float {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .telegram-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #0088cc;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .telegram-link:hover {
+            background: #0077b5;
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .telegram-icon {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        .telegram-tooltip {
+            position: absolute;
+            left: 70px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .telegram-link:hover .telegram-tooltip {
+            opacity: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .telegram-float {
+                left: 10px;
+                bottom: 10px;
+            }
+
+            .telegram-link {
+                width: 50px;
+                height: 50px;
+            }
+
+            .telegram-icon {
+                width: 25px;
+                height: 25px;
+            }
+        }
+           .email-float {
+        position: fixed;
+        left: 20px;
+        bottom: 90px;
+        z-index: 1000;
+        animation: floatEmail 3s ease-in-out infinite;
+    }
+
+    .email-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .email-link:hover {
+        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
+    }
+
+    .email-icon {
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .email-tooltip {
+        position: absolute;
+        left: 70px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .email-link:hover .email-tooltip {
+        opacity: 1;
+    }
+
+    @keyframes floatEmail {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .email-float {
+            left: 10px;
+            bottom: 80px;
+        }
+
+        .email-link {
+            width: 50px;
+            height: 50px;
+        }
+
+        .email-icon {
+            font-size: 1.3rem;
+        }
+    }
     </style>
 </head>
 <body>
+    <!-- Email Floating Icon -->
+<div class="email-float">
+    <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="email-tooltip">Contact us via email</span>
+    </a>
+</div>
 
-    <!-- Navbar -->
-    <div class="navbar">
-        <span class="navbar-brand">SecureLink Banking</span>
-        <div>
-            <a href="#">Profile</a>
+     <!-- Telegram Floating Icon -->
+    <div class="telegram-float">
+        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
+            <span class="telegram-tooltip">Join our Telegram group</span>
+        </a>
+    </div>
+    <!-- Header -->
+    <header class="bank-header">
+        <h1>Axis Capital Trust</h1>
+        <div class="header-nav">
+            <a href="{% url 'setting' %}">Profile</a>
             <a href="{% url 'reset_profile' %}">Settings</a>
             <a href="{% url 'logout' %}">Logout</a>
         </div>
-    </div>
+    </header>
 
-    <div class="container">
-        <div class="content">
-            <h1>Welcome to SecureLink Banking</h1>
-            <h2>Activate Your Account with an Activation PIN</h2>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <div class="welcome-icon">
+                <i class="fas fa-shield-check"></i>
+            </div>
+            <h1>Welcome to Axis Capital Trust</h1>
+            <h2>Account Activation Assistance</h2>
             <p>Dear Valued Customer,</p>
-            <p>We are pleased to inform you about an important update to our banking services. To enhance the security and ease of your transactions, we are introducing a new account activation PIN process.</p>
-            <h3>How It Works</h3>
-            <p>To activate your account and enable purchases, you will need to use an activation PIN. This PIN is essential for verifying your account and ensuring secure transactions. Please follow these simple steps:</p>
-            <ol>
-                <li>Log in to our website or mobile app.</li>
-                <li>Navigate to the Account Activation section.</li>
-                <li>Enter the activation PIN provided to you.</li>
-                <li>Complete the activation process to start making purchases.</li>
-            </ol>
-            <p>If you haven't received your activation PIN, please contact our customer support team to request it. We are here to assist you 24/7 with any questions or issues you may have.</p>
+            <p>We are pleased to inform you about an important update to our banking services. To enhance the security and ease of your transactions, we have updated our account activation process.</p>
+            <p>Please contact our support team for assistance with your account activation.</p>
         </div>
 
-        <div class="form-container">
-            <div class="form-card">
-                <h4>Activate Your Account</h4>
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }}">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-                <form method="post">
-                    {% csrf_token %}
-                    
-                    <!-- Activation PIN -->
-                    <div class="form-group">
-                        <label for="activation-pin">Enter Activation PIN:</label>
-                        {{form}}
-                    </div>
+        <!-- Info Cards -->
+        <div class="info-cards">
+            <div class="info-card">
+                <h3><i class="fas fa-lock"></i> Enhanced Security</h3>
+                <p>The updated activation process adds an extra layer of security to protect your account and ensure that only authorized users can access banking services.</p>
+            </div>
 
-                    <!-- Submit Button -->
-                    <div>
-                        <button type="submit" class="btn-primary">Submit</button>
+            <div class="info-card">
+                <h3><i class="fas fa-bolt"></i> Quick Activation</h3>
+                <p>The activation process is simple and takes only a few minutes to complete, getting you started with secure banking immediately.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fas fa-headset"></i> 24/7 Support</h3>
+                <p>Our customer support team is available around the clock to assist you with activation or any other queries you may have.</p>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="info-card">
+            <h3><i class="fas fa-list-ol"></i> How It Works</h3>
+            <p>To activate your account and enable purchases, you will need assistance from our support team. Our updated process ensures secure and verified account activation:</p>
+            <ol>
+                <li>Contact our support team via email or live chat</li>
+                <li>Provide your account details for verification</li>
+                <li>Follow the instructions provided by our support team</li>
+                <li> Once your account has been successfully activated, return to your dashboard and proceed with your transactions or transfers.</li>
+            </ol>
+            <p>Please contact our customer support team for account activation assistance. We are here to assist you 24/7 with any questions or issues you may have.</p>
+        </div>
+
+        <!-- NEW SECTION: Benefits of Account Linking -->
+        <div class="benefits-section">
+            <div class="benefits-header">
+                <h3>Benefits of Account Activation</h3>
+            </div>
+            <ul class="benefits-list">
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Enhanced security for all your transactions</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Faster processing of payments and transfers</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Access to premium financial services</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Personalized banking experience</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>24/7 account monitoring and fraud protection</span>
+                </li>
+            </ul>
+            <a href="#" class="get-started-btn">
+                <i class="fas fa-rocket" style="margin-right: 8px;"></i>
+                Get Started Today
+            </a>
+        </div>
+
+        <!-- Activation Form -->
+        <div class="activation-section">
+            <div class="activation-header">
+                <h3>Account Activation Support</h3>
+                <p>Contact our support team for account activation assistance</p>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
                     </div>
-                </form>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Support Message Section -->
+            <div class="support-message-section">
+                <h4>Need Account Activation Assistance?</h4>
+                <p>For account activation, please contact our support team directly. Our dedicated support staff will guide you through the activation process securely.</p>
+
+                <div class="support-contact-info">
+                    <div class="support-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:axiscapitaltrustbank@gmail.com">axiscapitaltrustbank@gmail.com</a>
+                    </div>
+                    <div class="support-contact-item">
+                        <i class="fas fa-headset"></i>
+                        <span>Live Chat Support Available</span>
+                    </div>
+                </div>
+
+                <p>Our support team is available 24/7 to assist you with your account activation and any other inquiries.</p>
+            </div>
+
+            <!-- Support Section -->
+            <div class="support-section">
+                <h4>Need Help?</h4>
+                <p>Contact our 24/7 customer support if you need assistance with your account activation</p>
             </div>
         </div>
     </div>
-<script type="module" src="">
-     
-</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Fix JivoChat z-index issue
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const jivoElements = document.querySelectorAll('[id*="jivo"], .jivochat-container');
+                jivoElements.forEach(element => {
+                    element.style.zIndex = '98';
+                });
+            }, 2000);
+        });
+    </script>
 </body>
 </html>

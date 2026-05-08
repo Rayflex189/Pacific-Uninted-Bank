@@ -1,9 +1,57 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from django.contrib.auth.models import User  # Import User model (or use get_user_model if custom user)
-from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User  # Import User model (or use get_user_model if custom uort ValidationError
 from django.contrib.auth import get_user_model  # For custom user model
-from .models import UserProfile  # Import UserProfile if needed
+from .models import *
+
+
+class InvestmentForm(forms.ModelForm):
+    plan = forms.ModelChoiceField(
+        queryset=InvestmentPlan.objects.filter(is_active=True),
+        empty_label="Select Investment Plan",
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    amount = forms.DecimalField(
+        max_digits=15,
+        decimal_places=2,
+        min_value=100.00,
+        widget=forms.NumberInput(attrs={
+            'placeholder': 'Enter amount to invest',
+            'class': 'form-control'
+        })
+    )
+
+    class Meta:
+        model = UserInvestment
+        fields = ['plan', 'amount']
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        self.fields['plan'].queryset = InvestmentPlan.objects.filter(is_active=True)
+
+    def clean_amount(self):
+        amount = self.cleaned_data['amount']
+        plan = self.cleaned_data.get('plan')
+
+        if plan:
+            if amount < plan.min_amount:
+                raise forms.ValidationError(
+                    f"Minimum investment amount for {plan.name} is ${plan.min_amount}"
+                )
+            if amount > plan.max_amount:
+                raise forms.ValidationError(
+                    f"Maximum investment amount for {plan.name} is ${plan.max_amount}"
+                )
+
+        # Check if user has sufficient balance
+        if self.user and hasattr(self.user, 'userprofile'):
+            if amount > self.user.userprofile.balance:
+                raise forms.ValidationError(
+                    f"Insufficient balance. Your available balance is ${self.user.userprofile.balance}"
+                )
+
+        return amount
 
 class CustomUserCreationForm(UserCreationForm):
 
@@ -368,14 +416,14 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = [
-            'first_name', 'middle_name', 'next_of_kin', 'last_name', 
+            'first_name', 'middle_name', 'next_of_kin', 'last_name',
             'profile_pic', 'phone_number', 'date_of_birth', 'status', 'email',
             'country', 'Gender', 'account_type', 'currency', 'four_digit_auth_key', 'two_factor_auth',
         ]
         widgets = {
             'date_of_birth': forms.DateInput(attrs={'type': 'date'})
         }
-        
+
 
     def save(self, commit=True):
         user = super().save(commit=False)

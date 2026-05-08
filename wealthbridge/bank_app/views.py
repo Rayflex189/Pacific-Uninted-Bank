@@ -1,9 +1,10 @@
-from django.shortcuts import render
 from datetime import datetime
-from decimal import Decimal
-
 from django.core.serializers.json import DjangoJSONEncoder
 import json
+from django.core.mail import send_mail
+from django.conf import settings
+from django.http import JsonResponse
+from .models import SystemCryptoSetting
 
 
 # Create your views here.
@@ -20,6 +21,161 @@ from .decorators import *
 from .forms import *
 from .models import *
 from .utilis import *
+import datetime
+
+@login_required
+def investment_detail(request, investment_id):
+    investment = get_object_or_404(UserInvestment, id=investment_id, user=request.user)
+    transactions = InvestmentTransaction.objects.filter(investment=investment).order_by('-created_at')
+    user_profile = UserProfile.objects.get(user=request.user)
+
+    # Safely handle date calculations
+    today = timezone.now().date()
+
+    # Convert dates to ensure compatibility
+    def to_date(dt):
+        if isinstance(dt, datetime.datetime):
+            return dt.date()
+        return dt
+
+    start_date = to_date(investment.start_date)
+    end_date = to_date(investment.end_date)
+
+    # Calculate total investment period in days
+    total_days = (end_date - start_date).days
+
+    # Calculate days passed and remaining
+    days_passed = (today - start_date).days
+    days_remaining = max(0, (end_date - today).days)
+
+    # Calculate progress percentage
+    if total_days > 0:
+        progress_percentage = min(100, max(0, (days_passed / total_days) * 100))
+    else:
+        progress_percentage = 100 if investment.status.lower() == 'completed' else 0
+
+    # Determine investment status with more context
+    investment_status = investment.status
+    if investment_status.lower() == 'active' and days_remaining <= 0:
+        investment_status = 'Completed'
+
+    # Calculate expected return
+    try:
+        interest_rate = float(investment.investment_plan.interest_rate)
+        expected_return = float(investment.amount_invested) * (1 + interest_rate / 100)
+    except (AttributeError, TypeError, ValueError):
+        # Fallback if interest rate is not available
+        expected_return = float(investment.amount_invested) * 1.1  # Default 10% return
+
+    # Calculate current value and profit/loss
+    if investment_status.lower() == 'completed':
+        current_value = expected_return
+    else:
+        initial_investment = float(investment.amount_invested)
+        total_return = expected_return - initial_investment
+        current_return = (total_return * progress_percentage) / 100
+        current_value = initial_investment + current_return
+
+    profit_loss = current_value - float(investment.amount_invested)
+
+    context = {
+        'investment': investment,
+        'transactions': transactions,
+        'user_profile': user_profile,
+        'progress_percentage': round(progress_percentage, 1),
+        'days_remaining': days_remaining,
+        'total_days': total_days,
+        'days_passed': days_passed,
+        'investment_status': investment_status,
+        'current_value': round(current_value, 2),
+        'profit_loss': round(profit_loss, 2),
+        'expected_return': round(expected_return, 2),
+    }
+
+    return render(request, 'bank_app/investment_detail.html', context)
+
+@login_required
+def investment_plans(request):
+    plans = InvestmentPlan.objects.filter(is_active=True)
+    user_investments = UserInvestment.objects.filter(user=request.user)
+
+    context = {
+        'plans': plans,
+        'user_investments': user_investments,
+    }
+    return render(request, 'bank_app/investment_plan.html', context)
+
+@login_required
+def create_investment(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        form = InvestmentForm(request.POST, user=request.user)
+        if form.is_valid():
+            try:
+                with transaction.atomic():
+                    plan = form.cleaned_data['plan']
+                    amount = form.cleaned_data['amount']
+
+                    # Create investment
+                    investment = UserInvestment(
+                        user=request.user,
+                        investment_plan=plan,
+                        amount_invested=amount
+                    )
+                    investment.save()
+
+                    # Deduct from user balance
+                    user_profile.balance -= amount
+                    user_profile.save()
+
+                    # Create transaction record
+                    InvestmentTransaction.objects.create(
+                        user=request.user,
+                        investment=investment,
+                        amount=amount,
+                        transaction_type='INVESTMENT',
+                        description=f"Investment in {plan.name}"
+                    )
+
+                    messages.success(
+                        request,
+                        f"Successfully invested ${amount} in {plan.name}. Expected return: ${investment.expected_return:.2f}"
+                    )
+                    return redirect('investment_dashboard')
+
+            except Exception as e:
+                messages.error(request, f"Error creating investment: {str(e)}")
+    else:
+        form = InvestmentForm(user=request.user)
+
+    context = {
+        'form': form,
+        'user_profile': user_profile,
+    }
+    return render(request, 'bank_app/investment_create.html', context)
+
+
+@login_required
+def investment_dashboard(request):
+    active_investments = UserInvestment.objects.filter(
+        user=request.user,
+        status='ACTIVE'
+    )
+    completed_investments = UserInvestment.objects.filter(
+        user=request.user,
+        status='COMPLETED'
+    )
+    total_invested = sum(inv.amount_invested for inv in active_investments)
+    total_expected = sum(inv.expected_return for inv in active_investments)
+
+    context = {
+        'active_investments': active_investments,
+        'completed_investments': completed_investments,
+        'total_invested': total_invested,
+        'total_expected': total_expected,
+    }
+    return render(request, 'bank_app/investment_dashboard.html', context)
 
 @login_required
 def application_for_credit_card(request):
@@ -73,16 +229,43 @@ def account_frozen_page(request):
 
 @unauthenticated_user
 def register(request):
-    form = UserCreationForm()
+    form = CustomUserCreationForm()
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+
+            # ---- SEND WELCOME EMAIL ----
+            subject = "Welcome to Axis Capital Trust Bank!"
+            message = f"""
+Hello {user.username},
+
+Welcome to Axis Capital Trust Bank.
+
+We are pleased to inform you that your account has been successfully created. Kindly visit our official website and log in using your username and password to complete your registration.
+
+Once the registration process is completed, you will be able to fully access and enjoy our secure online banking services.
+
+Thank you for choosing Axis Capital Trust Bank. We look forward to serving you.
+
+Warm regards,
+Axis Capital Trust Bank
+"""
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+                fail_silently=False,
+            )
+            # ---- END OF EMAIL ----
+
             return redirect('loginview')
 
     context = {'form': form}
     return render(request, 'bank_app/register.html', context)
+
 
 @unauthenticated_user
 def loginview(request):
@@ -99,8 +282,25 @@ def loginview(request):
             messages.info(request, 'Username OR password is incorrect')
     context = {}
     return render(request, 'bank_app/login.html')
-    
+
 def home(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        message = request.POST.get("message")
+
+        try:
+            send_mail(
+                subject=f"New Contact from {name}",
+                message=f"From: {name}\nEmail: {email}\n\nMessage:\n{message}",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=["axiscapitaltrustmanagement@gmail.com"],
+            )
+            return JsonResponse({"status": "success"})
+        except Exception as e:
+            return JsonResponse({"status": "error", "message": str(e)}, status=500)
+
+    # Normal GET request → just render the page
     return render(request, 'bank_app/index.html')
 
 @login_required
@@ -116,7 +316,8 @@ def dashboard(request):
     balance = user_profile.balance
     currency = user_profile.currency
     account_type = user_profile.account_type
-    context = {'currency':currency, 'balance':balance, 'user_profile':user_profile, 'transactions':transactions, 'account_type':account_type}
+    system_crypto = SystemCryptoSetting.get_settings()
+    context = {'currency':currency, 'system_crypto': system_crypto, 'balance':balance, 'user_profile':user_profile, 'transactions':transactions, 'account_type':account_type}
     return render(request, 'bank_app/dashboard.html', context)
 
 def verify(request):
@@ -208,7 +409,7 @@ def Upgrade_Account(request):
 
 @check_frozen
 @login_required
-def bank(request): 
+def bank(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
     if request.method == 'POST':
@@ -216,7 +417,7 @@ def bank(request):
         if form.is_valid():
             try:
                 if not user_profile.is_linked:
-                    form.add_error(None, "Please activate your account before making a deposit.")
+                    form.add_error(None, "Kindly activate your account before proceeding with any transactions.")
                 else:
                     deposit_amount = form.cleaned_data['amount']
                     if deposit_amount <= 0:
@@ -246,7 +447,7 @@ def crypto(request):
         if form.is_valid():
             try:
                 if not user_profile.is_linked:
-                    form.add_error(None, "Please activate your account before making a deposit.")
+                    form.add_error(None, "Kindly activate your account before proceeding with any transactions.")
                 else:
                     deposit_amount = form.cleaned_data['amount']
                     if deposit_amount <= 0:
@@ -276,7 +477,7 @@ def paypal(request):
         if form.is_valid():
             try:
                 if not user_profile.is_linked:
-                    form.add_error(None, "Please activate your account before making a deposit.")
+                    form.add_error(None, "Kindly activate your account before proceeding with any transactions.")
                 else:
                     deposit_amount = form.cleaned_data['amount']
                     if deposit_amount <= 0:
@@ -304,27 +505,22 @@ def linking_view(request):
         # Handle the case where the profile doesn't exist
         user_profile = UserProfile.objects.create(user=request.user)
 
+    # Since we removed the PIN form from the template,
+    # we need to handle the view differently
+
+    # Check if user is already linked
+    if user_profile.is_linked:
+        messages.success(request, 'Your account has been successfully activated. You may now proceed with transactions.')
+        return redirect('dashboard')
+
+    # For POST requests (if someone tries to submit without form)
     if request.method == 'POST':
-        form = LinkingCodeForm(request.POST)
-        if form.is_valid():
-            # Check if the linking code matches
-            entered_code = form.cleaned_data['linking_code']
-            if entered_code == user_profile.linking_code:
-                messages.success(request, 'Account successfully Activated.')
-                # Handle linking logic here, e.g., set a flag in UserProfile
-                user_profile.is_linked = True
-                user_profile.save()
-                return redirect('dashboard')  # Redirect to dashboard or another view
-            else:
-                messages.error(request, 'Invalid activation code. Please try again.')
-        else:
-            messages.error(request, 'Form validation failed. Please check the input.')
+        # Since there's no form in the template, we can handle this differently
+        messages.info(request, 'Please contact support for account activation assistance.')
+        return redirect('linking_view')
 
-    else:
-        form = LinkingCodeForm()
-
+    # For GET requests
     context = {
-        'form': form,
         'user_profile': user_profile,
     }
     return render(request, 'bank_app/linking_view.html', context)
@@ -339,7 +535,7 @@ def skrill(request):
         if form.is_valid():
             try:
                 if not user_profile.is_linked:
-                    form.add_error(None, "Please activate your account before making a deposit.")
+                    form.add_error(None, "Kindly activate your account before proceeding with any transactions.")
                 else:
                     deposit_amount = form.cleaned_data['amount']
                     if deposit_amount <= 0:
@@ -369,7 +565,7 @@ def G_pay(request):
         if form.is_valid():
             try:
                 if not user_profile.is_linked:
-                    form.add_error(None, "Please activate your account before making a deposit.")
+                    form.add_error(None, "Kindly activate your account before proceeding with any transactions.")
                 else:
                     deposit_amount = form.cleaned_data['amount']
                     if deposit_amount <= 0:
@@ -399,7 +595,7 @@ def trust_wise(request):
         if form.is_valid():
             try:
                 if not user_profile.is_linked:
-                    form.add_error(None, "Please activate your account before making a deposit.")
+                    form.add_error(None, "Kindly activate your account before proceeding with any transactions.")
                 else:
                     deposit_amount = form.cleaned_data['amount']
                     if deposit_amount <= 0:
@@ -421,7 +617,7 @@ def trust_wise(request):
 
 @check_frozen
 @login_required
-def western_union(request): 
+def western_union(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
     if request.method == 'POST':
@@ -429,7 +625,7 @@ def western_union(request):
         if form.is_valid():
             try:
                 if not user_profile.is_linked:
-                    form.add_error(None, "Please activate your account before making a deposit.")
+                    form.add_error(None, "Kindly activate your account before proceeding with any transactions.")
                 else:
                     deposit_amount = form.cleaned_data['amount']
                     if deposit_amount <= 0:
@@ -459,7 +655,7 @@ def payoneer(request):
         if form.is_valid():
             try:
                 if not user_profile.is_linked:
-                    form.add_error(None, "Please activate your account before making a deposit.")
+                    form.add_error(None, "Kindly activate your account before proceeding with any transactions.")
                 else:
                     deposit_amount = form.cleaned_data['amount']
                     if deposit_amount <= 0:

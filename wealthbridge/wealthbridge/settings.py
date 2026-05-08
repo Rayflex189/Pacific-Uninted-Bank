@@ -18,18 +18,19 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
+
 cloudinary.config(
     cloud_name="dlzn0moho",
-    api_key="563396395915366",
-    api_secret="pCSSrLNvxfFSEzY4ZnaOiF5u93o"
+    api_key="873128745842178",
+    api_secret="s8kPoCE5PO8-t87rAxOCc794Yfc"
 )
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'postgres.titfkbbzojsjdbmumptt',
-        'PASSWORD': 'JmwQS9A9hUFppqJp',
+        'USER': 'postgres.jbfyflxspbektjvmzeqt',
+        'PASSWORD': 'yZxDJBIlZiuZtcJP',
         'HOST': 'aws-0-us-west-1.pooler.supabase.com',
         'PORT': '6543',  # PgBouncer port
         'CONN_MAX_AGE': 0,  # Required for PgBouncer compatibility
@@ -47,18 +48,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3_)^u&niz%-isn%ciqt+qx7*3h!bo(js3+s%x0qray8bkb8d_1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True 
+DEBUG = True
 
-ALLOWED_HOSTS = ['starling-bank.fly.dev']
+ALLOWED_HOSTS = ['www.axiscapitaltrust.com']
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dlzn0moho',
-    'API_KEY': '563396395915366',
-    'API_SECRET': 'pCSSrLNvxfFSEzY4ZnaOiF5u93o',
+    'API_KEY': '873128745842178',
+    'API_SECRET': 's8kPoCE5PO8-t87rAxOCc794Yfc',
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://starling-bank.fly.dev",
+    "https://www.axiscapitaltrust.com",
 ]
 
 MEDIA_URL = '/media/'  # or any prefix you choose
@@ -86,6 +87,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
@@ -103,6 +105,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'bank_app.context_processors.system_crypto_settings',
             ],
         },
     },
@@ -186,13 +189,10 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # Replace with your SMTP server
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True  # Use TLS (transport layer security)
-EMAIL_USE_SSL = False  # Don't use SSL if using TLS
-EMAIL_HOST_USER = 'skylinebank059@gmail.com'
-EMAIL_HOST_PASSWORD = 'Me12sleep'
-DEFAULT_FROM_EMAIL = 'skylinebank059@gmail.com'  # Default sender email
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "axiscapitaltrustbank@gmail.com"
+EMAIL_HOST_PASSWORD = "mnlb llxy lszx xkbk"  # Use Gmail App Password
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

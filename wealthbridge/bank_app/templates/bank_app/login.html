@@ -2,217 +2,616 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="//code.jivosite.com/widget/1WuIx4F5Vw" async></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Axis Capital Trust</title>
+    <script src="//code.jivosite.com/widget/U73k9r5PsR" async></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --light-blue: #E8F4F8;
+            --primary-blue: #2A6EBB;
+            --dark-blue: #1A4A7A;
+            --accent-blue: #4A90E2;
+            --soft-gray: #F5F7FA;
+            --medium-gray: #E1E8ED;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --success: #27AE60;
+            --warning: #E67E22;
+            --error: #E74C3C;
+        }
 
-<title>Starling bank- Login</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
-:root {
-    --primary-color: #1ecbe1;
-    --secondary-color: #004080;
-    --rare-color: lightblue;
-    --container-bg-color: #fdfdfd;
-}
-    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Telegram Icon */
-.telegram-icon {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: #0088cc;
-    color: white;
-    font-size: 30px;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-}
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--soft-gray) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-.telegram-icon:hover {
-    transform: scale(1.1);
-}
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #132b45;
-    background-size: cover;
-    background-position: center;
-    background-repeat:no-repeat;
-    background-image: url("/static/images/bg.jpg");
-    height: 100vh;
-    overflow: hidden;
-}
-form {
-    display: flex;
-    margin-top: 10rem;
-    justify-content: center;
-    align-items: center;
-}
-.login-container {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);/* White background with 80% opacity */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-    animation: bounceIn 1s ease-in-out; /* Larger shadow for a more pronounced effect */
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-    animation: fadeIn 1s ease-in-out;
-    position: relative; /* Ensure relative positioning for absolute elements */
-}
-.login-container h1 {
-    color: #333; /* Changed to a darker color for better contrast */
-    margin-bottom: 20px;
-}
-.input-group {
-    margin-bottom: 15px;
-    position: relative;
-}
-.input-group input {
-    width: calc(100% - 22px); /* Adjusted width to fit properly */
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-.input-group input:focus {
-    outline: none;
-    border-color: #2994ff;
-}
-@media (max-width: 600px) {
-    .input-group .fa {
-        left: 310px;
+        /* Login Container */
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(42, 110, 187, 0.15);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            border: 1px solid var(--medium-gray);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .login-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header Section */
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .bank-logo {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .login-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .login-header h1::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-blue);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .login-header p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            color: var(--dark-blue);
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px 14px 45px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(42, 110, 187, 0.15);
+            background: white;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+
+        /* Submit Button */
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(42, 110, 187, 0.25);
+            margin-top: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(42, 110, 187, 0.35);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Footer Links */
+        .login-footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .login-footer p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .signup-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .signup-link:hover {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        /* Message Styling */
+        .messages {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .messages li {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-weight: 500;
+            animation: slideIn 0.5s ease forwards;
+            animation-delay: calc(0.1s * var(--index));
+            border-left: 4px solid;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .success {
+            background: rgba(39, 174, 96, 0.1);
+            color: var(--success);
+            border-left-color: var(--success);
+        }
+
+        .error {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--error);
+            border-left-color: var(--error);
+        }
+
+        .info {
+            background: rgba(42, 110, 187, 0.1);
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
+        }
+
+        .warning {
+            background: rgba(230, 126, 34, 0.1);
+            color: var(--warning);
+            border-left-color: var(--warning);
+        }
+
+        /* Security Notice */
+        .security-notice {
+            background: rgba(42, 110, 187, 0.08);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary-blue);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .security-notice i {
+            color: var(--primary-blue);
+            margin-right: 8px;
+        }
+
+              .telegram-float {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .telegram-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #0088cc;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .telegram-link:hover {
+            background: #0077b5;
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .telegram-icon {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        .telegram-tooltip {
+            position: absolute;
+            left: 70px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .telegram-link:hover .telegram-tooltip {
+            opacity: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .telegram-float {
+                left: 10px;
+                bottom: 10px;
+            }
+
+            .telegram-link {
+                width: 50px;
+                height: 50px;
+            }
+
+            .telegram-icon {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 30px 20px;
+                margin: 20px auto;
+            }
+
+            .login-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .bank-logo {
+                font-size: 2rem;
+            }
+
+
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            .login-container {
+                padding: 25px 15px;
+            }
+
+            .login-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-control {
+                padding: 12px 12px 12px 40px;
+            }
+
+            .input-icon {
+                left: 12px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Additional Security Features */
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1.1rem;
+            z-index: 2;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-blue);
+        }
+         .email-float {
+        position: fixed;
+        left: 20px;
+        bottom: 90px;
+        z-index: 1000;
+        animation: floatEmail 3s ease-in-out infinite;
     }
-}
-.input-group .fa {
-    position: absolute;
-    left: 290px;
-    top: calc(50% - 7px);
-    color: #2994ff;
-}
-.login-btn {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #003366;
-    color: #ffffff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-.login-btn:hover {
-    background-color: #2994ff;
-}
-.login-footer {
-    margin-top: 20px;
-    color: #777;
-}
-.login-footer a {
-    color: #2994ff;
-    text-decoration: none;
-}
-.login-footer a:hover {
-    text-decoration: underline;
-}
-/* Applying animation to each message */
-.messages li {
-    animation: slideIn 0.5s ease forwards;
-    animation-delay: calc(0.1s * var(--index)); /* Delay each message */
-}
-/* Optional: Different classes for different message tags */
-.success {
-    background-color: #28a745;
-    color: white;
-}
-.error {
-    background-color: #dc3545;
-    color: white;
-}
-.info {
-    background-color: #17a2b8;
-    color: white;
-}
-@keyframes fadeIn {
-    from {
+
+    .email-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .email-link:hover {
+        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
+    }
+
+    .email-icon {
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .email-tooltip {
+        position: absolute;
+        left: 70px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        white-space: nowrap;
         opacity: 0;
-        transform: translateY(-20px);
+        transition: opacity 0.3s ease;
+        pointer-events: none;
     }
-    to {
+
+    .email-link:hover .email-tooltip {
         opacity: 1;
-        transform: translateY(0);
     }
-}
-.translate-icon-container {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 1000; /* Ensure it's above other content */
-}
-.translate-icon {
-    width: 40px;
-    height: 40px;
-    background-image: url('path_to_google_translate_icon.png');
-    background-size: cover;
-    cursor: pointer;
-}
-@keyframes bounce {
-    0% {
-        transform: translateY(0);
+
+    @keyframes floatEmail {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+        100% {
+            transform: translateY(0);
+        }
     }
-    100% {
-        transform: translateY(-10px);
+
+    @media (max-width: 768px) {
+        .email-float {
+            left: 10px;
+            bottom: 80px;
+        }
+
+        .email-link {
+            width: 50px;
+            height: 50px;
+        }
+
+        .email-icon {
+            font-size: 1.3rem;
+        }
     }
-}
-.profile-img {
-    width: 5rem;
-    height: 5rem;
-    border: 3px solid #000e17;
-    border-radius: 50%;
-    position: relative;
-}
-</style>
+
+    </style>
 </head>
 <body>
-
-    
-<form action="" method="post">
-    {% csrf_token %}
-    <div class="login-container">
-        <h1>Login</h1>
-        <div class="input-group">
-            <input type="text" id="username" name="username" placeholder="Username" required>
-        </div>
-        <div class="input-group">
-            <input type="password" id="password" name="password" placeholder="Password" required>
-        </div>
-        <input class="login-btn" type="submit" value="Login">
-        <div class="login-footer">
-            <p>Don't have an account? <a href="{% url 'loginview' %}">Sign up</a></p>
-        </div>
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li class="{% if message.tags %}{{ message.tags }}{% endif %}" style="--index: {{ forloop.counter }}">
-                {{ message }}
-            </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+<!-- Email Floating Icon -->
+<div class="email-float">
+    <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="email-tooltip">Contact us via email</span>
+    </a>
+</div>
+    <!-- Telegram Floating Icon -->
+    <div class="telegram-float">
+        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
+            <span class="telegram-tooltip">Join our Telegram group</span>
+        </a>
     </div>
-</form>
-<!--Translation icon-->
-<script>
-</script>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="login-container">
+            <!-- Header Section -->
+            <div class="login-header">
+                <div class="bank-logo">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h1>Axis Capital Trust</h1>
+                <p>Secure Banking Login</p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="form-group">
+                <div class="input-group">
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+                    <button type="button" class="password-toggle" onclick="togglePassword()">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="login-btn">
+                <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i>
+                Sign In
+            </button>
+
+            <!-- Messages -->
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{% if message.tags %}{{ message.tags }}{% endif %}" style="--index: {{ forloop.counter }}">
+                            <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
+                            {{ message }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <!-- Security Notice -->
+            <div class="security-notice">
+                <i class="fas fa-shield-alt"></i>
+                Your security is our priority. All data is encrypted.
+            </div>
+
+            <!-- Footer Links -->
+            <div class="login-footer">
+                <p>Don't have an account?</p>
+                <a href="{% url 'reg' %}" class="signup-link">
+                    <i class="fas fa-user-plus"></i>
+                    Create New Account
+                </a>
+            </div>
+        </div>
+    </form>
+
+
+    <script>
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.querySelector('.password-toggle i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Fix JivoChat z-index issue
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const jivoElements = document.querySelectorAll('[id*="jivo"], .jivochat-container');
+                jivoElements.forEach(element => {
+                    element.style.zIndex = '98';
+                });
+            }, 2000);
+        });
+
+        // Add loading state to form submission
+        document.querySelector('form').addEventListener('submit', function() {
+            const submitBtn = document.querySelector('.login-btn');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i> Signing In...';
+            submitBtn.disabled = true;
+        });
+    </script>
 </body>
-  </html>
+</html>

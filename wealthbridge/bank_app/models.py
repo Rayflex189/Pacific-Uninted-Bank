@@ -6,7 +6,11 @@ from django.utils import timezone
 from datetime import datetime
 import random
 import string
+from decimal import Decimal
 from cloudinary.models import CloudinaryField
+from datetime import datetime, timedelta
+
+# ============ HELPER FUNCTIONS ============
 
 
 def generate_code(length=6):
@@ -14,7 +18,7 @@ def generate_code(length=6):
     return ''.join(random.choice(characters) for _ in range(length))
 
 def generate_account_number():
-    return ''.join(str(random.randint(0, 9)) for _ in range(10))
+    return ''.join(str(random.randint(0, 9)) for _ in range(11))
 
 def generate_otp():
     return ''.join(str(random.randint(0, 4)) for _ in range(6))
@@ -31,42 +35,132 @@ def generate_vat():
 def generate_tac():
     return ''.join(str(random.randint(0, 4)) for _ in range(6))
 
+
 def generate_card_application_code():
-    return ''.join(str(random.randint(0, 4)) for _ in range(6))
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=16))
 
 def generate_card_number():
-    # Generate a 16-digit card number
-    return ''.join([str(random.randint(0, 9)) for _ in range(16)])
-    
+    return ''.join(random.choices(string.digits, k=16))
+
 def generate_cvv():
-    # Generate a 3-digit CVV
-    return ''.join([str(random.randint(0, 9)) for _ in range(3)])
+    return ''.join(random.choices(string.digits, k=3))
 
-# Assuming generate_code is defined somewhere in your code, for example:
 def generate_expiry_date():
-    # Generates a random expiry date in the format MM/YYYY (e.g., 12/2026)
-    current_year = datetime.now().year
-    expiry_month = random.randint(1, 12)
-    expiry_year = random.randint(current_year, current_year + 5)  # Random year from current to 5 years ahead
-    return f"{expiry_month:02d}/{expiry_year}"
+    future_date = datetime.now() + timedelta(days=365*3)
+    return future_date.strftime("%m/%Y")
 
-class Transaction(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(decimal_places=2, max_digits=10)
-    balance_after = models.DecimalField(decimal_places=2, max_digits=10)
-    timestamp = models.DateTimeField(auto_now_add=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+
+# ============ CRYPTO CURRENCY MODEL - MUST BE FIRST ============
+
+class CryptoCurrency(models.Model):
+    """Cryptocurrency types available in the system"""
+    CRYPTO_CHOICES = [
+        ('BTC', 'Bitcoin'),
+        ('ETH', 'Ethereum'),
+        ('USDT', 'Tether (ERC20)'),
+        ('USDC', 'USD Coin'),
+        ('BSC', 'BNB Binance Smart Chain (BEP20)'),
+        ('SOL', 'Solana'),
+        ('XRP', 'Ripple'),
+        ('DOGE', 'Dogecoin'),
+        ('TRX', 'Tron'),
+        ('MATIC', 'Polygon'),
+        ('LTC', 'Litecoin'),
+        ('ADA', 'Cardano'),
+    ]
+
+    code = models.CharField(max_length=10, choices=CRYPTO_CHOICES, unique=True)
+    name = models.CharField(max_length=50)
+    icon = models.CharField(max_length=50, default='fab fa-bitcoin')
+    min_deposit = models.DecimalField(max_digits=20, decimal_places=8, default=0.001)
+    confirmations_required = models.IntegerField(default=3)
+    is_active = models.BooleanField(default=True)
+    sort_order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['sort_order', 'name']
+        verbose_name_plural = "Cryptocurrencies"
 
     def __str__(self):
-        return f"{self.amount} - {self.user.username} - {self.timestamp}"
+        return f"{self.name} ({self.code})"
 
+
+# ============ CRYPTO WALLET ADDRESS MODEL ============
+
+class CryptoWalletAddress(models.Model):
+    """Multiple wallet addresses for different cryptocurrencies"""
+    NETWORK_CHOICES = [
+        ('ERC20', 'Ethereum (ERC20)'),
+        ('TRC20', 'Tron (TRC20)'),
+        ('BEP20', 'Binance (BEP20)'),
+        ('SOL', 'Solana'),
+        ('BTC', 'Bitcoin'),
+        ('LTC', 'Litecoin'),
+        ('XRP', 'Ripple'),
+        ('DOGE', 'Dogecoin'),
+        ('ADA', 'Cardano'),
+        ('MATIC', 'Polygon'),
+        ('AVAX', 'Avalanche C-Chain'),
+    ]
+
+    crypto = models.ForeignKey(CryptoCurrency, on_delete=models.CASCADE, related_name='wallet_addresses')
+    address = models.CharField(max_length=500, verbose_name="Wallet Address")
+    network = models.CharField(max_length=20, choices=NETWORK_CHOICES, blank=True, null=True)
+    is_primary = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    notes = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.CharField(max_length=150, blank=True, null=True)
+
+    class Meta:
+        ordering = ['crypto__name', '-is_primary', '-created_at']
+        unique_together = ['crypto', 'address']
+
+    def __str__(self):
+        network_str = f" ({self.network})" if self.network else ""
+        primary_str = " ★" if self.is_primary else ""
+        return f"{self.crypto.name}{network_str}: {self.address[:20]}...{primary_str}"
+
+    def get_short_address(self):
+        if len(self.address) > 30:
+            return f"{self.address[:15]}...{self.address[-10:]}"
+        return self.address
+
+
+# ============ SYSTEM CRYPTO SETTINGS ============
+
+class SystemCryptoSetting(models.Model):
+    """System-wide cryptocurrency settings"""
+    auto_approve_deposits = models.BooleanField(default=False)
+    deposit_fee_percentage = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    min_deposit_amount = models.DecimalField(max_digits=20, decimal_places=8, default=10)
+    max_deposit_amount = models.DecimalField(max_digits=20, decimal_places=8, default=100000)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_by = models.CharField(max_length=150, blank=True, null=True)
+
+    class Meta:
+        verbose_name = "System Crypto Setting"
+        verbose_name_plural = "System Crypto Settings"
+
+    def __str__(self):
+        return "System Crypto Settings"
+
+    @classmethod
+    def get_settings(cls):
+        settings, created = cls.objects.get_or_create(id=1)
+        return settings
+
+
+# ============ USER PROFILE MODEL ============
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50, blank=True, null=True)
     middle_name = models.CharField(max_length=50, blank=True, null=True)
-    four_digit_auth_key = models.CharField(null=True, blank=True)
-    
+    refund_balance = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    four_digit_auth_key = models.CharField(max_length=4, null=True, blank=True)
+
     OCCUPATION_CHOICES = [
         ('management', 'Management'),
         ('business_finance', 'Business and Financial Operations'),
@@ -79,7 +173,7 @@ class UserProfile(models.Model):
         ('arts_design', 'Arts, Design, Entertainment, Sports, and Media'),
         ('healthcare', 'Healthcare Practitioners and Technical'),
     ]
-    
+
     occupation = models.CharField(max_length=50, default='select your occupation', choices=OCCUPATION_CHOICES, blank=True, null=True)
     next_of_kin = models.CharField(max_length=50, blank=True, null=True)
     last_name = models.CharField(max_length=50, blank=True, null=True)
@@ -89,19 +183,17 @@ class UserProfile(models.Model):
     zip_code = models.IntegerField(blank=True, null=True)
 
     TWO_FACTOR_CHOICES = [
-    ('enable', 'Enable'),
-    ('disable', 'Disable'),
+        ('enable', 'Enable'),
+        ('disable', 'Disable'),
     ]
 
     two_factor_auth = models.CharField(
-    max_length=10,
-    choices=TWO_FACTOR_CHOICES,
-    default='Enable', 
-    blank=True,
+        max_length=10,
+        choices=TWO_FACTOR_CHOICES,
+        default='Enable',
+        blank=True,
     )
 
-
-    # Card details
     card_application_fee_code = models.CharField(max_length=16, default=generate_card_application_code)
     cardholder_name = models.CharField(max_length=255, blank=True, null=True)
     card_number = models.CharField(max_length=16, default=generate_card_number)
@@ -511,36 +603,24 @@ class UserProfile(models.Model):
 
     currency = models.CharField(max_length=4, choices=currency_choices, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    working_choices = [
-        ('Employed', 'Employed'),
-        ('Unemployed', 'Unemployed'),
-        ('Retired', 'Retired'),
-        ('Student', 'Student'),
-        ('Others', 'Others'),
-    ]
+
+    working_choices = [('Employed', 'Employed'), ('Unemployed', 'Unemployed'), ('Retired', 'Retired'), ('Student', 'Student'), ('Others', 'Others')]
     status = models.CharField(max_length=50, choices=working_choices, blank=True)
-    gender_choices = [
-        ('Male', 'Male'),
-        ('Female', 'Female'),
-    ]
+
+    gender_choices = [('Male', 'Male'), ('Female', 'Female')]
     Gender = models.CharField(max_length=50, choices=gender_choices, blank=True)
-    account_choices = [
-        ('Online Account', 'Online Account'),
-        ('Checking Account', 'Checking Account'),
-        ('Current Account', 'Current Account'),
-        ('Corporate Account', 'Corporate Account'),
-        ('Offshore Account', 'Offshore Account'),
-        ('Joint Account', 'Joint Account'),
-    ]
+
+    account_choices = [('Online Account', 'Online Account'), ('Checking Account', 'Checking Account'), ('Current Account', 'Current Account'), ('Corporate Account', 'Corporate Account'), ('Offshore Account', 'Offshore Account'), ('Joint Account', 'Joint Account')]
     account_type = models.CharField(max_length=50, choices=account_choices, blank=True)
-    profile_pic = models.ImageField(default='d_profile.jfif', null=True, blank=True)
+
+    profile_pic = CloudinaryField('profile_pic', null=True, blank=True)
     account_number = models.CharField(max_length=11, default=generate_account_number)
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    refund_balance = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'), null=True)
     linking_code = models.CharField(max_length=11, default=generate_code)
     tax_code = models.CharField(max_length=11, default=generate_otp)
     imf_code = models.CharField(max_length=11, default=generate_imf)
     bic_code = models.CharField(max_length=11, default=generate_aml)
-    profile_pic = CloudinaryField('profile_pic', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     is_linked = models.BooleanField(default=False)
     is_upgraded = models.BooleanField(default=False)
@@ -553,19 +633,117 @@ class UserProfile(models.Model):
 
     def clean(self):
         super().clean()
-
-        # Convert to string for consistent validation
         auth_key_str = str(self.four_digit_auth_key) if self.four_digit_auth_key is not None else ''
-
         if self.two_factor_auth == 'enable':
             if not auth_key_str.isdigit() or len(auth_key_str) != 4:
                 raise ValidationError({
-                    'four_digit_auth_key': 'A 4-digit numeric authentication key is required when two-factor authentication is enabled.'
+                    'four_digit_auth_key': 'A 4-digit numeric authentication key is required.'
                 })
         else:
             self.four_digit_auth_key = None
 
+    def __str__(self):
+        return f"{self.user.username}'s Profile"
 
+
+class Transaction(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    balance_after = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.username
+        return f"{self.user.username} - {self.description}"
+
+
+class Transaction(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    balance_after = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.description}"
+class UserInvestment(models.Model):
+    STATUS_CHOICES = [
+        ('ACTIVE', 'Active'),
+        ('COMPLETED', 'Completed'),
+        ('CANCELLED', 'Cancelled'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    investment_plan = models.ForeignKey('InvestmentPlan', on_delete=models.CASCADE)
+    amount_invested = models.DecimalField(max_digits=15, decimal_places=2)
+    expected_return = models.DecimalField(max_digits=15, decimal_places=2)
+    start_date = models.DateTimeField(auto_now_add=True)
+    end_date = models.DateTimeField()
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='ACTIVE')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def calculate_expected_return(self):
+        daily_rate = self.investment_plan.interest_rate / 365 / 100
+        days = self.investment_plan.duration_days
+        return self.amount_invested * (1 + daily_rate * days)
+
+    def save(self, *args, **kwargs):
+        if not self.expected_return:
+            self.expected_return = self.calculate_expected_return()
+        if not self.end_date:
+            from django.utils import timezone
+            from datetime import timedelta
+            self.end_date = timezone.now() + timedelta(days=self.investment_plan.duration_days)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.investment_plan.name} - ${self.amount_invested}"
+
+class InvestmentTransaction(models.Model):
+    TRANSACTION_TYPES = [
+        ('INVESTMENT', 'Investment'),
+        ('RETURN', 'Return'),
+        ('BONUS', 'Bonus'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    investment = models.ForeignKey(UserInvestment, on_delete=models.CASCADE, null=True, blank=True)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    transaction_type = models.CharField(max_length=20, choices=TRANSACTION_TYPES)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.transaction_type} - ${self.amount}"
+
+class InvestmentPlan(models.Model):
+    PLAN_TYPES = [
+        ('BASIC', 'Basic Plan'),
+        ('STANDARD', 'Standard Plan'),
+        ('PREMIUM', 'Premium Plan'),
+        ('VIP', 'VIP Plan'),
+    ]
+
+    name = models.CharField(max_length=100)
+    plan_type = models.CharField(max_length=20, choices=PLAN_TYPES)
+    min_amount = models.DecimalField(max_digits=15, decimal_places=2, default=100.00)
+    max_amount = models.DecimalField(max_digits=15, decimal_places=2, default=10000.00)
+    interest_rate = models.DecimalField(max_digits=5, decimal_places=2)  # Annual percentage
+    duration_days = models.IntegerField()  # Investment duration in days
+    description = models.TextField()
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.interest_rate}%"
+
+class Transaction(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    amount = models.DecimalField(decimal_places=2, max_digits=10)
+    balance_after = models.DecimalField(decimal_places=2, max_digits=10)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.amount} - {self.user.username} - {self.timestamp}"
+

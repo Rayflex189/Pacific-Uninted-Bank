@@ -5,19 +5,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Starling bank - Paypal Transfer</title>
+    <title>Axis Capital Trust - PayPal Transfer</title>
     <link rel="icon" href="{% static 'images/web_logo.jpg' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/dash.css'}" >
-    <script src="//code.jivosite.com/widget/1WuIx4F5Vw" async></script>
-
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}" >
+    <script src="//code.jivosite.com/widget/U73k9r5PsR" async></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Basic Styling */
         body {
             font-family: Arial, sans-serif;
-            background-color: #06A3DA;
+            background-color: #f5f7fa;
             margin: 0;
             color: #333;
             display: flex;
@@ -26,12 +25,12 @@
         }
 
         /* Styling for the error messages */
-.errors {
-color: red; /* Text color red */
-padding: 10px;
-font-weight: bold; /* Optional: bold text */
-animation: vibrate 0.5s ease-in-out; /* Apply the vibrating animation */
-}
+        .errors {
+            color: red;
+            padding: 10px;
+            font-weight: bold;
+            animation: vibrate 0.5s ease-in-out;
+        }
 
         /* Header */
         .bank-header {
@@ -88,60 +87,130 @@ animation: vibrate 0.5s ease-in-out; /* Apply the vibrating animation */
             background-color: #003366;
         }
 
-        /* Centered Main Content */
+        /* Main Content */
         .main-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             flex: 1;
+            padding: 20px;
         }
 
-        /* Transfer Section */
-        .transfer-header {
-            background-color: #004080;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            text-align: center;
-            width: 100%;
-        }
-        .transfer-form {
+        /* Card Container */
+        .card-container {
             background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+        }
+
+        /* Card Header */
+        .card-header {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        /* Card Body */
+        .card-body {
             padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 600px;
         }
-        .transfer-form label {
+
+        /* Balance Display */
+        .balance-display {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+        .balance-label {
             font-size: 0.9rem;
-            color: #555;
+            color: #6c757d;
+            margin-bottom: 5px;
         }
-        .transfer-form input, .transfer-form select {
+        .balance-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            color: #495057;
+        }
+        .form-control {
             width: 100%;
             padding: 12px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
         }
-        .transfer-form button {
+        .form-control:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+        }
+
+        /* Submit Button */
+        .btn-submit {
             width: 100%;
             padding: 12px;
             border: none;
-            border-radius: 5px;
-            background-color: #0055cc;
+            border-radius: 6px;
+            background-color: #003366;
             color: white;
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            font-size: 16px;
         }
-        .transfer-form button:hover {
-            background-color: #004080;
+        .btn-submit:hover {
+            background-color: #002244;
         }
 
+        /* Account Status */
+        .account-status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .status-active {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status-inactive {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .btn-activate {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
         /* Bottom Navbar */
         .bottom-navbar {
@@ -160,100 +229,7 @@ animation: vibrate 0.5s ease-in-out; /* Apply the vibrating animation */
         }
 
 
-    input{
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: all 0.3s ease; /* Smooth transition for focus effect */
-    }
-
-    /* Focus effect */
-    input:focus {
-        outline: none; /* Remove default focus outline */
-        border-color: #007bff; /* Highlight border color */
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add subtle glow effect */
-    }
-            .form-container {
-            max-width: 500px;
-            margin: auto;
-            padding: 30px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            color: #000;
-            animation: slideIn 1s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .form-container h1 {
-            text-align: center;
-            margin-bottom: 10px;
-            color: navy;
-        }
-
-        .animated-balance {
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: darkgreen;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .form-label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .form-input-group {
-            position: relative;
-        }
-
-        .form-input-group .input-icon {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #000;
-        }
-
-        .btn-primary {
-            background-color: navy;
-            border: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #000080;
-        }
-
+        /* Marquee */
         .marquee {
             background-color: rgba(0, 0, 0, 0.8);
             color: #fff;
@@ -262,114 +238,195 @@ animation: vibrate 0.5s ease-in-out; /* Apply the vibrating animation */
             white-space: nowrap;
             overflow: hidden;
         }
-
         .marquee-content {
             display: inline-block;
             animation: scrollLeft 10s linear infinite;
         }
-
         @keyframes scrollLeft {
             from {
                 transform: translateX(100%);
             }
-
             to {
                 transform: translateX(-100%);
             }
         }
-
-        .crypto-header {
-            background-color: #003366;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .form-container {
-            max-width: 500px;
-            margin: auto;
-            padding: 30px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-container h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: navy;
-        }
-
-        .form-label {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .btn-primary {
-            background-color: navy;
-            border: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #000080;
-        }
-
-        .animated-balance {
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: darkgreen;
-        }
-        .telegram-icon {
+                .telegram-float {
             position: fixed;
-            bottom: 20px;
             left: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #0088cc;
-            border-radius: 50%;
+            bottom: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .telegram-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            animation: bounce 2s infinite;
-            transition: transform 0.3s;
+            width: 60px;
+            height: 60px;
+            background: #0088cc;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
-        .telegram-icon:hover {
+        .telegram-link:hover {
+            background: #0077b5;
             transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
 
-        @keyframes bounce {
-            0%, 100% {
+        .telegram-icon {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        .telegram-tooltip {
+            position: absolute;
+            left: 70px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .telegram-link:hover .telegram-tooltip {
+            opacity: 1;
+        }
+
+        @keyframes float {
+            0% {
                 transform: translateY(0);
             }
             50% {
                 transform: translateY(-10px);
             }
+            100% {
+                transform: translateY(0);
+            }
         }
 
-        .telegram-icon img {
-            width: 35px;
-            height: 35px;
+
+        @media (max-width: 768px) {
+            .telegram-float {
+                left: 10px;
+                bottom: 10px;
+            }
+
+            .telegram-link {
+                width: 50px;
+                height: 50px;
+            }
+
+            .telegram-icon {
+                width: 25px;
+                height: 25px;
+            }
         }
-</style>
+         .email-float {
+        position: fixed;
+        left: 20px;
+        bottom: 90px;
+        z-index: 1000;
+        animation: floatEmail 3s ease-in-out infinite;
+    }
+
+    .email-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .email-link:hover {
+        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
+    }
+
+    .email-icon {
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .email-tooltip {
+        position: absolute;
+        left: 70px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .email-link:hover .email-tooltip {
+        opacity: 1;
+    }
+
+    @keyframes floatEmail {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .email-float {
+            left: 10px;
+            bottom: 80px;
+        }
+
+        .email-link {
+            width: 50px;
+            height: 50px;
+        }
+
+        .email-icon {
+            font-size: 1.3rem;
+        }
+    }
+
+    </style>
 </head>
 <body>
-
+    <!-- Email Floating Icon -->
+<div class="email-float">
+    <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="email-tooltip">Contact us via email</span>
+    </a>
+</div>
+    <!-- Telegram Floating Icon -->
+    <div class="telegram-float">
+        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
+            <span class="telegram-tooltip">Join our Telegram group</span>
+        </a>
+    </div>
     <header class="bank-header">
-        <h1>Paypal Transfer</h1>
+        <h1>Axis Capital Trust</h1>
         <div class="notification-bell" onclick="toggleSidebar()">
             <i class="fas fa-bell"></i>
         </div>
@@ -394,101 +451,121 @@ animation: vibrate 0.5s ease-in-out; /* Apply the vibrating animation */
             <li><a href="{% url 'logout' %}">Logout</a></li>
         </ul>
     </div>
-           <!-- Marquee for Stock Market -->
+
+    <!-- Marquee for Stock Market -->
     <div class="marquee">
         <div class="marquee-content" id="stockMarquee">
             Loading stock market data...
         </div>
     </div>
+
     <!-- Main Content -->
     <div class="main-content">
-        <div class="transfer-header">Paypal Payment</div>
-        <div class="">
+        <div class="card-container">
+            <div class="card-header">
+                <h2>PayPal Transfer</h2>
+            </div>
+            <div class="card-body">
+                <!-- Balance Display -->
+                <div class="balance-display">
+                    <div class="balance-label">AVAILABLE BALANCE</div>
+                    <div class="balance-amount" id="animatedBalance">
+                        {{ user_profile.currency }}{{ user_profile.balance|intcomma }}
+                    </div>
+                </div>
 
+                <!-- PayPal Payment Form -->
+                <form method="post">
+                    {% csrf_token %}
 
+                    <!-- PayPal Email -->
+                    <div class="form-group">
+                        <label for="paypalEmail" class="form-label">PayPal Email</label>
+                        <input type="email" class="form-control" id="paypalEmail" name="paypal_email" placeholder="Enter your PayPal email address" required>
+                    </div>
 
-    <div class="form-container">
-        <h1>Starling Pay</h1>
-        <!-- Animated Balance -->
-        <div class="animated-balance" id="animatedBalance">
-            Loading available balance...
+                    <!-- Amount -->
+                    <div class="form-group">
+                        <label for="amount" class="form-label">Amount</label>
+                        <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter amount" required>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Enter payment description">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-submit">Pay via PayPal</button>
+
+                    <!-- Form Errors -->
+                    <div class="errors">{{ form.errors }}</div>
+                </form>
+
+<!-- Account Status -->
+<div class="account-status">
+    {% if user_profile.is_linked %}
+        <!-- Account is activated - show success message -->
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle me-2"></i>
+            Your account has been successfully activated. You may now proceed with transactions.
         </div>
-
-<!-- PayPal Payment Form -->
-<form method="post">
-    {% csrf_token %}
-
-    <!-- PayPal Email -->
-    <div class="mb-3">
-        <label for="paypalEmail" class="form-label">PayPal Email</label>
-        <input type="email" class="form-control" id="paypalEmail" name="paypal_email" placeholder="Enter your paypal addresss" required>
-    </div>
-
-    <!-- Amount -->
-    <div class="mb-3">
-        <label for="amount" class="form-label">Amount</label>
-        <div class="form-input-group">
-            {{ form.amount }}
+    {% else %}
+        <!-- Account is not activated - show activation button -->
+        <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Your account needs to be activated before you can make transactions.
+            <a href="{% url 'linking_view' %}" class="btn btn-primary mt-2">Activate Account</a>
+        </div>
+    {% endif %}
+</div>
+            </div>
         </div>
     </div>
 
-    <!-- Description -->
-    <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <input type="text" class="form-control" id="description" name="description" placeholder="Enter payment description">
+    <!-- Telegram Icon -->
+    <div class="telegram-icon" id="telegramBtn">
+        <img src="{% static 'images/telegram-icon.png' %}" alt="Telegram">
     </div>
-
-    <button type="submit" class="btn btn-primary w-100">Pay via PayPal</button>
-
-             <div class="errors">{{form.errors}}</div>
-        </form>
-
-                    {% if user_profile.is_linked %}
-                <p class="text-success">Your account is activated. You can proceed with transactions.</p>
-            {% else %}
-                <p class="text-danger">Your account is not activated. Please purchase an activation pin.</p>
-                <a href="{% url 'linking_view' %}" class="btn btn-primary">Activate Account</a>
-            {% endif %}
-    </div>
-        </div>
-    </div>
-
 
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('open');
         }
-         // Update available balance dynamically using Django variables
-      document.addEventListener("DOMContentLoaded", () => {
-          const balanceElement = document.getElementById("animatedBalance");
-          const userCurrency = "{{ user_profile.currency }}";
-          const userBalance = "{{ user_profile.balance|intcomma }}";
 
-          // Update balance
-          balanceElement.textContent = `Current available balance (${userCurrency}): ${userBalance}`;
-      });
+        // Update available balance dynamically using Django variables
+        document.addEventListener("DOMContentLoaded", () => {
+            const balanceElement = document.getElementById("animatedBalance");
+            const userCurrency = "{{ user_profile.currency }}";
+            const userBalance = "{{ user_profile.balance|intcomma }}";
 
-      // Mock API Data for stocks
-      const stockData = [
-          { symbol: "AAPL", price: 178.23 },
-          { symbol: "GOOGL", price: 123.45 },
-          { symbol: "AMZN", price: 99.12 },
-          { symbol: "TSLA", price: 246.78 }
-      ];
+            // Update balance
+            balanceElement.textContent = `${userCurrency}${userBalance}`;
+        });
 
-      // Update stock marquee dynamically
-      function updateStockMarquee() {
-          const marquee = document.getElementById("stockMarquee");
-          const stockText = stockData.map(stock => `${stock.symbol}: $${stock.price.toFixed(2)}`).join(" | ");
-          marquee.innerHTML = stockText;
-      }
+        // Mock API Data for stocks
+        const stockData = [
+            { symbol: "AAPL", price: 178.23 },
+            { symbol: "GOOGL", price: 123.45 },
+            { symbol: "AMZN", price: 99.12 },
+            { symbol: "TSLA", price: 246.78 }
+        ];
 
-      // Call functions after the DOM is loaded
-      document.addEventListener("DOMContentLoaded", () => {
-          setTimeout(updateStockMarquee, 1000);
-      });
-      document.getElementById("telegramBtn").addEventListener("click", function() {
+        // Update stock marquee dynamically
+        function updateStockMarquee() {
+            const marquee = document.getElementById("stockMarquee");
+            const stockText = stockData.map(stock => `${stock.symbol}: $${stock.price.toFixed(2)}`).join(" | ");
+            marquee.innerHTML = stockText;
+        }
+
+        // Call functions after the DOM is loaded
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(updateStockMarquee, 1000);
+        });
+
+        document.getElementById("telegramBtn").addEventListener("click", function() {
             window.open("https://t.me/CRESTLINE_BANK_11", "_blank");
         });
     </script>
