@@ -50,7 +50,7 @@ SECRET_KEY = 'django-insecure-3_)^u&niz%-isn%ciqt+qx7*3h!bo(js3+s%x0qray8bkb8d_1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.revolut.com', 'localhost', '127.0.0.1', 'axiscapitaltrust.com', 'www.axiscapitaltrust.com']
+ALLOWED_HOSTS = ['*',]
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dlzn0moho',
