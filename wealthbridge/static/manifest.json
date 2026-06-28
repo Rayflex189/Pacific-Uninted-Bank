@@ -1,7 +1,7 @@
 
 {
-  "name": "Axis Capital Trust Bank",
-  "short_name": "Axis Capital Trust",
+  "name": "Revolut Bank",
+  "short_name": "Revolut",
   "description": "Secure banking and finance system",
   "start_url": "/",
   "display": "standalone",
@@ -67,7 +67,7 @@
       "sizes": "1170x2532",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Axis Capital Trust Bank"
+      "label": "Revolut Bank"
     }
   ],
   "shortcuts": [

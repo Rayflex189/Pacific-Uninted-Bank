@@ -21,17 +21,17 @@ import cloudinary.api
 
 cloudinary.config(
     cloud_name="dlzn0moho",
-    api_key="873128745842178",
-    api_secret="s8kPoCE5PO8-t87rAxOCc794Yfc"
+    api_key="438957821751969",
+    api_secret="gEvsJXB0ONc4zft3MBz-eki5nyA"
 )
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'postgres.jbfyflxspbektjvmzeqt',
-        'PASSWORD': 'yZxDJBIlZiuZtcJP',
-        'HOST': 'aws-0-us-west-1.pooler.supabase.com',
+        'USER': 'postgres.gnemqlmwpbykucseqeek',
+        'PASSWORD': 'i4NgCRp8XXuna3CZ',
+        'HOST': 'aws-1-eu-central-1.pooler.supabase.com',
         'PORT': '6543',  # PgBouncer port
         'CONN_MAX_AGE': 0,  # Required for PgBouncer compatibility
     }
@@ -50,16 +50,18 @@ SECRET_KEY = 'django-insecure-3_)^u&niz%-isn%ciqt+qx7*3h!bo(js3+s%x0qray8bkb8d_1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.axiscapitaltrust.com']
+ALLOWED_HOSTS = ['www.revolut.com', 'localhost', '127.0.0.1', 'axiscapitaltrust.com', 'www.axiscapitaltrust.com']
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dlzn0moho',
-    'API_KEY': '873128745842178',
-    'API_SECRET': 's8kPoCE5PO8-t87rAxOCc794Yfc',
+    'API_KEY': '438957821751969',
+    'API_SECRET': 'gEvsJXB0ONc4zft3MBz-eki5nyA',
 }
 
 CSRF_TRUSTED_ORIGINS = [
     "https://www.axiscapitaltrust.com",
+    "https://revolut.com",
+    "https://www.revolut.com",
 ]
 
 MEDIA_URL = '/media/'  # or any prefix you choose
@@ -195,4 +197,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "axiscapitaltrustbank@gmail.com"
 EMAIL_HOST_PASSWORD = "mnlb llxy lszx xkbk"  # Use Gmail App Password
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = f"Revolut <{EMAIL_HOST_USER}>"

@@ -9,7 +9,7 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" href="{% static 'images/web_logo.jpg' %}" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Pending Transaction -  Axis Capital Trust</title>
+    <title>Pending Transaction -  Revolut</title>
     <style>
         /* Base styles and color scheme */
         body, html {
@@ -316,7 +316,113 @@
         }
     }
 
-    </style>
+    
+        /* Sitewide Dark Mode Overrides to match Revolut Landing Page */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            background: #000000 !important;
+            color: #ffffff !important;
+            font-family: 'Poppins', sans-serif !important;
+        }
+        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
+            background: rgba(10, 10, 10, 0.85) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+            color: #ffffff !important;
+        }
+        .bank-header {
+            background: rgba(0, 0, 0, 0.85) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: #ffffff !important;
+        }
+        .bank-header h1, .bank-header h1 i {
+            color: #ffffff !important;
+        }
+        .nav-toggle {
+            background: rgba(255, 255, 255, 0.08) !important;
+            color: #ffffff !important;
+        }
+        .nav-sidebar {
+            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        .sidebar-header {
+            background: rgba(255, 255, 255, 0.03) !important;
+        }
+        .account-number-section, .payment-icon, .info-box, .detail-row {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: #ffffff !important;
+        }
+        .account-number {
+            color: #ffffff !important;
+        }
+        .payment-label {
+            color: #9ca3af !important;
+        }
+        .form-control {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #ffffff !important;
+        }
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            color: #ffffff !important;
+            box-shadow: none !important;
+        }
+        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
+            background: #ffffff !important;
+            color: #000000 !important;
+            border: 1px solid #ffffff !important;
+        }
+        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
+            background: #e5e7eb !important;
+            color: #000000 !important;
+        }
+        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
+            background: transparent !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+        a {
+            color: #ffffff;
+        }
+        a:hover {
+            color: #d1d5db;
+        }
+        .login-image {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
+        }
+        .security-notice {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border-left: 4px solid #ffffff !important;
+            color: #9ca3af !important;
+        }
+        .security-notice i {
+            color: #ffffff !important;
+        }
+        .logo-icon {
+            background: #ffffff !important;
+        }
+        .logo-icon i {
+            color: #000000 !important;
+        }
+        .logo-text {
+            color: #ffffff !important;
+        }
+        .login-form-container {
+            background: #09090b !important;
+            color: #ffffff !important;
+        }
+
+</style>
 
     <!-- Link to Font Awesome CSS for the Telegram icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
