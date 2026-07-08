@@ -234,38 +234,11 @@ def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-
-            # ---- SEND WELCOME EMAIL ----
-            subject = "Welcome to Revolut Bank!"
-            message = f"""
-Hello {user.username},
-
-Welcome to Revolut Bank.
-
-We are pleased to inform you that your account has been successfully created. Kindly visit our official website and log in using your username and password to complete your registration.
-
-Once the registration process is completed, you will be able to fully access and enjoy our secure online banking services.
-
-Thank you for choosing Revolut Bank. We look forward to serving you.
-
-Warm regards,
-Revolut Bank
-"""
-            send_mail(
-                subject,
-                message,
-                settings.DEFAULT_FROM_EMAIL,
-                [user.email],
-                fail_silently=False,
-            )
-            # ---- END OF EMAIL ----
-
+            form.save()
             return redirect('loginview')
 
     context = {'form': form}
     return render(request, 'bank_app/register.html', context)
-
 
 @unauthenticated_user
 def loginview(request):
