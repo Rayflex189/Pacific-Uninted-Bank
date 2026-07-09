@@ -8,13 +8,12 @@
     <title>Revolut - Bank Transfer</title>
     <link rel="icon" href="{% static 'images/IMG-20250820-WA0109.jpg' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/dash.css' %}">
-    <!-- Begin of Chaport Live Chat code -->
+    <!-- Chaport Live Chat -->
     <script type="text/javascript">
         (function(w,d,v3){
             w.chaportConfig = { appId: '6a43a2901fd734cd86c8645d' };
             if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
     </script>
-    <!-- End of Chaport Live Chat code -->
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/blue-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/blue-16x16.png' %}">
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
@@ -29,49 +28,33 @@
     <style>
         /* ============================================================
                REVOLUT MODERN BANKING UI — DARK THEME
-               Clean, accessible, high-contrast, premium feel
                ============================================================ */
-
-        /* ----- 1.  CSS Variables (design tokens) ----- */
         :root {
             --bg-primary: #0b0b0f;
             --bg-secondary: #14141a;
             --bg-card: #1a1a24;
-            --bg-card-hover: #22222e;
             --bg-input: #1e1e2a;
             --bg-input-focus: #28283a;
-
             --text-primary: #f1f3f7;
             --text-secondary: #a8b0c8;
             --text-muted: #6a7290;
-            --text-inverse: #0b0b0f;
-
             --border-subtle: rgba(255, 255, 255, 0.06);
             --border-focus: rgba(255, 255, 255, 0.18);
-
             --accent-blue: #2b7aff;
-            --accent-blue-hover: #4b8eff;
             --accent-glow: rgba(43, 122, 255, 0.25);
-
             --success: #2ecc71;
             --warning: #f39c12;
             --error: #e74c3c;
-
             --radius-sm: 8px;
             --radius-md: 14px;
             --radius-lg: 20px;
-            --radius-xl: 28px;
-
             --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.55);
             --shadow-input: 0 0 0 3px rgba(43, 122, 255, 0.12);
-            --shadow-glow: 0 8px 32px rgba(43, 122, 255, 0.20);
-
             --transition-fast: 0.15s ease;
             --transition-med: 0.25s ease;
             --transition-slow: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* ----- 2.  Reset & Base ----- */
         * {
             margin: 0;
             padding: 0;
@@ -85,10 +68,8 @@
             min-height: 100vh;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ----- 3.  Scrollbar (optional polish) ----- */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -104,7 +85,7 @@
             background: var(--text-muted);
         }
 
-        /* ----- 4.  Header ----- */
+        /* Header */
         .bank-header {
             background: rgba(11, 11, 15, 0.88);
             backdrop-filter: blur(16px) saturate(1.2);
@@ -167,14 +148,10 @@
             color: var(--text-primary);
             transform: translateY(-1px);
         }
-
         .header-controls .icon-btn:active {
             transform: scale(0.94);
         }
 
-        .header-controls .icon-btn .badge-dot {
-            position: relative;
-        }
         .header-controls .icon-btn .badge-dot::after {
             content: '';
             position: absolute;
@@ -187,7 +164,7 @@
             border: 2px solid var(--bg-primary);
         }
 
-        /* ----- 5.  Sidebar ----- */
+        /* Sidebar */
         .sidebar {
             width: 320px;
             height: 100vh;
@@ -249,7 +226,6 @@
             font-size: 0.95rem;
             color: var(--text-secondary);
         }
-
         .user-details p strong {
             color: var(--text-primary);
             font-weight: 600;
@@ -261,7 +237,6 @@
             gap: 14px;
             margin-bottom: 12px;
         }
-
         .user-details .user-avatar .avatar-circle {
             width: 44px;
             height: 44px;
@@ -280,7 +255,6 @@
             padding: 8px 0;
             margin: 0;
         }
-
         .sidebar ul li a {
             display: flex;
             align-items: center;
@@ -293,25 +267,22 @@
             transition: var(--transition-fast);
             border-left: 3px solid transparent;
         }
-
         .sidebar ul li a i {
             width: 20px;
             font-size: 1.1rem;
             text-align: center;
             color: var(--text-muted);
         }
-
         .sidebar ul li a:hover {
             background: rgba(255, 255, 255, 0.04);
             color: var(--text-primary);
             border-left-color: var(--accent-blue);
         }
-
         .sidebar ul li a:hover i {
             color: var(--accent-blue);
         }
 
-        /* ----- 6.  Marquee (stock ticker) ----- */
+        /* Marquee */
         .marquee {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-subtle);
@@ -335,7 +306,6 @@
         .marquee-content span {
             margin: 0 24px;
         }
-
         .marquee-content .text-success {
             color: var(--success) !important;
         }
@@ -348,7 +318,7 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* ----- 7.  Main Content Layout ----- */
+        /* Main Content */
         .main-content {
             padding: 40px 24px 60px;
             max-width: 820px;
@@ -358,7 +328,6 @@
             align-items: center;
         }
 
-        /* ----- 8.  Transfer Header (hero) ----- */
         .transfer-header {
             width: 100%;
             background: linear-gradient(145deg, #1a1a2e, #14141f);
@@ -383,7 +352,6 @@
             border-radius: 50%;
             pointer-events: none;
         }
-
         .transfer-header::after {
             content: '';
             position: absolute;
@@ -405,7 +373,6 @@
             z-index: 2;
             color: var(--text-primary);
         }
-
         .transfer-header .sub-head {
             color: var(--text-secondary);
             font-size: 0.95rem;
@@ -415,7 +382,7 @@
             z-index: 2;
         }
 
-        /* ----- 9.  Form Container (card) ----- */
+        /* Form Container */
         .form-container {
             width: 100%;
             background: var(--bg-card);
@@ -431,7 +398,6 @@
             text-align: center;
             margin-bottom: 28px;
         }
-
         .form-container .form-brand h1 {
             font-size: 2rem;
             font-weight: 800;
@@ -442,14 +408,12 @@
             align-items: center;
             gap: 8px;
         }
-
         .form-container .form-brand h1 .revo-highlight {
             background: linear-gradient(135deg, var(--accent-blue), #6c5ce7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .form-container .form-brand .brand-tagline {
             color: var(--text-muted);
             font-size: 0.85rem;
@@ -457,7 +421,7 @@
             margin-top: 2px;
         }
 
-        /* ----- 10. Animated Balance ----- */
+        /* Animated Balance */
         .animated-balance {
             background: rgba(43, 122, 255, 0.06);
             border: 1px solid rgba(43, 122, 255, 0.12);
@@ -475,12 +439,10 @@
             flex-wrap: wrap;
             transition: var(--transition-med);
         }
-
         .animated-balance i {
             color: var(--accent-blue);
             font-size: 1.2rem;
         }
-
         .animated-balance .balance-amount {
             background: linear-gradient(135deg, #fff, #b0c4ff);
             -webkit-background-clip: text;
@@ -489,11 +451,10 @@
             font-weight: 700;
         }
 
-        /* ----- 11. Form Elements ----- */
+        /* Form Elements */
         .form-group {
             margin-bottom: 22px;
         }
-
         .form-group .form-label {
             display: block;
             font-size: 0.82rem;
@@ -503,7 +464,6 @@
             color: var(--text-secondary);
             margin-bottom: 6px;
         }
-
         .form-group .form-label .required-star {
             color: var(--error);
             margin-left: 2px;
@@ -512,7 +472,6 @@
         .form-input-group {
             position: relative;
         }
-
         .form-input-group .input-icon {
             position: absolute;
             right: 14px;
@@ -537,30 +496,21 @@
             font-family: 'Inter', sans-serif;
             appearance: none;
         }
-
         .form-control::placeholder {
             color: var(--text-muted);
-            font-weight: 400;
             opacity: 0.7;
         }
-
         .form-control:focus {
             outline: none;
             border-color: var(--accent-blue);
             background: var(--bg-input-focus);
             box-shadow: var(--shadow-input);
         }
-
-        .form-control:focus+.input-icon {
+        .form-control:focus + .input-icon {
             color: var(--accent-blue);
         }
 
-        /* special case for amount field (Django form) */
-        .form-input-group .form-control#id_amount {
-            padding-right: 44px;
-        }
-
-        /* ----- 12. Submit Button ----- */
+        /* Submit Button */
         .btn-submit {
             width: 100%;
             padding: 16px 20px;
@@ -580,23 +530,19 @@
             gap: 10px;
             margin-top: 6px;
         }
-
         .btn-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 30px rgba(43, 122, 255, 0.35);
             background: linear-gradient(135deg, #3b8aff, #6a8aff);
         }
-
         .btn-submit:active {
             transform: scale(0.98);
-            box-shadow: 0 2px 12px rgba(43, 122, 255, 0.20);
         }
-
         .btn-submit i {
             font-size: 1.1rem;
         }
 
-        /* ----- 13. Errors ----- */
+        /* Errors */
         .errors {
             margin-top: 18px;
             padding: 14px 18px;
@@ -607,7 +553,6 @@
             font-weight: 500;
             font-size: 0.95rem;
         }
-
         .errors ul {
             margin: 0;
             padding-left: 20px;
@@ -616,7 +561,7 @@
             list-style: disc;
         }
 
-        /* ----- 14. Account Status (alert) ----- */
+        /* Account Status */
         .account-status {
             margin-top: 28px;
             padding: 16px 20px;
@@ -624,7 +569,6 @@
             text-align: center;
             font-weight: 500;
         }
-
         .account-status .alert {
             border-radius: var(--radius-sm);
             padding: 14px 18px;
@@ -636,23 +580,19 @@
             align-items: center;
             gap: 10px;
         }
-
         .account-status .alert-success {
             background: rgba(46, 204, 113, 0.10);
             color: #7ddfa8;
             border-left: 4px solid var(--success);
         }
-
         .account-status .alert-warning {
             background: rgba(243, 156, 18, 0.08);
             color: #f5c97a;
             border-left: 4px solid var(--warning);
         }
-
         .account-status .alert i {
             font-size: 1.2rem;
         }
-
         .account-status .alert .btn-activate {
             background: var(--warning);
             color: #0b0b0f;
@@ -664,13 +604,12 @@
             text-decoration: none;
             transition: var(--transition-fast);
         }
-
         .account-status .alert .btn-activate:hover {
             background: #e0a800;
             transform: translateY(-1px);
         }
 
-        /* ----- 15. Floating buttons (Telegram & Email) ----- */
+        /* Floating buttons */
         .float-btn {
             position: fixed;
             left: 24px;
@@ -685,11 +624,9 @@
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
             transition: var(--transition-med);
         }
-
         .float-btn:hover {
             transform: scale(1.08) translateY(-2px);
         }
-
         .float-btn .tooltip {
             position: absolute;
             left: 68px;
@@ -705,7 +642,6 @@
             pointer-events: none;
             transition: var(--transition-fast);
         }
-
         .float-btn:hover .tooltip {
             opacity: 1;
         }
@@ -729,7 +665,7 @@
             font-size: 1.4rem;
         }
 
-        /* ----- 16. Responsive ----- */
+        /* Responsive */
         @media (max-width: 768px) {
             .bank-header {
                 padding: 12px 18px;
@@ -833,7 +769,8 @@
         </div>
         <div class="user-details">
             <div class="user-avatar">
-                <div class="avatar-circle">{{ request.user|first|upper|default:"U" }}</div>
+                <!-- FIX: use request.user.username instead of request.user -->
+                <div class="avatar-circle">{{ request.user.username|first|upper|default:"U" }}</div>
                 <div>
                     <div style="font-weight: 600; color: var(--text-primary);">{{ request.user }}</div>
                     <div style="font-size: 0.85rem; color: var(--text-muted);">{{ user_profile.email }}</div>
@@ -996,7 +933,6 @@
             sidebar.classList.toggle('open');
         }
 
-        // Close sidebar on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 const sidebar = document.getElementById('sidebar');
@@ -1012,7 +948,6 @@
             const currency = "{{ user_profile.currency|default:'USD' }}";
             const rawBalance = "{{ user_profile.balance|intcomma|default:'0' }}";
 
-            // If we have a numeric balance, format it nicely
             const num = parseFloat(rawBalance.replace(/,/g, ''));
             if (!isNaN(num)) {
                 const formatted = new Intl.NumberFormat('en-US', {
@@ -1024,12 +959,6 @@
                 balanceEl.textContent = formatted;
             } else {
                 balanceEl.textContent = rawBalance;
-            }
-
-            // Also update the animated balance container if needed
-            const container = document.getElementById('animatedBalance');
-            if (container && balanceEl.textContent) {
-                // already set above
             }
         });
 
@@ -1055,7 +984,6 @@
                 return `<span class="${cls}">${stock.symbol} $${stock.price.toFixed(2)} ${arrow} ${Math.abs(stock.change).toFixed(2)}%</span>`;
             }).join(' ');
 
-            // duplicate for seamless loop
             el.innerHTML = html + ' ' + html;
         }
 
@@ -1070,12 +998,10 @@
                 .catch(err => console.log('❌ SW registration failed:', err));
         }
 
-        // ----- Auto-close sidebar on outside click (optional) -----
+        // ----- Auto-close sidebar on outside click -----
         document.addEventListener('click', function(e) {
             const sidebar = document.getElementById('sidebar');
-            const sidebarOpen = sidebar.classList.contains('open');
-            if (!sidebarOpen) return;
-
+            if (!sidebar.classList.contains('open')) return;
             const isClickInside = sidebar.contains(e.target);
             const isToggleBtn = e.target.closest('.icon-btn') || e.target.closest('.open-sidebar-btn');
             if (!isClickInside && !isToggleBtn) {
