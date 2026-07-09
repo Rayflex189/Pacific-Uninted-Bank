@@ -511,7 +511,7 @@
             transition: var(--transition-fast);
         }
 
-        .form-control, .form-select {
+        .form-control, .form-select, input {
             width: 100%;
             padding: 14px 44px 14px 16px;
             background: var(--bg-input);
@@ -851,7 +851,7 @@
             <div class="animated-balance" id="animatedBalance">
                 <i class="fas fa-wallet"></i>
                 <span>Available balance:</span>
-                <span class="balance-amount" id="balanceDisplay">—</span>
+                <span class="balance-amount" id="balanceDisplay">{{user_profile.currency}}{{user_profile.balance}}</span>
             </div>
 
             <!-- Network Fee Info -->
