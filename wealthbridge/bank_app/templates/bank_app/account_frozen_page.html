@@ -4,43 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Transaction - Revolut</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-  appId : '6a43a2901fd734cd86c8645d',
-};
-
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->
-<link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/blue-32x32.png' %}">
-<link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/blue-16x16.png' %}">
-<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-<link rel="apple-touch-icon" href="{% static 'images/blue-180x180.png' %}">
-<link rel="manifest" href="{% static 'manifest.json' %}">
-<meta name="theme-color" content="#0a3ee3">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="{% static 'images/IMG-20250820-WA0109.jpg' %}" type="image/x-icon" >
+    <!-- Chaport Live Chat -->
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = { appId: '6a43a2901fd734cd86c8645d' };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/blue-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/blue-16x16.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/blue-180x180.png' %}">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <meta name="theme-color" content="#0a3ee3">
+    <link rel="icon" href="{% static 'images/IMG-20250820-WA0109.jpg' %}" type="image/x-icon">
+    <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <title>Pending Transaction - Revolut</title>
     <style>
+        /* ============================================================
+               REVOLUT MODERN DARK UI — PENDING / FROZEN PAGE
+               Consistent with bank, crypto, PayPal, etc.
+               ============================================================ */
         :root {
-            --light-blue: #000000;
-            --primary-blue: #ffffff;
-            --dark-blue: #ffffff;
-            --accent-blue: #a3a3a3;
-            --soft-gray: #000000;
-            --medium-gray: rgba(255, 255, 255, 0.1);
-            --text-dark: #ffffff;
-            --text-light: #9ca3af;
-            --success: #27AE60;
-            --warning: #E67E22;
-            --error: #E74C3C;
+            --bg-primary: #0b0b0f;
+            --bg-secondary: #14141a;
+            --bg-card: #1a1a24;
+            --bg-input: #1e1e2a;
+            --text-primary: #f1f3f7;
+            --text-secondary: #a8b0c8;
+            --text-muted: #6a7290;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --accent-blue: #2b7aff;
+            --accent-glow: rgba(43, 122, 255, 0.25);
+            --warning: #f39c12;
+            --error: #e74c3c;
+            --success: #2ecc71;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.55);
+            --transition-med: 0.25s ease;
         }
 
         * {
@@ -52,11 +60,12 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Source Sans Pro', sans-serif;
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--soft-gray) 100%);
-            color: var(--text-dark);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             min-height: 100vh;
             overflow: auto;
+            -webkit-font-smoothing: antialiased;
         }
 
         .dashboard {
@@ -70,25 +79,22 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
+        /* Loading Container (Card) */
         .loading-container {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--bg-card);
             backdrop-filter: blur(10px);
-            border-radius: 16px;
+            border-radius: var(--radius-lg);
             padding: 40px 30px;
-            box-shadow: 0 15px 35px rgba(42, 110, 187, 0.15);
+            box-shadow: var(--shadow-card);
             animation: slideUp 0.8s ease-out 0.3s both;
             max-width: 500px;
             width: 90%;
             text-align: center;
-            border: 1px solid var(--medium-gray);
+            border: 1px solid var(--border-subtle);
             position: relative;
             overflow: hidden;
             transform: translateY(30px);
@@ -101,8 +107,8 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), #6c5ce7);
             animation: colorFlow 3s ease-in-out infinite;
         }
 
@@ -118,19 +124,14 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         @keyframes colorFlow {
-            0%, 100% {
-                background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-            }
-            50% {
-                background: linear-gradient(90deg, var(--accent-blue) 0%, var(--primary-blue) 100%);
-            }
+            0%, 100% { background: linear-gradient(90deg, var(--accent-blue), #6c5ce7); }
+            50% { background: linear-gradient(90deg, #6c5ce7, var(--accent-blue)); }
         }
 
         .loading-container h2 {
-            color: var(--dark-blue);
+            color: var(--text-primary);
             margin-bottom: 20px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1.8rem;
             position: relative;
             padding-bottom: 15px;
@@ -145,192 +146,73 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background: var(--primary-blue);
+            background: var(--accent-blue);
             border-radius: 2px;
             animation: expandWidth 0.8s ease-out 0.8s both;
         }
 
         @keyframes expandWidth {
-            from {
-                width: 0;
-            }
-            to {
-                width: 80px;
-            }
+            from { width: 0; }
+            to { width: 80px; }
         }
 
         .message {
             margin-top: 25px;
-            color: var(--text-dark);
-            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
             line-height: 1.6;
             padding: 15px;
-            background: rgba(42, 110, 187, 0.08);
-            border-radius: 10px;
+            background: rgba(243, 156, 18, 0.06);
+            border-radius: var(--radius-sm);
             border-left: 4px solid var(--warning);
             animation: fadeIn 0.8s ease-out 1s both;
-            transform-origin: left;
         }
 
         .message a {
-            color: var(--primary-blue);
+            color: var(--accent-blue);
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: var(--transition-med);
         }
-
         .message a:hover {
             text-decoration: underline;
-            color: var(--dark-blue);
+            color: #5a7cff;
         }
 
+        /* Support Button */
         .support-button {
             display: inline-block;
             margin-top: 20px;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-            color: white;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--accent-blue), #5a7cff);
+            color: #fff;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(42, 110, 187, 0.25);
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition-med);
+            box-shadow: 0 4px 20px rgba(43, 122, 255, 0.25);
             animation: fadeIn 0.8s ease-out 1.2s both;
             position: relative;
             overflow: hidden;
+            border: none;
+            cursor: pointer;
         }
 
         .support-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(42, 110, 187, 0.35);
-            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(43, 122, 255, 0.35);
+            color: #fff;
             text-decoration: none;
+            background: linear-gradient(135deg, #3b8aff, #6a8aff);
         }
 
         .support-button:active {
-            transform: translateY(-1px);
+            transform: scale(0.98);
         }
 
-        .support-button::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease;
-        }
-
-        .support-button:hover::after {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Email Support Section */
-        .email-support {
-            margin-top: 25px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 10px;
-            border: 1px solid var(--medium-gray);
-            animation: fadeIn 0.8s ease-out 1.4s both;
-        }
-
-        .email-support p {
-            margin-bottom: 10px;
-            color: var(--text-dark);
-            font-size: 1rem;
-        }
-
-        .email-link {
-            color: var(--primary-blue);
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 6px;
-            background: rgba(42, 110, 187, 0.1);
-        }
-
-        .email-link:hover {
-            color: var(--dark-blue);
-            background: rgba(42, 110, 187, 0.2);
-            transform: translateY(-2px);
-            text-decoration: none;
-        }
-
-        .support-note {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-top: 10px;
-            font-style: italic;
-        }
-
-        /* Infinity Preloader Styles */
-        .ip {
-            width: 256px;
-            height: 128px;
-            margin: 0 auto;
-            animation: fadeIn 0.8s ease-out 0.4s both;
-        }
-
-        .ip__track {
-            stroke: var(--medium-gray);
-            transition: stroke var(--trans-dur);
-        }
-
-        .ip__worm1,
-        .ip__worm2 {
-            animation: worm1 2s linear infinite;
-        }
-
-        .ip__worm2 {
-            animation-name: worm2;
-        }
-
-        /* Animation */
-        @keyframes worm1 {
-            from {
-                stroke-dashoffset: 0;
-            }
-            50% {
-                animation-timing-function: steps(1);
-                stroke-dashoffset: -358;
-            }
-            50.01% {
-                animation-timing-function: linear;
-                stroke-dashoffset: 358;
-            }
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        @keyframes worm2 {
-            from {
-                stroke-dashoffset: 358;
-            }
-            50% {
-                stroke-dashoffset: 0;
-            }
-            to {
-                stroke-dashoffset: -358;
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        .support-button i {
+            margin-right: 8px;
         }
 
         /* Status Indicator */
@@ -340,8 +222,8 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             justify-content: center;
             margin-bottom: 25px;
             padding: 12px 20px;
-            background: rgba(230, 126, 34, 0.1);
-            border-radius: 8px;
+            background: rgba(243, 156, 18, 0.08);
+            border-radius: var(--radius-sm);
             border-left: 4px solid var(--warning);
             animation: shake 0.8s ease-out 0.5s both, pulseWarning 2s ease-in-out infinite 1s;
         }
@@ -355,34 +237,61 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
         .status-text {
             font-weight: 600;
-            color: var(--text-dark);
-            font-family: 'Montserrat', sans-serif;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
         }
 
         @keyframes shake {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            10%, 30%, 50%, 70%, 90% {
-                transform: translateX(-5px);
-            }
-            20%, 40%, 60%, 80% {
-                transform: translateX(5px);
-            }
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
 
         @keyframes pulseWarning {
-            0%, 100% {
-                background: rgba(230, 126, 34, 0.1);
-                border-left-color: var(--warning);
-            }
-            50% {
-                background: rgba(230, 126, 34, 0.2);
-                border-left-color: #ff8c00;
-            }
+            0%, 100% { background: rgba(243, 156, 18, 0.08); border-left-color: var(--warning); }
+            50% { background: rgba(243, 156, 18, 0.15); border-left-color: #ff8c00; }
         }
 
-        /* Ice Effect for Frozen State */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Infinity Preloader */
+        .ip {
+            width: 200px;
+            height: 100px;
+            margin: 0 auto 10px;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .ip__track {
+            stroke: var(--border-subtle);
+        }
+
+        .ip__worm1,
+        .ip__worm2 {
+            animation: worm1 2s linear infinite;
+        }
+
+        .ip__worm2 {
+            animation-name: worm2;
+        }
+
+        @keyframes worm1 {
+            from { stroke-dashoffset: 0; }
+            50% { animation-timing-function: steps(1); stroke-dashoffset: -358; }
+            50.01% { animation-timing-function: linear; stroke-dashoffset: 358; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes worm2 {
+            from { stroke-dashoffset: 358; }
+            50% { stroke-dashoffset: 0; }
+            to { stroke-dashoffset: -358; }
+        }
+
+        /* Frozen Effect (subtle overlay) */
         .frozen-effect {
             position: absolute;
             top: 0;
@@ -390,239 +299,117 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(255, 255, 255, 0.05) 50%,
-                rgba(255, 255, 255, 0.1) 100%);
+                rgba(255,255,255,0.02) 0%,
+                rgba(255,255,255,0.04) 50%,
+                rgba(255,255,255,0.02) 100%);
             pointer-events: none;
-            opacity: 0.3;
+            opacity: 0.4;
             animation: frostShimmer 3s ease-in-out infinite;
         }
 
         @keyframes frostShimmer {
-            0%, 100% {
-                opacity: 0.2;
-            }
-            50% {
-                opacity: 0.4;
-            }
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
         }
 
-        /* Responsive Design */
+        /* Floating buttons (Telegram & Email) */
+        .float-btn {
+            position: fixed;
+            left: 24px;
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-med);
+        }
+        .float-btn:hover {
+            transform: scale(1.08) translateY(-2px);
+        }
+        .float-btn .tooltip {
+            position: absolute;
+            left: 68px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-med);
+        }
+        .float-btn:hover .tooltip {
+            opacity: 1;
+        }
+
+        .telegram-float {
+            bottom: 100px;
+            background: #0088cc;
+        }
+        .telegram-float .telegram-icon {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
+        }
+
+        .email-float {
+            bottom: 168px;
+            background: linear-gradient(135deg, #2b7aff, #5a7cff);
+        }
+        .email-float .email-icon {
+            color: #fff;
+            font-size: 1.4rem;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .loading-container {
                 padding: 30px 20px;
                 width: 95%;
             }
-
             .loading-container h2 {
                 font-size: 1.5rem;
             }
-
             .message {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
-
             .ip {
-                width: 200px;
-                height: 100px;
+                width: 160px;
+                height: 80px;
             }
-
-            .email-support {
-                padding: 15px;
+            .float-btn {
+                width: 48px;
+                height: 48px;
+                left: 14px;
             }
-
-            .email-link {
-                font-size: 1rem;
-                padding: 6px 12px;
-            }
-        }
-
-        .telegram-float {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            z-index: 1000;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .telegram-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .telegram-tooltip {
-            position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .telegram-link:hover .telegram-tooltip {
-            opacity: 1;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
             .telegram-float {
-                left: 10px;
-                bottom: 10px;
+                bottom: 80px;
             }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
+            .email-float {
+                bottom: 140px;
             }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
+            .float-btn .tooltip {
+                display: none;
             }
         }
-    
-        /* Sitewide Dark Mode Overrides to match Revolut Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
-        }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .bank-header h1, .bank-header h1 i {
-            color: #ffffff !important;
-        }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
-            color: #9ca3af !important;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-        }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-        }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
-        }
 
-</style>
+        @media (max-width: 480px) {
+            .loading-container h2 {
+                font-size: 1.3rem;
+            }
+            .support-button {
+                font-size: 0.95rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -638,34 +425,30 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             </div>
 
             <!-- Infinity Preloader -->
-            <main>
-                <svg class="ip" viewBox="0 0 256 128" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%" stop-color="#2A6EBB" />
-                            <stop offset="33%" stop-color="#4A90E2" />
-                            <stop offset="67%" stop-color="#1A4A7A" />
-                            <stop offset="100%" stop-color="#2A6EBB" />
-                        </linearGradient>
-                        <linearGradient id="grad2" x1="1" y1="0" x2="0" y2="0">
-                            <stop offset="0%" stop-color="#2A6EBB" />
-                            <stop offset="33%" stop-color="#1A4A7A" />
-                            <stop offset="67%" stop-color="#4A90E2" />
-                            <stop offset="100%" stop-color="#2A6EBB" />
-                        </linearGradient>
-                    </defs>
-                    <g fill="none" stroke-linecap="round" stroke-width="16">
-                        <g class="ip__track" stroke="#E1E8ED">
-                            <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
-                            <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
-                        </g>
-                        <g stroke-dasharray="180 656">
-                            <path class="ip__worm1" stroke="url(#grad1)" stroke-dashoffset="0" d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
-                            <path class="ip__worm2" stroke="url(#grad2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
-                        </g>
+            <svg class="ip" viewBox="0 0 256 128" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#2b7aff" />
+                        <stop offset="50%" stop-color="#6c5ce7" />
+                        <stop offset="100%" stop-color="#2b7aff" />
+                    </linearGradient>
+                    <linearGradient id="grad2" x1="1" y1="0" x2="0" y2="0">
+                        <stop offset="0%" stop-color="#2b7aff" />
+                        <stop offset="50%" stop-color="#6c5ce7" />
+                        <stop offset="100%" stop-color="#2b7aff" />
+                    </linearGradient>
+                </defs>
+                <g fill="none" stroke-linecap="round" stroke-width="16">
+                    <g class="ip__track" stroke="rgba(255,255,255,0.06)">
+                        <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+                        <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
                     </g>
-                </svg>
-            </main>
+                    <g stroke-dasharray="180 656">
+                        <path class="ip__worm1" stroke="url(#grad1)" stroke-dashoffset="0" d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+                        <path class="ip__worm2" stroke="url(#grad2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+                    </g>
+                </g>
+            </svg>
 
             <h2>Transactions Frozen</h2>
 
@@ -675,66 +458,59 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             </p>
 
             <a href="#" class="support-button">
-                <i class="fas fa-headset" style="margin-right: 8px;"></i>
+                <i class="fas fa-headset"></i>
                 Contact Live Support
             </a>
         </div>
     </div>
 
+    <!-- ====== FLOATING BUTTONS ====== -->
+    <!-- Telegram -->
+    <a href="https://t.me/" class="float-btn telegram-float" target="_blank" rel="noopener" aria-label="Telegram support">
+        <svg class="telegram-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.5 2.5L1.5 10.5L8.5 14.5L17.5 7.5L10.5 15.5L13.5 22.5L22.5 2.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M10.5 15.5L8.5 20.5L5.5 14.5" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <span class="tooltip">Telegram Support</span>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:" class="float-btn email-float" aria-label="Email support">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="tooltip">Email Support</span>
+    </a>
+
     <script>
-        // Add subtle interactive effects
+        // Interactive effects
         document.addEventListener('DOMContentLoaded', function() {
             const supportButton = document.querySelector('.support-button');
-            const emailLink = document.querySelector('.email-link');
             const statusIndicator = document.querySelector('.status-indicator');
 
-            // Add click effect to support button
             supportButton.addEventListener('click', function(e) {
                 e.preventDefault();
-
-                // Add a temporary pulse effect
-                this.style.animation = 'none';
+                // Simulate click feedback
+                this.style.transform = 'scale(0.96)';
                 setTimeout(() => {
-                    this.style.animation = 'fadeIn 0.8s ease-out 1.2s both';
-                }, 10);
-
-                // You can add actual support functionality here
-                console.log('Support button clicked');
+                    this.style.transform = '';
+                }, 150);
+                console.log('Support button clicked – add your live chat or support link here.');
             });
 
-            // Add click effect to email link
-            emailLink.addEventListener('click', function(e) {
-                // Add a temporary highlight effect
-                this.style.transform = 'scale(1.05)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 200);
-            });
-
-            // Add hover effect to status indicator
             statusIndicator.addEventListener('mouseenter', function() {
                 this.style.transform = 'scale(1.02)';
+                this.style.transition = 'transform 0.2s ease';
             });
-
             statusIndicator.addEventListener('mouseleave', function() {
                 this.style.transform = 'scale(1)';
             });
         });
-         if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register("{% static 'sw.js' %}")
-        .then(registration => {
-            console.log('✅ Service Worker Registered:', registration);
 
-            // Check for updates
-            registration.addEventListener('updatefound', () => {
-                const newWorker = registration.installing;
-                console.log('🔄 New service worker found:', newWorker);
-            });
-        })
-        .catch(error => {
-            console.log('❌ Service Worker registration failed:', error);
-        });
-    }
+        // Service Worker registration (if you use one)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("{% static 'sw.js' %}")
+                .then(reg => console.log('✅ SW registered:', reg))
+                .catch(err => console.log('❌ SW registration failed:', err));
+        }
     </script>
 </body>
 </html>
