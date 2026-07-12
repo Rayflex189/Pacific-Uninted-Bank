@@ -8,16 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Revolut - Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-  appId : '6a43a2901fd734cd86c8645d',
-};
-
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code --> <meta name="description" content="Dashboard for managing account and transactions.">
+    <!-- Chaport Live Chat -->
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = { appId: '6a43a2901fd734cd86c8645d' };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <meta name="description" content="Dashboard for managing account and transactions.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,22 +25,39 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
     <link rel="manifest" href="{% static 'manifest.json' %}">
     <meta name="theme-color" content="#0a3ee3">
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
+        /* ============================================================
+               REVOLUT MODERN DARK UI — DASHBOARD
+               Consistent with all other pages
+               ============================================================ */
         :root {
-            --light-blue: #000000;
-            --primary-blue: #ffffff;
-            --dark-blue: #ffffff;
-            --accent-blue: #a3a3a3;
-            --soft-gray: #000000;
-            --medium-gray: rgba(255, 255, 255, 0.1);
-            --text-dark: #ffffff;
-            --text-light: #9ca3af;
-            --success: #27AE60;
-            --warning: #E67E22;
-            --error: #E74C3C;
+            --bg-primary: #0b0b0f;
+            --bg-secondary: #14141a;
+            --bg-card: #1a1a24;
+            --bg-input: #1e1e2a;
+            --bg-input-focus: #28283a;
+            --text-primary: #f1f3f7;
+            --text-secondary: #a8b0c8;
+            --text-muted: #6a7290;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-focus: rgba(255, 255, 255, 0.18);
+            --accent-blue: #2b7aff;
+            --accent-glow: rgba(43, 122, 255, 0.25);
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --error: #e74c3c;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.55);
+            --shadow-input: 0 0 0 3px rgba(43, 122, 255, 0.12);
+            --transition-fast: 0.15s ease;
+            --transition-med: 0.25s ease;
+            --transition-slow: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         * {
@@ -53,78 +67,89 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         body {
-            font-family: 'Source Sans Pro', sans-serif;
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--soft-gray) 100%);
-            color: var(--text-dark);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             min-height: 100vh;
             line-height: 1.6;
             padding-bottom: 80px;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Header Styling */
+        /* ====== HEADER ====== */
         .bank-header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 20px;
+            background: rgba(11, 11, 15, 0.88);
+            backdrop-filter: blur(16px) saturate(1.2);
+            -webkit-backdrop-filter: blur(16px) saturate(1.2);
+            padding: 14px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--medium-gray);
-            box-shadow: 0 2px 15px rgba(42, 110, 187, 0.1);
+            border-bottom: 1px solid var(--border-subtle);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 110;
         }
 
         .bank-header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--dark-blue);
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: var(--text-primary);
             margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .bank-header h1 i {
-            margin-right: 10px;
+            color: var(--accent-blue);
         }
 
         .header-controls {
             display: flex;
-            gap: 15px;
             align-items: center;
+            gap: 12px;
         }
 
         .nav-toggle {
             cursor: pointer;
-            color: var(--dark-blue);
+            color: var(--text-secondary);
             font-size: 1.3rem;
-            transition: all 0.3s ease;
+            transition: var(--transition-med);
             padding: 8px;
             border-radius: 50%;
-            background: rgba(42, 110, 187, 0.08);
-            position: relative;
-            z-index: 1001;
+            background: rgba(255, 255, 255, 0.05);
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
         }
 
         .nav-toggle:hover {
-            color: var(--primary-blue);
-            transform: translateY(-2px);
-            background: rgba(42, 110, 187, 0.15);
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.10);
+            transform: translateY(-1px);
         }
 
-        /* Navigation Sidebar */
+        /* ====== SIDEBAR ====== */
         .nav-sidebar {
             position: fixed;
             top: 0;
-            right: -300px;
-            width: 300px;
+            right: -340px;
+            width: 320px;
             height: 100vh;
-            background: linear-gradient(180deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border-subtle);
+            box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
             z-index: 1000;
-            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: right var(--transition-slow);
             overflow-y: auto;
+            padding: 0;
         }
 
         .nav-sidebar.open {
@@ -132,113 +157,132 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         .sidebar-header {
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.1);
+            padding: 22px 28px;
+            border-bottom: 1px solid var(--border-subtle);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(5px);
         }
 
         .sidebar-header h2 {
-            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
             font-weight: 600;
+            color: var(--text-primary);
             margin: 0;
-            font-size: 1.4rem;
-            color: white;
+            letter-spacing: -0.2px;
         }
 
         .sidebar-close {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+            background: rgba(255, 255, 255, 0.06);
             border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
             font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-fast);
         }
 
         .sidebar-close:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
         }
 
         .user-details {
-            padding: 20px 25px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .user-details p {
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             font-size: 0.95rem;
+            color: var(--text-secondary);
         }
 
-        .user-details strong {
-            color: rgba(255, 255, 255, 0.9);
+        .user-details p strong {
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
         .nav-menu {
             list-style: none;
-            padding: 0;
+            padding: 8px 0;
             margin: 0;
         }
 
         .nav-menu li {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .nav-menu a {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            display: block;
-            padding: 18px 25px;
-            transition: all 0.3s ease;
-            font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
+            padding: 14px 28px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+            border-left: 3px solid transparent;
         }
 
         .nav-menu a i {
             width: 20px;
+            font-size: 1.1rem;
             text-align: center;
+            color: var(--text-muted);
         }
 
         .nav-menu a:hover {
-            background: rgba(255, 255, 255, 0.1);
-            padding-left: 30px;
-            color: white;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+            border-left-color: var(--accent-blue);
         }
 
-        /* Main Content */
+        .nav-menu a:hover i {
+            color: var(--accent-blue);
+        }
+
+        /* Sidebar overlay */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+            display: none;
+            backdrop-filter: blur(4px);
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* ====== MAIN CONTENT ====== */
         .main-content {
-            padding: 20px;
+            padding: 24px;
             max-width: 1200px;
             margin: 0 auto;
             animation: fadeInUp 0.8s ease-out;
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Account Info Card */
+        /* ====== ACCOUNT CARD ====== */
         .account-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(42, 110, 187, 0.15);
-            padding: 25px;
-            margin-bottom: 20px;
-            border: 1px solid var(--medium-gray);
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            padding: 28px 30px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-subtle);
             position: relative;
             overflow: hidden;
         }
@@ -249,8 +293,14 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), #6c5ce7);
+            animation: colorFlow 3s ease-in-out infinite;
+        }
+
+        @keyframes colorFlow {
+            0%, 100% { background: linear-gradient(90deg, var(--accent-blue), #6c5ce7); }
+            50% { background: linear-gradient(90deg, #6c5ce7, var(--accent-blue)); }
         }
 
         .account-header {
@@ -263,175 +313,230 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         .welcome-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            color: var(--dark-blue);
-            margin-bottom: 5px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            font-size: 1.5rem;
+            letter-spacing: -0.3px;
         }
 
         .welcome-section .user-name {
-            font-size: 1.1rem;
-            color: var(--text-light);
+            font-size: 1rem;
+            color: var(--text-secondary);
         }
 
         .profile-img {
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            border: 3px solid var(--primary-blue);
+            border: 3px solid var(--accent-blue);
             object-fit: cover;
+            box-shadow: 0 4px 16px rgba(43, 122, 255, 0.2);
         }
 
         .balance-section {
             text-align: center;
-            margin: 25px 0;
+            margin: 22px 0 18px;
         }
 
         .balance-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
+            font-size: 0.85rem;
+            color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-weight: 500;
         }
 
         .balance-amount {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 2.4rem;
             font-weight: 700;
-            color: var(--dark-blue);
-            margin: 10px 0;
+            color: var(--text-primary);
+            margin: 6px 0 12px;
+            background: linear-gradient(135deg, #fff, #b0c4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .account-number-section {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             background: rgba(255, 255, 255, 0.03);
-            padding: 12px;
-            border-radius: 10px;
-            margin-top: 5px;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         .account-number {
-            flex: 1;
-            font-family: monospace;
-            font-size: 16px;
-            color: #333;
+            font-family: 'Inter', monospace;
+            font-size: 1rem;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
         }
 
         .copy-icon {
             cursor: pointer;
-            color: #667eea;
-            font-size: 18px;
-            transition: all 0.2s;
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            transition: var(--transition-fast);
+            padding: 4px;
         }
 
         .copy-icon:hover {
-            color: #764ba2;
+            color: #5a7cff;
             transform: scale(1.1);
         }
 
         .copy-feedback {
             display: none;
-            color: #28a745;
-            font-size: 12px;
-            margin-top: 5px;
+            color: var(--success);
+            font-size: 0.85rem;
+            margin-top: 6px;
+            text-align: center;
         }
 
-        /* Payment Options */
+        .copy-feedback i {
+            margin-right: 6px;
+        }
+
+        /* ====== PAYMENT OPTIONS ====== */
         .payment-options {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 15px;
-            margin: 25px 0;
+            gap: 14px;
+            margin: 24px 0 6px;
         }
 
         .payment-option {
             text-align: center;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition-med);
         }
 
         .payment-icon {
-            width: 50px;
-            height: 50px;
+            width: 54px;
+            height: 54px;
             background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
+            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 8px;
-            box-shadow: 0 4px 12px rgba(42, 110, 187, 0.1);
-            border: 1px solid var(--medium-gray);
-            transition: all 0.3s ease;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition-med);
+            padding: 6px;
         }
 
         .payment-icon img {
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             object-fit: contain;
+            filter: brightness(0.9) contrast(1.1);
         }
 
         .payment-label {
-            font-size: 0.75rem;
-            color: var(--text-dark);
+            font-size: 0.7rem;
+            color: var(--text-secondary);
             font-weight: 500;
         }
 
         .payment-option:hover .payment-icon {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(42, 110, 187, 0.2);
-            border-color: var(--primary-blue);
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 24px rgba(43, 122, 255, 0.15);
+            background: rgba(43, 122, 255, 0.05);
         }
 
-        /* Balance Cards */
+        .payment-option:hover .payment-label {
+            color: var(--text-primary);
+        }
+
+        /* ====== BALANCE CARDS ====== */
         .balance-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            gap: 16px;
             margin: 20px 0;
         }
 
         .balance-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 8px 20px rgba(42, 110, 187, 0.1);
-            border: 1px solid var(--medium-gray);
-            transition: all 0.3s ease;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition-med);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
 
         .balance-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(42, 110, 187, 0.15);
+            border-color: rgba(255, 255, 255, 0.10);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
         }
 
         .balance-card h4 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 600;
-            color: var(--dark-blue);
-            margin-bottom: 10px;
-            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
         }
 
         .balance-card .amount {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary-blue);
+            color: var(--text-primary);
         }
 
-        /* Transactions Section */
-        .transactions-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(42, 110, 187, 0.15);
-            padding: 25px;
+        /* ====== SECURITY INFO ====== */
+        .security-info {
+            background: rgba(43, 122, 255, 0.05);
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
             margin: 20px 0;
-            border: 1px solid var(--medium-gray);
+            border-left: 4px solid var(--accent-blue);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .security-info p {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .security-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        .security-info i {
+            color: var(--accent-blue);
+            width: 18px;
+            text-align: center;
+        }
+
+        .security-info span {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* ====== TRANSACTIONS SECTION ====== */
+        .transactions-section {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            padding: 24px 28px;
+            margin: 24px 0;
+            border: 1px solid var(--border-subtle);
             position: relative;
             overflow-x: auto;
         }
@@ -442,17 +547,18 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), #6c5ce7);
         }
 
         .section-header {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            color: var(--dark-blue);
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: var(--text-primary);
             margin-bottom: 20px;
             text-align: center;
             font-size: 1.3rem;
+            letter-spacing: -0.3px;
         }
 
         .transactions-table {
@@ -462,249 +568,97 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         .transactions-table th {
-            background: rgba(42, 110, 187, 0.08);
-            padding: 12px 8px;
+            padding: 12px 10px;
             text-align: left;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 600;
-            color: var(--dark-blue);
-            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .transactions-table td {
-            padding: 12px 8px;
-            border-bottom: 1px solid var(--medium-gray);
-            font-size: 0.85rem;
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .transactions-table tr:last-child td {
+            border-bottom: none;
         }
 
         .transaction-credit {
-            background: rgba(39, 174, 96, 0.05);
+            background: rgba(46, 204, 113, 0.04);
+        }
+
+        .transaction-credit td {
+            color: var(--success);
         }
 
         .transaction-debit {
-            background: rgba(231, 76, 60, 0.05);
+            background: rgba(231, 76, 60, 0.04);
+        }
+
+        .transaction-debit td {
+            color: var(--error);
         }
 
         .view-btn {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--accent-blue), #5a7cff);
+            color: #fff;
             border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
             font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition-med);
             text-decoration: none;
             display: inline-block;
         }
 
         .view-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(42, 110, 187, 0.3);
-            color: white;
+            box-shadow: 0 4px 16px rgba(43, 122, 255, 0.3);
+            color: #fff;
             text-decoration: none;
         }
 
-        /* Security Info */
-        .security-info {
-            background: rgba(42, 110, 187, 0.08);
-            border-radius: 12px;
-            padding: 15px;
-            margin: 20px 0;
-            border-left: 4px solid var(--primary-blue);
-            font-size: 0.9rem;
-        }
-
-        .security-info p {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .security-info i {
-            color: var(--primary-blue);
-        }
-
-        /* Bottom Navigation */
-        .bottom-navbar {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-around;
-            padding: 12px 0;
-            box-shadow: 0 -2px 15px rgba(42, 110, 187, 0.1);
-            border-top: 1px solid var(--medium-gray);
-            z-index: 100;
-        }
-
-        .nav-link {
-            text-align: center;
-            color: var(--text-light);
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: all 0.3s ease;
-            flex: 1;
-        }
-
-        .nav-link i {
-            font-size: 1.3rem;
-            margin-bottom: 4px;
-            color: var(--text-light);
-        }
-
-        .nav-link span {
-            font-size: 0.7rem;
-            font-weight: 500;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--primary-blue);
-        }
-
-        .nav-link:hover i,
-        .nav-link.active i {
-            color: var(--primary-blue);
-        }
-
-        /* Overlay for sidebar */
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            display: none;
-        }
-
-        .sidebar-overlay.active {
-            display: block;
-        }
-
-        /* Floating Icons */
-        .telegram-float,
-        .email-float {
-            position: fixed;
-            left: 20px;
-            z-index: 1000;
-        }
-
-        .email-float {
-            bottom: 90px;
-            animation: floatEmail 3s ease-in-out infinite;
-        }
-
-        .telegram-float {
-            bottom: 20px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .telegram-link,
-        .email-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .telegram-link {
-            background: #0088cc;
-        }
-
-        .email-link {
-            background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
-        }
-
-        .telegram-link:hover,
-        .email-link:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .email-icon {
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .telegram-tooltip,
-        .email-tooltip {
-            position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .telegram-link:hover .telegram-tooltip,
-        .email-link:hover .email-tooltip {
-            opacity: 1;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes floatEmail {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        /* Crypto Popup Styles */
+        /* ====== CRYPTO BUTTON ====== */
         .crypto-info-trigger {
-            margin-top: 20px;
+            margin-top: 18px;
             text-align: center;
         }
 
         .crypto-view-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6c5ce7, var(--accent-blue));
             color: white;
             border: none;
             padding: 14px 28px;
             border-radius: 50px;
-            font-size: 16px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition-med);
             width: 100%;
-            display: flex;
+            max-width: 400px;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
         }
 
         .crypto-view-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+            box-shadow: 0 8px 32px rgba(108, 92, 231, 0.4);
         }
 
+        /* ====== CRYPTO POPUP ====== */
         .crypto-popup {
             display: none;
             position: fixed;
@@ -713,27 +667,28 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
             animation: fadeIn 0.3s;
         }
 
         .popup-content {
-            background-color: white;
+            background: var(--bg-card);
             margin: 5% auto;
             width: 90%;
             max-width: 650px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
             animation: slideUp 0.3s;
             overflow: hidden;
             max-height: 90vh;
             display: flex;
             flex-direction: column;
+            border: 1px solid var(--border-subtle);
         }
 
         .popup-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6c5ce7, var(--accent-blue));
             color: white;
             padding: 20px 24px;
             display: flex;
@@ -742,26 +697,23 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             flex-shrink: 0;
         }
 
-        .popup-body {
-            padding: 30px;
-            overflow-y: auto;
-            flex: 1;
+        .popup-header h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            margin: 0;
+            font-size: 1.2rem;
         }
 
-        .popup-footer {
-            padding: 16px 24px;
-            background: #f8f9fa;
-            border-top: 1px solid #e0e0e0;
-            text-align: right;
-            flex-shrink: 0;
+        .popup-header h3 i {
+            margin-right: 10px;
         }
 
         .close-popup {
             color: white;
-            font-size: 32px;
-            font-weight: bold;
+            font-size: 28px;
+            font-weight: 300;
             cursor: pointer;
-            transition: 0.2s;
+            transition: var(--transition-fast);
             line-height: 1;
         }
 
@@ -770,21 +722,36 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             transform: scale(1.1);
         }
 
+        .popup-body {
+            padding: 28px 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .popup-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border-subtle);
+            text-align: right;
+            flex-shrink: 0;
+        }
+
         .close-btn {
-            background: #6c757d;
-            color: white;
-            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
             padding: 10px 24px;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+            font-family: 'Inter', sans-serif;
         }
 
         .close-btn:hover {
-            background: #5a6268;
+            background: rgba(255, 255, 255, 0.12);
         }
 
+        /* ====== CRYPTO CARDS INSIDE POPUP ====== */
         .crypto-list {
             display: flex;
             flex-direction: column;
@@ -792,20 +759,24 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         .crypto-card {
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
             overflow: hidden;
-            transition: all 0.3s;
+            transition: var(--transition-med);
         }
 
         .crypto-card-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: rgba(43, 122, 255, 0.06);
             padding: 15px 20px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: var(--transition-fast);
+        }
+
+        .crypto-card-header:hover {
+            background: rgba(43, 122, 255, 0.10);
         }
 
         .crypto-title {
@@ -816,22 +787,25 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
         .crypto-title h4 {
             margin: 0;
-            font-size: 18px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
         .crypto-title small {
-            opacity: 0.8;
-            font-size: 12px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
         }
 
         .expand-icon {
             transition: transform 0.3s;
+            color: var(--text-muted);
         }
 
         .crypto-card-body {
             display: none;
             padding: 20px;
-            background: #f8f9fa;
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .crypto-card-body.active {
@@ -839,29 +813,36 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         .address-item {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 14px;
+            border: 1px solid var(--border-subtle);
         }
 
         .address-item:last-child {
             margin-bottom: 0;
         }
 
+        .address-item strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
         .network-badge {
             display: inline-block;
-            background: #e0e0e0;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 11px;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
             font-weight: 600;
-            margin-left: 10px;
+            color: var(--text-secondary);
+            margin-left: 8px;
         }
 
         .primary-badge {
-            background: #28a745;
-            color: white;
+            background: var(--success);
+            color: #0b0b0f;
         }
 
         .info-value-wrapper {
@@ -869,74 +850,103 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             gap: 10px;
             align-items: center;
             flex-wrap: wrap;
+            margin-top: 10px;
         }
 
         .address-value {
             flex: 1;
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 10px;
-            font-family: monospace;
-            font-size: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-family: 'Inter', monospace;
+            font-size: 0.85rem;
             word-break: break-all;
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
         }
 
         .copy-address-btn,
         .btn-qr {
-            padding: 8px 12px;
-            border-radius: 6px;
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            font-size: 12px;
+            font-size: 0.8rem;
             border: none;
-            transition: all 0.2s;
+            transition: var(--transition-fast);
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
         }
 
         .copy-address-btn {
-            background: #667eea;
-            color: white;
-        }
-
-        .btn-qr {
-            background: #28a745;
+            background: var(--accent-blue);
             color: white;
         }
 
         .copy-address-btn:hover {
-            background: #5a67d8;
+            background: #5a7cff;
             transform: scale(1.02);
         }
 
+        .btn-qr {
+            background: var(--success);
+            color: #0b0b0f;
+        }
+
         .btn-qr:hover {
-            background: #218838;
+            background: #27ae60;
             transform: scale(1.02);
         }
 
         .crypto-warning {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            border-radius: 10px;
+            background: rgba(243, 156, 18, 0.08);
+            border-left: 4px solid var(--warning);
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
             display: flex;
-            gap: 10px;
+            gap: 12px;
             align-items: flex-start;
+            margin-top: 14px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .crypto-warning i {
+            color: var(--warning);
+            margin-top: 2px;
         }
 
         .crypto-note {
-            background: #e7f3ff;
-            border-left: 4px solid #2196f3;
-            padding: 15px;
-            border-radius: 10px;
+            background: rgba(43, 122, 255, 0.06);
+            border-left: 4px solid var(--accent-blue);
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
             display: flex;
-            gap: 10px;
+            gap: 12px;
             align-items: flex-start;
+            margin-top: 18px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .crypto-note i {
+            color: var(--accent-blue);
+            margin-top: 2px;
         }
 
         .no-crypto {
             text-align: center;
             padding: 40px 20px;
-            color: #6c757d;
+            color: var(--text-muted);
         }
 
+        .no-crypto i {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ====== QR MODAL ====== */
         .qr-modal {
             display: none;
             position: fixed;
@@ -945,19 +955,163 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
         }
 
         .qr-modal-content {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--bg-card);
             margin: 10% auto;
             width: 90%;
             max-width: 400px;
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: var(--radius-md);
+            padding: 24px 20px 28px;
             text-align: center;
+            border: 1px solid var(--border-subtle);
         }
 
+        .qr-modal-content h3 {
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .qr-modal-content button {
+            margin-top: 18px;
+            padding: 10px 28px;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition-fast);
+        }
+
+        .qr-modal-content button:hover {
+            background: #5a7cff;
+        }
+
+        /* ====== BOTTOM NAVBAR ====== */
+        .bottom-navbar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(11, 11, 15, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 8px;
+            border-top: 1px solid var(--border-subtle);
+            z-index: 100;
+        }
+
+        .bottom-navbar .nav-link {
+            text-align: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: var(--transition-fast);
+            flex: 1;
+            padding: 4px 0;
+        }
+
+        .bottom-navbar .nav-link i {
+            font-size: 1.3rem;
+            margin-bottom: 2px;
+            color: var(--text-muted);
+            transition: var(--transition-fast);
+        }
+
+        .bottom-navbar .nav-link span {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition-fast);
+        }
+
+        .bottom-navbar .nav-link:hover,
+        .bottom-navbar .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        .bottom-navbar .nav-link:hover i,
+        .bottom-navbar .nav-link.active i {
+            color: var(--accent-blue);
+        }
+
+        .bottom-navbar .nav-link:hover span,
+        .bottom-navbar .nav-link.active span {
+            color: var(--text-primary);
+        }
+
+        /* ====== FLOATING SUPPORT BUTTONS ====== */
+        .float-btn {
+            position: fixed;
+            left: 24px;
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-med);
+        }
+
+        .float-btn:hover {
+            transform: scale(1.08) translateY(-2px);
+        }
+
+        .float-btn .tooltip {
+            position: absolute;
+            left: 68px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-med);
+        }
+
+        .float-btn:hover .tooltip {
+            opacity: 1;
+        }
+
+        .telegram-float {
+            bottom: 100px;
+            background: #0088cc;
+        }
+
+        .telegram-float .telegram-icon {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
+        }
+
+        .email-float {
+            bottom: 168px;
+            background: linear-gradient(135deg, #2b7aff, #5a7cff);
+        }
+
+        .email-float .email-icon {
+            color: #fff;
+            font-size: 1.4rem;
+        }
+
+        /* ====== ANIMATIONS ====== */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -965,7 +1119,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
         @keyframes slideUp {
             from {
-                transform: translateY(50px);
+                transform: translateY(40px);
                 opacity: 0;
             }
             to {
@@ -974,32 +1128,79 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             }
         }
 
-        /* Responsive Design */
+        /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
+            .bank-header {
+                padding: 12px 16px;
+            }
+
+            .bank-header h1 {
+                font-size: 1.2rem;
+            }
+
             .main-content {
-                padding: 15px;
+                padding: 16px;
+            }
+
+            .account-card {
+                padding: 20px 18px;
+            }
+
+            .account-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
             }
 
             .balance-amount {
-                font-size: 1.8rem;
+                font-size: 2rem;
+            }
+
+            .profile-img {
+                width: 60px;
+                height: 60px;
             }
 
             .payment-options {
+                grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
                 gap: 10px;
             }
 
             .payment-icon {
-                width: 45px;
-                height: 45px;
+                width: 48px;
+                height: 48px;
             }
 
             .payment-icon img {
-                width: 25px;
-                height: 25px;
+                width: 28px;
+                height: 28px;
+            }
+
+            .payment-label {
+                font-size: 0.65rem;
+            }
+
+            .balance-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .transactions-section {
+                padding: 18px 14px;
+            }
+
+            .transactions-table {
+                min-width: 400px;
+                font-size: 0.8rem;
+            }
+
+            .transactions-table th,
+            .transactions-table td {
+                padding: 8px 6px;
             }
 
             .nav-sidebar {
                 width: 280px;
+                right: -300px;
             }
 
             .popup-content {
@@ -1008,7 +1209,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             }
 
             .popup-body {
-                padding: 20px;
+                padding: 18px 16px;
             }
 
             .info-value-wrapper {
@@ -1020,165 +1221,79 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                 width: 100%;
             }
 
-            .telegram-float,
-            .email-float {
-                left: 10px;
+            .float-btn {
+                width: 48px;
+                height: 48px;
+                left: 14px;
             }
 
-            .telegram-link,
-            .email-link {
-                width: 50px;
-                height: 50px;
-            }
-
-            .email-float {
+            .telegram-float {
                 bottom: 80px;
+            }
+
+            .email-float {
+                bottom: 140px;
+            }
+
+            .float-btn .tooltip {
+                display: none;
             }
         }
 
         @media (max-width: 480px) {
-            .payment-label {
-                font-size: 0.7rem;
+            .balance-amount {
+                font-size: 1.7rem;
             }
 
-            .balance-cards {
-                grid-template-columns: 1fr;
+            .payment-options {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
             }
 
-            .account-header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+            .payment-icon {
+                width: 44px;
+                height: 44px;
+            }
+
+            .payment-icon img {
+                width: 24px;
+                height: 24px;
+            }
+
+            .account-number-section {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 10px 14px;
+            }
+
+            .account-number {
+                font-size: 0.85rem;
+            }
+
+            .crypto-view-btn {
+                font-size: 0.85rem;
+                padding: 12px 20px;
             }
         }
-    
-        /* Sitewide Dark Mode Overrides to match Revolut Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
-        }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .bank-header h1, .bank-header h1 i {
-            color: #ffffff !important;
-        }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
-            color: #9ca3af !important;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-        }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-        }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
-        }
-
-</style>
+    </style>
 </head>
 <body>
 
-
-    <!-- Header -->
+    <!-- ====== HEADER ====== -->
     <header class="bank-header">
-        <h1><i class="fas fa-university"></i>Revolut</h1>
+        <h1><i class="fas fa-university"></i> Revolut</h1>
         <div class="header-controls">
-            <div class="nav-toggle" onclick="toggleSidebar()">
+            <button class="nav-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
         </div>
     </header>
 
-    <!-- Navigation Sidebar -->
+    <!-- ====== SIDEBAR ====== -->
     <div class="nav-sidebar" id="navSidebar">
         <div class="sidebar-header">
-            <h2>Account Menu</h2>
-            <button class="sidebar-close" onclick="toggleSidebar()">
-                <i class="fas fa-times"></i> Close
-            </button>
+            <h2><i class="fas fa-user-circle" style="margin-right: 8px; color: var(--accent-blue);"></i> Account</h2>
+            <button class="sidebar-close" onclick="toggleSidebar()">Close</button>
         </div>
         <div class="user-details">
             <p>Username: <strong>{{ request.user }}</strong></p>
@@ -1200,17 +1315,18 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         </ul>
     </div>
 
-    <!-- Overlay for sidebar -->
+    <!-- Sidebar overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-    <!-- Main Content -->
+    <!-- ====== MAIN CONTENT ====== -->
     <div class="main-content">
-        <!-- Account Info Card -->
+
+        <!-- ====== ACCOUNT CARD ====== -->
         <div class="account-card">
             <div class="account-header">
                 <div class="welcome-section">
                     <h2>Welcome Back</h2>
-                    <div class="user-name">{{user_profile.first_name}} {{user_profile.last_name}}</div>
+                    <div class="user-name">{{ user_profile.first_name }} {{ user_profile.last_name }}</div>
                 </div>
                 {% if user_profile.profile_pic %}
                 <img src="{{ user_profile.profile_pic.url }}" class="profile-img" alt="Profile Picture">
@@ -1222,16 +1338,16 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             <div class="balance-section">
                 <div class="balance-label">Available Balance</div>
                 <div class="balance-amount">{{ user_profile.currency }}{{ user_profile.balance|intcomma }}</div>
-                <div class="balance-label">Account Number</div>
+                <div class="balance-label" style="margin-top: 6px;">Account Number</div>
                 <div class="account-number-section">
                     <span class="account-number" id="accountNumber">{{ user_profile.account_number }}</span>
-                    <i class="fas fa-copy copy-icon" onclick="copyToClipboard()"></i>
+                    <i class="fas fa-copy copy-icon" onclick="copyToClipboard()" title="Copy account number"></i>
                 </div>
                 <div id="copyFeedback" class="copy-feedback">
                     <i class="fas fa-check-circle"></i> Account number copied!
                 </div>
 
-                <!-- Multiple Crypto Info Button -->
+                <!-- Crypto Button -->
                 <div class="crypto-info-trigger">
                     <button class="crypto-view-btn" onclick="openCryptoPopup()">
                         <i class="fas fa-coins"></i> View All Crypto Payment Options
@@ -1243,75 +1359,59 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             <!-- Payment Options -->
             <div class="payment-options">
                 <a href="{% url 'bank' %}" class="payment-option">
-                    <div class="payment-icon">
-                        <img src="{% static 'images/bank.jfif' %}" alt="Bank Transfer">
-                    </div>
+                    <div class="payment-icon"><img src="{% static 'images/bank.jfif' %}" alt="Bank Transfer"></div>
                     <div class="payment-label">Bank</div>
                 </a>
                 <a href="{% url 'crypto' %}" class="payment-option">
-                    <div class="payment-icon">
-                        <img src="{% static 'images/crypto.jfif' %}" alt="Crypto Transfer">
-                    </div>
+                    <div class="payment-icon"><img src="{% static 'images/crypto.jfif' %}" alt="Crypto Transfer"></div>
                     <div class="payment-label">Crypto</div>
                 </a>
                 <a href="{% url 'paypal' %}" class="payment-option">
-                    <div class="payment-icon">
-                        <img src="{% static 'images/paypal.png' %}" alt="PayPal Transfer">
-                    </div>
+                    <div class="payment-icon"><img src="{% static 'images/paypal.png' %}" alt="PayPal Transfer"></div>
                     <div class="payment-label">PayPal</div>
                 </a>
                 <a href="{% url 'skrill' %}" class="payment-option">
-                    <div class="payment-icon">
-                        <img src="{% static 'images/skrill.png' %}" alt="Skrill Transfer">
-                    </div>
+                    <div class="payment-icon"><img src="{% static 'images/skrill.png' %}" alt="Skrill Transfer"></div>
                     <div class="payment-label">Skrill</div>
                 </a>
                 <a href="{% url 'G_pay' %}" class="payment-option">
-                    <div class="payment-icon">
-                        <img src="{% static 'images/google_pay.jpg' %}" alt="Google Pay">
-                    </div>
+                    <div class="payment-icon"><img src="{% static 'images/google_pay.jpg' %}" alt="Google Pay"></div>
                     <div class="payment-label">Google Pay</div>
                 </a>
                 <a href="{% url 'trust_wise' %}" class="payment-option">
-                    <div class="payment-icon">
-                        <img src="{% static 'images/trust_wise.png' %}" alt="Wise Transfer">
-                    </div>
+                    <div class="payment-icon"><img src="{% static 'images/trust_wise.png' %}" alt="Wise Transfer"></div>
                     <div class="payment-label">Wise</div>
                 </a>
                 <a href="{% url 'western_union' %}" class="payment-option">
-                    <div class="payment-icon">
-                        <img src="{% static 'images/western_union.png' %}" alt="Western Union">
-                    </div>
+                    <div class="payment-icon"><img src="{% static 'images/western_union.png' %}" alt="Western Union"></div>
                     <div class="payment-label">Western Union</div>
                 </a>
                 <a href="{% url 'payoneer' %}" class="payment-option">
-                    <div class="payment-icon">
-                        <img src="{% static 'images/payoneer.webp' %}" alt="Payoneer">
-                    </div>
+                    <div class="payment-icon"><img src="{% static 'images/payoneer.webp' %}" alt="Payoneer"></div>
                     <div class="payment-label">Payoneer</div>
                 </a>
             </div>
         </div>
 
-        <!-- Balance Cards -->
+        <!-- ====== BALANCE CARDS ====== -->
         <div class="balance-cards">
             <div class="balance-card">
                 <h4>Current Balance</h4>
-                <div class="amount">{{user_profile.currency}} {{user_profile.balance|intcomma}}</div>
+                <div class="amount">{{ user_profile.currency }} {{ user_profile.balance|intcomma }}</div>
             </div>
             <div class="balance-card">
                 <h4>Refundable Balance</h4>
-                <div class="amount">{{user_profile.currency}}{{user_profile.refund_balance}}</div>
+                <div class="amount">{{ user_profile.currency }}{{ user_profile.refund_balance }}</div>
             </div>
         </div>
 
-        <!-- Security Info -->
+        <!-- ====== SECURITY INFO ====== -->
         <div class="security-info">
-            <p> <i class="fas fa-shield-alt"></i> Browser: <span class="Browser_name">Detecting...</span> </p>
-            <p> <i class="fas fa-network-wired"></i> IP Address: <span class="ip_numb">Fetching...</span> </p>
+            <p><i class="fas fa-shield-alt"></i> Browser: <span class="Browser_name">Detecting…</span></p>
+            <p><i class="fas fa-network-wired"></i> IP Address: <span class="ip_numb">Fetching…</span></p>
         </div>
 
-        <!-- Transactions Section -->
+        <!-- ====== TRANSACTIONS SECTION ====== -->
         <div class="transactions-section">
             <h3 class="section-header">Recent Transactions</h3>
             <div class="table-responsive">
@@ -1334,11 +1434,14 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                             <td>{{ user_profile.currency }}{{ transaction.balance_after }}</td>
                             <td>{{ transaction.description }}</td>
                             <td>{{ transaction.timestamp|date:"M d, Y H:i" }}</td>
-                            <td><a href="{% url 'transaction_detail' transaction.pk %}" class="view-btn"> View </a></td>
+                            <td><a href="{% url 'transaction_detail' transaction.pk %}" class="view-btn">View</a></td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="6" style="text-align: center;">No recent transactions.</td>
+                            <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 30px 0;">
+                                <i class="fas fa-inbox" style="display: block; font-size: 1.5rem; margin-bottom: 8px;"></i>
+                                No recent transactions.
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -1347,7 +1450,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         </div>
     </div>
 
-    <!-- Multiple Crypto Popup -->
+    <!-- ====== CRYPTO POPUP ====== -->
     <div id="cryptoPopup" class="crypto-popup">
         <div class="popup-content">
             <div class="popup-header">
@@ -1387,27 +1490,27 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                                     <span class="network-badge">{{ wallet.network }}</span>
                                     {% endif %}
                                 </div>
-                                <div class="info-value-wrapper" style="margin-top: 10px;">
+                                <div class="info-value-wrapper">
                                     <div class="address-value" id="address_{{ wallet.id }}">{{ wallet.address }}</div>
                                     <button class="copy-address-btn" onclick="copySpecificAddress('{{ wallet.address }}', this)"><i class="fas fa-copy"></i> Copy</button>
                                     <button class="btn-qr" onclick="showQRCode('{{ wallet.address }}', '{{ data.crypto.name }}')"><i class="fas fa-qrcode"></i> QR</button>
                                 </div>
                                 {% if wallet.notes %}
-                                <small style="color: #666; margin-top: 8px; display: block;"><i class="fas fa-info-circle"></i> {{ wallet.notes }}</small>
+                                <small style="color: var(--text-muted); margin-top: 8px; display: block;"><i class="fas fa-info-circle"></i> {{ wallet.notes }}</small>
                                 {% endif %}
                             </div>
                             {% endfor %}
-                            <div class="crypto-warning" style="margin-top: 15px;">
+                            <div class="crypto-warning">
                                 <i class="fas fa-exclamation-triangle"></i>
-                                <small><strong>IMPORTANT:</strong> Send ONLY {{ data.crypto.name }} ({{ data.crypto.code }}) to the addresses above. Sending other cryptocurrencies may result in <strong>permanent loss of funds</strong>.</small>
+                                <div><strong>IMPORTANT:</strong> Send ONLY {{ data.crypto.name }} ({{ data.crypto.code }}) to the addresses above. Sending other cryptocurrencies may result in <strong>permanent loss of funds</strong>.</div>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
-                <div class="crypto-note" style="margin-top: 20px;">
+                <div class="crypto-note">
                     <i class="fas fa-clock"></i>
-                    <small><strong>Processing Time:</strong> Funds will be credited after confirmations (typically 10-30 minutes depending on network). Minimum deposit amounts vary by cryptocurrency.</small>
+                    <div><strong>Processing Time:</strong> Funds will be credited after confirmations (typically 10–30 minutes depending on network). Minimum deposit amounts vary by cryptocurrency.</div>
                 </div>
                 {% else %}
                 <div class="no-crypto">
@@ -1423,26 +1526,51 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         </div>
     </div>
 
-    <!-- QR Code Modal -->
+    <!-- ====== QR MODAL ====== -->
     <div id="qrModal" class="qr-modal">
         <div class="qr-modal-content">
             <h3 id="qrModalTitle">Wallet QR Code</h3>
             <div id="qrModalCode"></div>
-            <button onclick="closeQRModal()" style="margin-top: 20px; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer;">Close</button>
+            <button onclick="closeQRModal()">Close</button>
         </div>
     </div>
 
-    <!-- Bottom Navigation -->
+    <!-- ====== BOTTOM NAVBAR ====== -->
     <nav class="bottom-navbar">
-        <a href="{% url 'dashboard' %}" class="nav-link active"> <i class="fas fa-home"></i> <span>Home</span> </a>
-        <a href="{% url 'bank' %}" class="nav-link"> <i class="fas fa-exchange-alt"></i> <span>Transfer</span> </a>
-        <a href="#" class="nav-link"> <i class="fas fa-chart-line"></i> <span>Overview</span> </a>
-        <a href="{% url 'setting' %}" class="nav-link"> <i class="fas fa-user"></i> <span>Profile</span> </a>
+        <a href="{% url 'dashboard' %}" class="nav-link active">
+            <i class="fas fa-home"></i> <span>Home</span>
+        </a>
+        <a href="{% url 'bank' %}" class="nav-link">
+            <i class="fas fa-exchange-alt"></i> <span>Transfer</span>
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-chart-line"></i> <span>Overview</span>
+        </a>
+        <a href="{% url 'setting' %}" class="nav-link">
+            <i class="fas fa-user"></i> <span>Profile</span>
+        </a>
     </nav>
 
+    <!-- ====== FLOATING SUPPORT BUTTONS ====== -->
+    <!-- Telegram -->
+    <a href="https://t.me/Financial_Services_Team" class="float-btn telegram-float" target="_blank" rel="noopener" aria-label="Telegram support">
+        <svg class="telegram-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.5 2.5L1.5 10.5L8.5 14.5L17.5 7.5L10.5 15.5L13.5 22.5L22.5 2.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M10.5 15.5L8.5 20.5L5.5 14.5" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <span class="tooltip">Telegram Support</span>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:axiscapitaltrustbank@gmail.com" class="float-btn email-float" aria-label="Email support">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="tooltip">Email Support</span>
+    </a>
+
+    <!-- ====== SCRIPTS ====== -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Function to toggle sidebar
+        // ----- Toggle Sidebar -----
         function toggleSidebar() {
             const sidebar = document.getElementById('navSidebar');
             const overlay = document.getElementById('sidebarOverlay');
@@ -1450,39 +1578,31 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             overlay.classList.toggle('active');
         }
 
-        // Close sidebar when clicking on a link
+        // Close sidebar when clicking on a nav link
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                toggleSidebar();
+                const sidebar = document.getElementById('navSidebar');
+                const overlay = document.getElementById('sidebarOverlay');
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
             });
         });
 
-        // Function to get browser name
+        // ----- Browser & IP Detection -----
         function getBrowserName() {
-            const userAgent = navigator.userAgent;
-            let browserName;
-            if (userAgent.indexOf("Firefox") > -1) {
-                browserName = "Mozilla Firefox";
-            } else if (userAgent.indexOf("Chrome") > -1) {
-                browserName = "Google Chrome";
-            } else if (userAgent.indexOf("Safari") > -1) {
-                browserName = "Apple Safari";
-            } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
-                browserName = "Internet Explorer";
-            } else {
-                browserName = "Unknown Browser";
-            }
-            return browserName;
+            const ua = navigator.userAgent;
+            if (ua.indexOf("Firefox") > -1) return "Mozilla Firefox";
+            if (ua.indexOf("Chrome") > -1) return "Google Chrome";
+            if (ua.indexOf("Safari") > -1) return "Apple Safari";
+            if (ua.indexOf("MSIE") > -1 || ua.indexOf("Trident") > -1) return "Internet Explorer";
+            return "Unknown Browser";
         }
 
-        // Set the browser name in the HTML
         document.addEventListener("DOMContentLoaded", function() {
-            const browserName = getBrowserName();
             const browserSpan = document.querySelector('.Browser_name');
-            if (browserSpan) browserSpan.textContent = browserName;
+            if (browserSpan) browserSpan.textContent = getBrowserName();
         });
 
-        // Function to get user IP
         async function getUserIP() {
             try {
                 const response = await fetch('https://api.ipify.org?format=json');
@@ -1490,14 +1610,13 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                 const ipSpan = document.querySelector('.ip_numb');
                 if (ipSpan) ipSpan.textContent = data.ip;
             } catch (error) {
-                console.error('Error fetching IP address:', error);
                 const ipSpan = document.querySelector('.ip_numb');
                 if (ipSpan) ipSpan.textContent = 'Unable to fetch';
             }
         }
-
         document.addEventListener("DOMContentLoaded", getUserIP);
 
+        // ----- Copy Account Number -----
         function copyToClipboard() {
             const accountNumber = document.getElementById("accountNumber");
             if (!accountNumber) return;
@@ -1509,22 +1628,10 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                         feedback.style.display = "none";
                     }, 2000);
                 }
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-            });
+            }).catch(err => console.error('Failed to copy: ', err));
         }
 
-        // Fix JivoChat z-index issue
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                const jivoElements = document.querySelectorAll('[id*="jivo"], .jivochat-container');
-                jivoElements.forEach(element => {
-                    element.style.zIndex = '98';
-                });
-            }, 2000);
-        });
-
-        // Crypto popup functions
+        // ----- Crypto Popup -----
         function openCryptoPopup() {
             const popup = document.getElementById('cryptoPopup');
             if (popup) {
@@ -1551,13 +1658,13 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         function copySpecificAddress(address, button) {
-            navigator.clipboard.writeText(address).then(function() {
+            navigator.clipboard.writeText(address).then(() => {
                 const originalHTML = button.innerHTML;
                 button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                button.style.background = '#28a745';
+                button.style.background = '#2ecc71';
                 setTimeout(() => {
                     button.innerHTML = originalHTML;
-                    button.style.background = '#667eea';
+                    button.style.background = '#2b7aff';
                 }, 2000);
             });
         }
@@ -1565,23 +1672,23 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         function showQRCode(address, cryptoName) {
             const modal = document.getElementById('qrModal');
             const title = document.getElementById('qrModalTitle');
-            const qrContainer = document.getElementById('qrModalCode');
-            if (!modal || !qrContainer) return;
+            const container = document.getElementById('qrModalCode');
+            if (!modal || !container) return;
 
             if (title) title.textContent = `${cryptoName} Wallet QR Code`;
-            qrContainer.innerHTML = '';
+            container.innerHTML = '';
 
             if (typeof QRCode !== 'undefined') {
-                new QRCode(qrContainer, {
+                new QRCode(container, {
                     text: address,
                     width: 250,
                     height: 250,
-                    colorDark: "#000000",
-                    colorLight: "#ffffff",
+                    colorDark: "#f1f3f7",
+                    colorLight: "#1a1a24",
                     correctLevel: QRCode.CorrectLevel.H
                 });
             } else {
-                qrContainer.innerHTML = '<p>QR library not loaded</p>';
+                container.innerHTML = '<p style="color: var(--text-muted);">QR library not loaded</p>';
             }
 
             modal.style.display = 'block';
@@ -1591,43 +1698,45 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             const modal = document.getElementById('qrModal');
             if (modal) {
                 modal.style.display = 'none';
-                const qrContainer = document.getElementById('qrModalCode');
-                if (qrContainer) qrContainer.innerHTML = '';
+                const container = document.getElementById('qrModalCode');
+                if (container) container.innerHTML = '';
             }
         }
 
-        // Close popup when clicking outside
+        // Close popups on outside click
         window.onclick = function(event) {
             const popup = document.getElementById('cryptoPopup');
-            if (event.target === popup) {
-                closeCryptoPopup();
-            }
+            if (event.target === popup) closeCryptoPopup();
             const qrModal = document.getElementById('qrModal');
-            if (event.target === qrModal) {
-                closeQRModal();
-            }
-        }
+            if (event.target === qrModal) closeQRModal();
+        };
 
-        // Close popup with Escape key
+        // Close popups with Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 const popup = document.getElementById('cryptoPopup');
-                if (popup && popup.style.display === 'block') {
-                    closeCryptoPopup();
-                }
+                if (popup && popup.style.display === 'block') closeCryptoPopup();
+                const qrModal = document.getElementById('qrModal');
+                if (qrModal && qrModal.style.display === 'block') closeQRModal();
             }
+        });
+
+        // Fix JivoChat z-index if present
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.querySelectorAll('[id*="jivo"], .jivochat-container').forEach(el => {
+                    el.style.zIndex = '98';
+                });
+            }, 2000);
         });
 
         // Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register("{% static 'sw.js' %}")
-                .then(registration => {
-                    console.log('✅ Service Worker Registered:', registration);
-                })
-                .catch(error => {
-                    console.log('❌ Service Worker registration failed:', error);
-                });
+                .then(reg => console.log('✅ SW registered:', reg))
+                .catch(err => console.log('❌ SW registration failed:', err));
         }
     </script>
+
 </body>
-</html>
+                                </html>
