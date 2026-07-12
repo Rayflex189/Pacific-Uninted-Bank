@@ -94,17 +94,27 @@ def investment_detail(request, investment_id):
 
     return render(request, 'bank_app/investment_detail.html', context)
 
+
 @login_required
 def investment_plans(request):
     plans = InvestmentPlan.objects.filter(is_active=True)
     user_investments = UserInvestment.objects.filter(user=request.user)
+    
+    # Calculate expected return and profit for each investment dynamically
+    for investment in user_investments:
+        # Get the interest rate from the investment plan
+        rate = investment.investment_plan.interest_rate
+        # Calculate profit: amount * (rate / 100)
+        investment.profit = investment.amount_invested * (rate / 100)
+        # Calculate expected return: amount + profit
+        investment.expected_return = investment.amount_invested + investment.profit
 
     context = {
         'plans': plans,
         'user_investments': user_investments,
     }
-    return render(request, 'bank_app/investment_plan.html', context)
-
+    return render(request, 'bank_app/investment_plan.html', context) 
+    
 @login_required
 def create_investment(request):
     user_profile = UserProfile.objects.get(user=request.user)
