@@ -5,57 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revolut - Secure Banking & Investment Solutions</title>
-    <!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-  appId : '6a43a2901fd734cd86c8645d',
-};
-
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Chaport Live Chat -->
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = { appId: '6a43a2901fd734cd86c8645d' };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-        /* Base styles */
-        * {
-            font-family: 'Poppins', sans-serif;
-            box-sizing: border-box;
+    <style>
+        /* ============================================================
+               REVOLUT MODERN DARK UI — LANDING PAGE
+               Consistent with all other pages
+               ============================================================ */
+        :root {
+            --bg-primary: #0b0b0f;
+            --bg-secondary: #14141a;
+            --bg-card: #1a1a24;
+            --bg-input: #1e1e2a;
+            --bg-input-focus: #28283a;
+            --text-primary: #f1f3f7;
+            --text-secondary: #a8b0c8;
+            --text-muted: #6a7290;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-focus: rgba(255, 255, 255, 0.18);
+            --accent-blue: #2b7aff;
+            --accent-glow: rgba(43, 122, 255, 0.25);
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --error: #e74c3c;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.55);
+            --shadow-input: 0 0 0 3px rgba(43, 122, 255, 0.12);
+            --transition-fast: 0.15s ease;
+            --transition-med: 0.25s ease;
         }
-        
-        body, html {
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #000000;
-            color: #ffffff;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             overflow-x: hidden;
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Scrollbar styling */
+        /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #000000;
+            background: var(--bg-primary);
         }
         ::-webkit-scrollbar-thumb {
-            background: #1f2937;
-            border-radius: 4px;
+            background: var(--border-subtle);
+            border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #374151;
+            background: var(--text-muted);
         }
 
-        /* Glassmorphic Header & Navigation */
+        /* ====== NAVBAR ====== */
         .navbar-3d {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(11, 11, 15, 0.88);
+            backdrop-filter: blur(16px) saturate(1.2);
+            -webkit-backdrop-filter: blur(16px) saturate(1.2);
             padding: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid var(--border-subtle);
             position: fixed;
             width: 100%;
             top: 0;
@@ -70,22 +96,22 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
-            height: 80px;
+            height: 72px;
             position: relative;
         }
 
         .logo-3d {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: #ffffff;
+            color: var(--text-primary);
             text-decoration: none !important;
             letter-spacing: -0.03em;
             transition: opacity 0.2s;
         }
 
         .logo-3d:hover {
-            opacity: 0.9;
-            color: #ffffff;
+            opacity: 0.85;
+            color: var(--text-primary);
         }
 
         .nav-links-3d {
@@ -94,15 +120,16 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         .nav-link-3d {
-            color: rgba(255, 255, 255, 0.6) !important;
+            color: var(--text-secondary);
             text-decoration: none !important;
             font-size: 0.875rem;
             font-weight: 500;
             transition: color 0.2s;
         }
 
-        .nav-link-3d:hover, .nav-link-3d.active {
-            color: #ffffff !important;
+        .nav-link-3d:hover,
+        .nav-link-3d.active {
+            color: var(--text-primary);
         }
 
         .auth-buttons-3d {
@@ -111,90 +138,92 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             align-items: center;
         }
 
-        /* Custom Modern Button Styles */
         .btn-custom {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             font-size: 0.875rem;
             font-weight: 500;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             transition: all 0.2s ease-in-out;
             cursor: pointer;
             text-decoration: none !important;
         }
 
         .btn-custom-ghost {
-            color: #ffffff;
+            color: var(--text-secondary);
             background: transparent;
             border: none;
             padding: 10px 18px;
         }
 
         .btn-custom-ghost:hover {
-            background: rgba(255, 255, 255, 0.08);
-            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
         }
 
         .btn-custom-primary {
-            background: #ffffff;
-            color: #000000 !important;
-            border: 1px solid #ffffff;
+            background: var(--accent-blue);
+            color: #fff !important;
+            border: 1px solid var(--accent-blue);
             padding: 10px 20px;
         }
 
         .btn-custom-primary:hover {
-            background: #e5e7eb;
-            border-color: #e5e7eb;
+            background: #3b8aff;
+            border-color: #3b8aff;
             transform: translateY(-1px);
+            color: #fff !important;
         }
 
         .btn-custom-gradient {
-            background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
-            color: #000000 !important;
+            background: linear-gradient(135deg, var(--accent-blue), #5a7cff);
+            color: #fff !important;
             border: none;
             padding: 14px 28px;
             font-size: 1rem;
             font-weight: 600;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            box-shadow: 0 4px 20px rgba(43, 122, 255, 0.25);
         }
 
         .btn-custom-gradient:hover {
             transform: scale(1.03);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 6px 30px rgba(43, 122, 255, 0.35);
+            color: #fff !important;
         }
 
         .btn-custom-gradient:active {
             transform: scale(0.97);
         }
 
-        /* Hamburger Menu */
+        /* Mobile Menu */
         .menu-toggle {
             display: none;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
             cursor: pointer;
             padding: 8px;
             z-index: 1001;
         }
 
         .menu-toggle span {
-            width: 22px;
+            width: 24px;
             height: 2px;
-            background: #ffffff;
+            background: var(--text-primary);
             transition: 0.3s;
+            border-radius: 2px;
         }
 
-        /* Hero Section */
+        /* ====== HERO SECTION ====== */
         .hero-section {
             position: relative;
-            min-h: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding: 160px 24px 80px;
+            padding: 140px 24px 80px;
             text-align: center;
             overflow: hidden;
         }
@@ -206,8 +235,8 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             gap: 8px;
             padding: 8px 16px;
             border-radius: 9999px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(8px);
             max-width: 100%;
             text-decoration: none !important;
@@ -215,18 +244,18 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         .hero-badge:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
             transform: translateY(-1px);
         }
 
         .hero-badge span {
             font-size: 0.75rem;
-            color: #9ca3af;
+            color: var(--text-muted);
         }
 
         .hero-badge a {
             font-size: 0.75rem;
-            color: #ffffff;
+            color: var(--text-primary);
             font-weight: 500;
             display: flex;
             align-items: center;
@@ -235,11 +264,11 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
         .hero-title {
             font-size: 3.5rem;
-            font-weight: 600;
-            line-height: 1.15;
+            font-weight: 700;
+            line-height: 1.1;
             letter-spacing: -0.04em;
             max-width: 800px;
-            margin: 0 auto 24px;
+            margin: 0 auto 20px;
             background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -248,9 +277,9 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
         .hero-description {
             font-size: 1.125rem;
-            color: #9ca3af;
+            color: var(--text-secondary);
             max-width: 600px;
-            margin: 0 auto 40px;
+            margin: 0 auto 36px;
             line-height: 1.6;
         }
 
@@ -269,7 +298,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             width: 95%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.65;
+            opacity: 0.5;
         }
 
         .hero-dashboard-img {
@@ -277,29 +306,28 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             z-index: 10;
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
         }
 
-        /* Marquee */
+        /* ====== MARQUEE ====== */
         .marquee {
-            background: #09090b;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            color: #9ca3af;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
             font-size: 0.85rem;
             font-weight: 500;
-            padding: 14px 0;
+            padding: 12px 0;
             white-space: nowrap;
             overflow: hidden;
             position: relative;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .marquee-content {
             display: inline-block;
-            animation: scrollLeft 25s linear infinite;
+            animation: scrollLeft 28s linear infinite;
             padding-left: 100%;
         }
 
@@ -308,105 +336,105 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             100% { transform: translateX(-100%); }
         }
 
-        /* General Section Layouts */
+        /* ====== CONTENT SECTIONS ====== */
         .content-section {
-            padding: 100px 24px;
+            padding: 80px 24px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 48px;
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
+            font-size: 2.2rem;
+            font-weight: 700;
             letter-spacing: -0.03em;
-            margin-bottom: 16px;
-            color: #ffffff;
+            margin-bottom: 12px;
+            color: var(--text-primary);
         }
 
         .section-title p {
-            font-size: 1.1rem;
-            color: #9ca3af;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
         }
 
-        /* Features Section */
+        /* ====== FEATURES ====== */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 24px;
         }
 
         .feature-card {
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 40px 32px;
-            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            padding: 36px 28px;
+            border-radius: var(--radius-md);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
         }
 
         .feature-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.12);
             background: rgba(255, 255, 255, 0.04);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: var(--shadow-card);
         }
 
         .feature-icon {
             width: 48px;
             height: 48px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
+            background: rgba(43, 122, 255, 0.08);
+            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
+            border: 1px solid rgba(43, 122, 255, 0.1);
         }
 
         .feature-icon i {
             font-size: 1.25rem;
-            color: #ffffff;
+            color: var(--accent-blue);
         }
 
         .feature-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 12px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
         }
 
         .feature-card p {
-            font-size: 0.95rem;
-            color: #9ca3af;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
             line-height: 1.6;
             margin: 0;
         }
 
-        /* Services Grid */
+        /* ====== SERVICES ====== */
         .services-section-wrapper {
-            background: #09090b;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 24px;
         }
 
         .service-card {
             background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 40px 30px;
-            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            padding: 32px 24px;
+            border-radius: var(--radius-md);
             text-align: left;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -415,106 +443,109 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             transform: translateY(-4px);
             border-color: rgba(255, 255, 255, 0.12);
             background: rgba(255, 255, 255, 0.03);
+            box-shadow: var(--shadow-card);
         }
 
         .service-icon {
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: var(--accent-blue);
+            margin-bottom: 16px;
             display: block;
         }
 
         .service-card h3 {
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 600;
-            margin-bottom: 12px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
         }
 
         .service-card p {
-            color: #9ca3af;
-            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
             line-height: 1.6;
             margin: 0;
         }
 
-        /* Testimonials */
+        /* ====== TESTIMONIALS ====== */
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 24px;
         }
 
         .testimonial-card {
             background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 36px;
-            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            padding: 32px 28px;
+            border-radius: var(--radius-md);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         .testimonial-card p {
-            font-size: 1rem;
-            color: #d1d5db;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
             line-height: 1.6;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             font-style: italic;
         }
 
         .testimonial-author {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 16px;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 14px;
         }
 
         .testimonial-author strong {
-            font-size: 0.95rem;
-            color: #ffffff;
+            font-size: 0.9rem;
+            color: var(--text-primary);
             display: block;
         }
 
         .testimonial-author small {
             font-size: 0.8rem;
-            color: #9ca3af;
+            color: var(--text-muted);
         }
 
-        /* Contact & Footer */
+        /* ====== FOOTER ====== */
         #gtco-footer {
-            background: #000000;
-            color: #9ca3af;
-            padding: 80px 24px 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            padding: 60px 24px 40px;
+            border-top: 1px solid var(--border-subtle);
         }
 
         #gtco-footer h4 {
-            color: #ffffff;
-            font-size: 1rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
         #gtco-footer .form-control {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            color: #ffffff;
-            margin-bottom: 16px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            margin-bottom: 14px;
             padding: 12px 16px;
             font-size: 0.9rem;
             transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
         }
 
         #gtco-footer .form-control:focus {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: none;
-            color: #ffffff;
+            background: var(--bg-input-focus);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-input);
+            color: var(--text-primary);
         }
 
         #gtco-footer textarea.form-control {
-            min-height: 120px;
+            min-height: 100px;
             resize: vertical;
         }
 
@@ -523,131 +554,142 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             align-items: center;
             justify-content: center;
             gap: 8px;
-            background: #ffffff;
-            color: #000000 !important;
+            background: linear-gradient(135deg, var(--accent-blue), #5a7cff);
+            color: #fff !important;
             padding: 12px 28px;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             font-weight: 600;
             font-size: 0.9rem;
             border: none;
             cursor: pointer;
             transition: all 0.2s;
             text-decoration: none !important;
+            font-family: 'Inter', sans-serif;
         }
 
         .submit-button:hover {
-            background: #e5e7eb;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(43, 122, 255, 0.3);
+            color: #fff !important;
         }
 
         .company-nav .nav-link,
         .services-nav .nav-link {
-            color: #9ca3af;
-            padding: 6px 0;
-            font-size: 0.9rem;
+            color: var(--text-muted);
+            padding: 4px 0;
+            font-size: 0.85rem;
             transition: color 0.2s;
         }
 
         .company-nav .nav-link:hover,
         .services-nav .nav-link:hover {
-            color: #ffffff;
+            color: var(--text-primary);
         }
 
         .follow-us-nav {
-            margin-top: 16px;
+            margin-top: 12px;
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .follow-us-nav .nav-link {
-            color: #ffffff;
-            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
             width: 36px;
             height: 36px;
-            border-radius: 6px;
+            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             transition: all 0.2s;
             padding: 0;
+            border: 1px solid var(--border-subtle);
         }
 
         .follow-us-nav .nav-link:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
             transform: translateY(-2px);
-            color: #ffffff;
+            color: var(--text-primary);
+            border-color: var(--accent-blue);
         }
 
         .copyright-text {
-            color: #6b7280;
-            margin-top: 60px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-muted);
+            margin-top: 48px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-subtle);
             text-align: center;
             font-size: 0.8rem;
             width: 100%;
         }
 
-        /* Floating Contact Widgets */
-        .email-float {
-            position: fixed;
-            left: 24px;
-            bottom: 110px;
-            z-index: 1000;
-        }
-
-        .email-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 52px;
-            height: 52px;
-            background: #ffffff;
-            border-radius: 50%;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
+        .copyright-text a {
+            color: var(--text-secondary);
             text-decoration: none;
         }
 
-        .email-link:hover {
-            transform: scale(1.08) translateY(-2px);
-            background: #f3f4f6;
+        .copyright-text a:hover {
+            color: var(--text-primary);
         }
 
-        .email-icon {
-            color: #000000;
-            font-size: 1.3rem;
-        }
-
-        .telegram-icon {
+        /* ====== FLOATING SUPPORT BUTTONS ====== */
+        .float-btn {
             position: fixed;
-            bottom: 40px;
             left: 24px;
+            z-index: 1000;
             width: 52px;
             height: 52px;
-            background: #0088cc;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
+            text-decoration: none;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-med);
         }
-
-        .telegram-icon:hover {
+        .float-btn:hover {
             transform: scale(1.08) translateY(-2px);
-            background: #0099e6;
+        }
+        .float-btn .tooltip {
+            position: absolute;
+            left: 68px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-med);
+        }
+        .float-btn:hover .tooltip {
+            opacity: 1;
         }
 
-        .telegram-icon img {
-            width: 24px;
-            height: 24px;
+        .telegram-float {
+            bottom: 100px;
+            background: #0088cc;
+        }
+        .telegram-float .telegram-icon {
+            width: 26px;
+            height: 26px;
+            filter: brightness(0) invert(1);
         }
 
-        /* Responsive Design */
+        .email-float {
+            bottom: 168px;
+            background: linear-gradient(135deg, #2b7aff, #5a7cff);
+        }
+        .email-float .email-icon {
+            color: #fff;
+            font-size: 1.3rem;
+        }
+
+        /* ====== RESPONSIVE ====== */
         @media (max-width: 991px) {
             .hero-title {
                 font-size: 2.75rem;
@@ -657,19 +699,20 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         @media (max-width: 768px) {
             .navbar-container {
                 padding: 0 20px;
+                height: 64px;
             }
 
             .nav-links-3d {
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 80px;
+                top: 64px;
                 left: 0;
                 width: 100%;
-                background: #000000;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-                padding: 24px;
-                gap: 16px;
+                background: var(--bg-primary);
+                border-bottom: 1px solid var(--border-subtle);
+                padding: 20px 24px;
+                gap: 12px;
             }
 
             .nav-links-3d.active {
@@ -679,14 +722,14 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             .auth-buttons-3d {
                 display: none;
                 position: absolute;
-                top: 270px;
+                top: 280px;
                 left: 0;
                 width: 100%;
-                background: #000000;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-                padding: 0 24px 24px;
+                background: var(--bg-primary);
+                border-bottom: 1px solid var(--border-subtle);
+                padding: 0 24px 20px;
                 flex-direction: column;
-                gap: 12px;
+                gap: 10px;
             }
 
             .auth-buttons-3d.active {
@@ -698,7 +741,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             }
 
             .hero-section {
-                padding-top: 140px;
+                padding-top: 120px;
             }
 
             .hero-title {
@@ -714,15 +757,59 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             }
 
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+
+            .float-btn {
+                width: 44px;
+                height: 44px;
+                left: 14px;
+            }
+            .telegram-float {
+                bottom: 80px;
+            }
+            .email-float {
+                bottom: 140px;
+            }
+            .float-btn .tooltip {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .hero-badge {
+                font-size: 0.7rem;
+                padding: 6px 12px;
+            }
+            .btn-custom-gradient {
+                padding: 12px 20px;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    
 
-    <!-- Navigation Header -->
+    <!-- ====== FLOATING SUPPORT BUTTONS ====== -->
+    <!-- Telegram -->
+    <a href="https://t.me/Financial_Services_Team" class="float-btn telegram-float" target="_blank" rel="noopener" aria-label="Telegram support">
+        <svg class="telegram-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.5 2.5L1.5 10.5L8.5 14.5L17.5 7.5L10.5 15.5L13.5 22.5L22.5 2.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M10.5 15.5L8.5 20.5L5.5 14.5" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <span class="tooltip">Telegram Support</span>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:axiscapitaltrustbank@gmail.com" class="float-btn email-float" aria-label="Email support">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="tooltip">Email Support</span>
+    </a>
+
+    <!-- ====== NAVBAR ====== -->
     <nav class="navbar-3d">
         <div class="navbar-container">
             <a href="#" class="logo-3d">Revolut</a>
@@ -748,140 +835,137 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         </div>
     </nav>
 
-    <!-- Marquee for Stock Market -->
+    <!-- ====== MARQUEE ====== -->
     <div class="marquee">
         <div class="marquee-content" id="stockMarquee">
-            Loading live stock market rates...
+            Loading live stock market rates…
         </div>
     </div>
 
-    <!-- Main Page Content -->
-    <div id="dynamic-content">
-        <!-- Hero Section -->
-        <section id="home" class="hero-section">
-            <div class="hero-badge">
-                <span>New version of template is out!</span>
-                <a href="#features">Read more <i class="fas fa-arrow-right" style="font-size: 10px;"></i></a>
-            </div>
-            
-            <h1 class="hero-title">Give your money<br>the account it deserves</h1>
-            <p class="hero-description">Experience secure, innovative, and convenient banking solutions tailored for you. Manage your finances with ease and confidence.</p>
-            
-            <div class="d-flex align-items-center justify-content-center mb-5" style="position: relative; z-index: 20;">
-                <a href="{% url 'reg' %}" class="btn-custom btn-custom-gradient">Get started</a>
-            </div>
-
-            <div class="hero-image-wrapper">
-                <div class="hero-glow-bg">
-                    <img src="https://i.postimg.cc/Ss6yShGy/glows.png" alt="" class="w-100" loading="eager">
-                </div>
-                <img src="https://i.postimg.cc/SKcdVTr1/Dashboard2.png" alt="Revolut Analytics Dashboard Interface" class="hero-dashboard-img" loading="eager">
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features" class="content-section">
-            <div class="section-title">
-                <h2>Why Choose Revolut?</h2>
-                <p>Discover the features that make us the preferred choice for modern digital banking</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Top-Notch Security</h3>
-                    <p>Your finances are protected with state-of-the-art encryption, biometric login, and multi-factor authentication.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile Banking</h3>
-                    <p>Bank on the go with our ultra-fast and responsive application, available 24/7 in the palm of your hand.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Smart Investments</h3>
-                    <p>Grow your wealth seamlessly with expert investment tools, real-time analytics, and crypto trading options.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>24/7 Support</h3>
-                    <p>Our dedicated support team is always active, providing round-the-clock assistance whenever you need it.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <div class="services-section-wrapper">
-            <section id="services" class="content-section">
-                <div class="section-title">
-                    <h2>Our Services</h2>
-                    <p>Comprehensive and flexible financial products designed to fit your unique lifestyle</p>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <i class="fas fa-piggy-bank service-icon"></i>
-                        <h3>Savings Accounts</h3>
-                        <p>Grow your savings faster with highly competitive interest rates and customizable savings vault options.</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-credit-card service-icon"></i>
-                        <h3>Premium Cards</h3>
-                        <p>Unlock premium benefits, cashbacks, global airport lounge access, and exclusive rewards with our smart cards.</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-hand-holding-usd service-icon"></i>
-                        <h3>Personal Loans</h3>
-                        <p>Access flexible funding with competitive rates, zero hidden fees, and rapid online approval times.</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-home service-icon"></i>
-                        <h3>Mortgage Services</h3>
-                        <p>Transform your homeownership dreams into reality with our flexible and customized mortgage solutions.</p>
-                    </div>
-                </div>
-            </section>
+    <!-- ====== HERO SECTION ====== -->
+    <section id="home" class="hero-section">
+        <div class="hero-badge">
+            <span>New version of template is out!</span>
+            <a href="#features">Read more <i class="fas fa-arrow-right" style="font-size: 10px;"></i></a>
         </div>
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="content-section">
-            <div class="section-title">
-                <h2>What Our Customers Say</h2>
-                <p>Hear from users who have unlocked their financial potential with Revolut</p>
+        <h1 class="hero-title">Give your money<br>the account it deserves</h1>
+        <p class="hero-description">Experience secure, innovative, and convenient banking solutions tailored for you. Manage your finances with ease and confidence.</p>
+
+        <div class="d-flex align-items-center justify-content-center mb-4" style="position: relative; z-index: 20;">
+            <a href="{% url 'reg' %}" class="btn-custom btn-custom-gradient">Get started</a>
+        </div>
+
+        <div class="hero-image-wrapper">
+            <div class="hero-glow-bg">
+                <img src="https://i.postimg.cc/Ss6yShGy/glows.png" alt="" class="w-100" loading="eager">
             </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p>"Revolut has completely transformed how I run my finances. The dashboard analytics are incredibly detailed, and payments are lightning-fast!"</p>
-                    <div class="testimonial-author">
-                        <strong>Michael Thompson</strong>
-                        <small>Small Business Owner</small>
-                    </div>
+            <img src="https://i.postimg.cc/SKcdVTr1/Dashboard2.png" alt="Revolut Analytics Dashboard Interface" class="hero-dashboard-img" loading="eager">
+        </div>
+    </section>
+
+    <!-- ====== FEATURES ====== -->
+    <section id="features" class="content-section">
+        <div class="section-title">
+            <h2>Why Choose Revolut?</h2>
+            <p>Discover the features that make us the preferred choice for modern digital banking</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
                 </div>
-                <div class="testimonial-card">
-                    <p>"The investment features helped me build a diverse portfolio easily. Truly professional service with an interface that is beautiful and clean."</p>
-                    <div class="testimonial-author">
-                        <strong>Sarah Martinez</strong>
-                        <small>Freelance Designer</small>
-                    </div>
+                <h3>Top-Notch Security</h3>
+                <p>Your finances are protected with state-of-the-art encryption, biometric login, and multi-factor authentication.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
                 </div>
-                <div class="testimonial-card">
-                    <p>"Superb customer service and excellent security standards. My savings have grown significantly since I made the switch to Revolut."</p>
-                    <div class="testimonial-author">
-                        <strong>James Wilson</strong>
-                        <small>Retired Educator</small>
-                    </div>
+                <h3>Mobile Banking</h3>
+                <p>Bank on the go with our ultra-fast and responsive application, available 24/7 in the palm of your hand.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Smart Investments</h3>
+                <p>Grow your wealth seamlessly with expert investment tools, real-time analytics, and crypto trading options.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>24/7 Support</h3>
+                <p>Our dedicated support team is always active, providing round-the-clock assistance whenever you need it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== SERVICES ====== -->
+    <div class="services-section-wrapper">
+        <section id="services" class="content-section">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive and flexible financial products designed to fit your unique lifestyle</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-piggy-bank service-icon"></i>
+                    <h3>Savings Accounts</h3>
+                    <p>Grow your savings faster with highly competitive interest rates and customizable savings vault options.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-credit-card service-icon"></i>
+                    <h3>Premium Cards</h3>
+                    <p>Unlock premium benefits, cashbacks, global airport lounge access, and exclusive rewards with our smart cards.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-hand-holding-usd service-icon"></i>
+                    <h3>Personal Loans</h3>
+                    <p>Access flexible funding with competitive rates, zero hidden fees, and rapid online approval times.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-home service-icon"></i>
+                    <h3>Mortgage Services</h3>
+                    <p>Transform your homeownership dreams into reality with our flexible and customized mortgage solutions.</p>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- Footer & Contact Form -->
+    <!-- ====== TESTIMONIALS ====== -->
+    <section id="testimonials" class="content-section">
+        <div class="section-title">
+            <h2>What Our Customers Say</h2>
+            <p>Hear from users who have unlocked their financial potential with Revolut</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"Revolut has completely transformed how I run my finances. The dashboard analytics are incredibly detailed, and payments are lightning-fast!"</p>
+                <div class="testimonial-author">
+                    <strong>Michael Thompson</strong>
+                    <small>Small Business Owner</small>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"The investment features helped me build a diverse portfolio easily. Truly professional service with an interface that is beautiful and clean."</p>
+                <div class="testimonial-author">
+                    <strong>Sarah Martinez</strong>
+                    <small>Freelance Designer</small>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Superb customer service and excellent security standards. My savings have grown significantly since I made the switch to Revolut."</p>
+                <div class="testimonial-author">
+                    <strong>James Wilson</strong>
+                    <small>Retired Educator</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
     <footer class="container-fluid" id="gtco-footer">
         <div class="container">
             <div class="row">
@@ -936,10 +1020,9 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         </div>
     </footer>
 
-    
-
+    <!-- ====== SCRIPTS ====== -->
     <script>
-        // Mobile menu toggle
+        // ----- Mobile menu toggle -----
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
         const authButtons = document.getElementById('auth-buttons');
@@ -948,7 +1031,6 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             navLinks.classList.toggle('active');
             authButtons.classList.toggle('active');
 
-            // Hamburger to X animation
             const spans = mobileMenu.querySelectorAll('span');
             if (navLinks.classList.contains('active')) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
@@ -961,7 +1043,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             }
         });
 
-        // Close mobile menu when clicking links
+        // ----- Close mobile menu when clicking links -----
         document.querySelectorAll('.nav-link-3d').forEach(link => {
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 768) {
@@ -975,7 +1057,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             });
         });
 
-        // Smooth active navigation scroll handling
+        // ----- Smooth active navigation scroll handling -----
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link-3d');
 
@@ -998,6 +1080,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                 });
             });
 
+            // ----- Scroll spy -----
             window.addEventListener('scroll', function() {
                 const sections = document.querySelectorAll('section');
                 const navLinks = document.querySelectorAll('.nav-link-3d');
@@ -1021,7 +1104,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                 });
             });
 
-            // Live Stocks Mock API data feed
+            // ----- Live Stocks Mock API data feed -----
             const stockData = [
                 { symbol: "AAPL", price: 181.45, change: "+1.42%" },
                 { symbol: "GOOGL", price: 142.12, change: "+0.95%" },
@@ -1037,22 +1120,18 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                 const stockText = stockData.map(stock =>
                     `${stock.symbol}: $${stock.price.toLocaleString(undefined, {minimumFractionDigits: 2})} (${stock.change})`
                 ).join("  |  ");
-                marquee.innerHTML = stockText + "  |  " + stockText; // Duplicate for smooth looping
+                marquee.innerHTML = stockText + "  |  " + stockText;
             }
 
             updateStockMarquee();
 
-            // Telegram button action handler
-            document.getElementById("telegramBtn").addEventListener("click", function() {
-                window.open("https://t.me/Financial_Services_Team", "_blank");
-            });
-
-            // Contact Form handler
+            // ----- Contact Form handler -----
             document.querySelector('.submit-button').addEventListener('click', function(e) {
                 e.preventDefault();
                 alert('Thank you for contacting Revolut Support! We will get back to you shortly.');
             });
         });
     </script>
+
 </body>
 </html>
