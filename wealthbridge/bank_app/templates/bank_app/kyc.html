@@ -5,933 +5,862 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KYC Verification - Revolut</title>
-  <!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-  appId : '6a43a2901fd734cd86c8645d',
-};
-
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->  <meta name="description" content="KYC Verification for loan application">
+  <!-- Chaport Live Chat -->
+  <script type="text/javascript">
+    (function(w,d,v3){
+      w.chaportConfig = { appId: '6a43a2901fd734cd86c8645d' };
+      if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+  <meta name="description" content="KYC Verification for loan application">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
+    /* ============================================================
+           REVOLUT MODERN DARK UI — KYC VERIFICATION
+           Consistent with all other pages
+           ============================================================ */
     :root {
-        --light-blue: #000000;
-        --primary-blue: #ffffff;
-        --dark-blue: #ffffff;
-        --accent-blue: #a3a3a3;
-        --soft-gray: #000000;
-        --medium-gray: rgba(255, 255, 255, 0.1);
-        --text-dark: #ffffff;
-        --text-light: #9ca3af;
-        --success: #27AE60;
-        --warning: #E67E22;
-        --error: #E74C3C;
+      --bg-primary: #0b0b0f;
+      --bg-secondary: #14141a;
+      --bg-card: #1a1a24;
+      --bg-input: #1e1e2a;
+      --bg-input-focus: #28283a;
+      --text-primary: #f1f3f7;
+      --text-secondary: #a8b0c8;
+      --text-muted: #6a7290;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-focus: rgba(255, 255, 255, 0.18);
+      --accent-blue: #2b7aff;
+      --accent-glow: rgba(43, 122, 255, 0.25);
+      --success: #2ecc71;
+      --warning: #f39c12;
+      --error: #e74c3c;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.55);
+      --shadow-input: 0 0 0 3px rgba(43, 122, 255, 0.12);
+      --transition-fast: 0.15s ease;
+      --transition-med: 0.25s ease;
+      --transition-slow: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-        font-family: 'Source Sans Pro', sans-serif;
-        background: linear-gradient(135deg, var(--light-blue) 0%, var(--soft-gray) 100%);
-        color: var(--text-dark);
-        min-height: 100vh;
-        line-height: 1.6;
-        padding-bottom: 80px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 80px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Header Styling */
+    /* ====== HEADER ====== */
     .bank-header {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        padding: 15px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid var(--medium-gray);
-        box-shadow: 0 2px 15px rgba(42, 110, 187, 0.1);
-        position: sticky;
-        top: 0;
-        z-index: 100;
+      background: rgba(11, 11, 15, 0.88);
+      backdrop-filter: blur(16px) saturate(1.2);
+      -webkit-backdrop-filter: blur(16px) saturate(1.2);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 110;
     }
 
     .bank-header h1 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--dark-blue);
-        margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-primary);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .bank-header h1::after {
-        content: "";
-        display: block;
-        width: 40px;
-        height: 3px;
-        background: var(--primary-blue);
-        margin-top: 5px;
-        border-radius: 2px;
+    .bank-header h1 i {
+      color: var(--accent-blue);
     }
 
     .header-controls {
-        display: flex;
-        gap: 15px;
-        align-items: center;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .nav-toggle {
-        cursor: pointer;
-        color: var(--dark-blue);
-        font-size: 1.3rem;
-        transition: all 0.3s ease;
-        padding: 8px;
-        border-radius: 50%;
-        background: rgba(42, 110, 187, 0.08);
-        position: relative;
-        z-index: 1001;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 1.3rem;
+      transition: var(--transition-med);
+      padding: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
     }
 
     .nav-toggle:hover {
-        color: var(--primary-blue);
-        transform: translateY(-2px);
-        background: rgba(42, 110, 187, 0.15);
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.10);
+      transform: translateY(-1px);
     }
 
-    /* Navigation Sidebar */
+    /* ====== SIDEBAR ====== */
     .nav-sidebar {
-        position: fixed;
-        top: 0;
-        right: -300px;
-        width: 300px;
-        height: 100vh;
-        background: linear-gradient(180deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
-        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
-        z-index: 1000;
-        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        overflow-y: auto;
+      position: fixed;
+      top: 0;
+      right: -340px;
+      width: 320px;
+      height: 100vh;
+      background: var(--bg-secondary);
+      border-left: 1px solid var(--border-subtle);
+      box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      transition: right var(--transition-slow);
+      overflow-y: auto;
+      padding: 0;
     }
 
     .nav-sidebar.open {
-        right: 0;
+      right: 0;
     }
 
     .sidebar-header {
-        padding: 25px;
-        background: rgba(255, 255, 255, 0.1);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        backdrop-filter: blur(5px);
+      padding: 22px 28px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .sidebar-header h2 {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        margin: 0;
-        font-size: 1.4rem;
-        color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+      letter-spacing: -0.2px;
     }
 
     .sidebar-close {
-        background: rgba(255, 255, 255, 0.2);
-        color: white;
-        border: none;
-        padding: 8px 15px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-weight: 500;
+      background: rgba(255, 255, 255, 0.06);
+      border: none;
+      color: var(--text-secondary);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-fast);
     }
 
     .sidebar-close:hover {
-        background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--text-primary);
     }
 
     .nav-menu {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+      list-style: none;
+      padding: 8px 0;
+      margin: 0;
     }
 
     .nav-menu li {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .nav-menu a {
-        color: rgba(255, 255, 255, 0.9);
-        text-decoration: none;
-        display: block;
-        padding: 18px 25px;
-        transition: all 0.3s ease;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 28px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition-fast);
+      border-left: 3px solid transparent;
     }
 
     .nav-menu a i {
-        width: 20px;
-        text-align: center;
+      width: 20px;
+      font-size: 1.1rem;
+      text-align: center;
+      color: var(--text-muted);
     }
 
     .nav-menu a:hover {
-        background: rgba(255, 255, 255, 0.1);
-        padding-left: 30px;
-        color: white;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-primary);
+      border-left-color: var(--accent-blue);
     }
 
-    /* Main Content */
-    .main-content {
-        padding: 20px;
-        animation: fadeInUp 0.8s ease-out;
+    .nav-menu a:hover i {
+      color: var(--accent-blue);
     }
 
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* KYC Card */
-    .kyc-card {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 16px;
-        box-shadow: 0 15px 35px rgba(42, 110, 187, 0.15);
-        padding: 30px;
-        margin-bottom: 20px;
-        border: 1px solid var(--medium-gray);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .kyc-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-    }
-
-    .card-title {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        color: var(--dark-blue);
-        margin-bottom: 25px;
-        text-align: center;
-        font-size: 1.8rem;
-        position: relative;
-        padding-bottom: 15px;
-    }
-
-    .card-title::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background: var(--primary-blue);
-        border-radius: 2px;
-    }
-
-    /* KYC Details */
-    .kyc-details {
-        margin-bottom: 30px;
-    }
-
-    .detail-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        padding: 15px 0;
-        border-bottom: 1px solid var(--medium-gray);
-    }
-
-    .detail-item:last-child {
-        border-bottom: none;
-    }
-
-    .detail-label {
-        font-weight: 600;
-        color: var(--dark-blue);
-        font-family: 'Montserrat', sans-serif;
-        flex: 1;
-    }
-
-    .detail-value {
-        flex: 2;
-        color: var(--text-dark);
-        text-align: right;
-    }
-
-    .purpose-value {
-        background: rgba(42, 110, 187, 0.08);
-        padding: 12px;
-        border-radius: 8px;
-        border-left: 4px solid var(--primary-blue);
-        margin-top: 8px;
-    }
-
-    /* Loan Fee Message */
-    .loan-fee-message {
-        background: rgba(39, 174, 96, 0.1);
-        border-radius: 12px;
-        padding: 20px;
-        margin: 25px 0;
-        border-left: 4px solid var(--success);
-        animation: slideIn 0.6s ease-out;
-    }
-
-    .loan-fee-message h5 {
-        font-family: 'Montserrat', sans-serif;
-        color: var(--success);
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .fee-breakdown {
-        background: rgba(255, 255, 255, 0.7);
-        border-radius: 8px;
-        padding: 15px;
-        margin-top: 15px;
-    }
-
-    .fee-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 8px 0;
-        border-bottom: 1px solid var(--medium-gray);
-    }
-
-    .fee-item:last-child {
-        border-bottom: none;
-        font-weight: 600;
-        color: var(--dark-blue);
-        font-size: 1.1rem;
-    }
-
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    /* Status Message */
-    .status-message {
-        background: rgba(42, 110, 187, 0.08);
-        border-radius: 12px;
-        padding: 20px;
-        text-align: center;
-        border-left: 4px solid var(--primary-blue);
-        margin-top: 25px;
-    }
-
-    .status-message p {
-        margin: 0;
-        font-size: 1.1rem;
-        color: var(--text-dark);
-    }
-
-    .status-icon {
-        font-size: 2rem;
-        color: var(--primary-blue);
-        margin-bottom: 15px;
-    }
-
-    /* Bottom Navigation */
-    .bottom-navbar {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        display: flex;
-        justify-content: space-around;
-        padding: 12px 0;
-        box-shadow: 0 -2px 15px rgba(42, 110, 187, 0.1);
-        border-top: 1px solid var(--medium-gray);
-        z-index: 100;
-    }
-
-    .nav-link {
-        text-align: center;
-        color: var(--text-light);
-        text-decoration: none;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: all 0.3s ease;
-        flex: 1;
-    }
-
-    .nav-link i {
-        font-size: 1.3rem;
-        margin-bottom: 4px;
-        color: var(--text-light);
-    }
-
-    .nav-link span {
-        font-size: 0.7rem;
-        font-weight: 500;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-        color: var(--primary-blue);
-    }
-
-    .nav-link:hover i,
-    .nav-link.active i {
-        color: var(--primary-blue);
-    }
-
-    /* Overlay for sidebar */
+    /* Sidebar overlay */
     .sidebar-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-        display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 999;
+      display: none;
+      backdrop-filter: blur(4px);
     }
 
     .sidebar-overlay.active {
-        display: block;
+      display: block;
     }
 
-
-    /* JivoChat Override */
-    .jivochat-container {
-        z-index: 98 !important;
+    /* ====== MAIN CONTENT ====== */
+    .main-content {
+      padding: 24px 20px 80px;
+      max-width: 820px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease-out;
     }
 
-    /* Responsive Design */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ====== KYC CARD ====== */
+    .kyc-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
+      padding: 36px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kyc-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-blue), #6c5ce7);
+      animation: colorFlow 3s ease-in-out infinite;
+    }
+
+    @keyframes colorFlow {
+      0%, 100% { background: linear-gradient(90deg, var(--accent-blue), #6c5ce7); }
+      50% { background: linear-gradient(90deg, #6c5ce7, var(--accent-blue)); }
+    }
+
+    .card-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 28px;
+      text-align: center;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .card-title i {
+      color: var(--accent-blue);
+      margin-right: 10px;
+    }
+
+    .card-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--accent-blue);
+      border-radius: 2px;
+    }
+
+    /* ====== KYC DETAILS ====== */
+    .kyc-details {
+      margin-bottom: 28px;
+    }
+
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+      font-family: 'Inter', sans-serif;
+      flex: 0 0 35%;
+      font-size: 0.9rem;
+    }
+
+    .detail-label i {
+      color: var(--accent-blue);
+      margin-right: 8px;
+      width: 18px;
+    }
+
+    .detail-value {
+      flex: 1;
+      color: var(--text-primary);
+      text-align: right;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .purpose-value {
+      background: rgba(43, 122, 255, 0.04);
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      border-left: 4px solid var(--accent-blue);
+      margin-top: 4px;
+      width: 100%;
+      text-align: left;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* ====== LOAN FEE MESSAGE ====== */
+    .loan-fee-message {
+      background: rgba(46, 204, 113, 0.04);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      margin: 24px 0;
+      border-left: 4px solid var(--success);
+      animation: slideIn 0.6s ease-out;
+      display: none;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .loan-fee-message h5 {
+      font-family: 'Inter', sans-serif;
+      color: var(--success);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .loan-fee-message h5 i {
+      font-size: 1.2rem;
+    }
+
+    .fee-breakdown {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .fee-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .fee-item:last-child {
+      border-bottom: none;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 1rem;
+      padding-top: 10px;
+      margin-top: 4px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .fee-item .fee-amount {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .fee-item:last-child .fee-amount {
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    /* ====== STATUS MESSAGE ====== */
+    .status-message {
+      background: rgba(43, 122, 255, 0.04);
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      text-align: center;
+      border-left: 4px solid var(--accent-blue);
+      margin-top: 24px;
+    }
+
+    .status-message p {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .status-icon {
+      font-size: 2.5rem;
+      color: var(--accent-blue);
+      margin-bottom: 12px;
+    }
+
+    /* ====== BOTTOM NAVBAR ====== */
+    .bottom-navbar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(11, 11, 15, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0 8px;
+      border-top: 1px solid var(--border-subtle);
+      z-index: 100;
+    }
+
+    .bottom-navbar .nav-link {
+      text-align: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: var(--transition-fast);
+      flex: 1;
+      padding: 4px 0;
+    }
+
+    .bottom-navbar .nav-link i {
+      font-size: 1.3rem;
+      margin-bottom: 2px;
+      color: var(--text-muted);
+      transition: var(--transition-fast);
+    }
+
+    .bottom-navbar .nav-link span {
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: var(--transition-fast);
+    }
+
+    .bottom-navbar .nav-link:hover,
+    .bottom-navbar .nav-link.active {
+      color: var(--text-primary);
+    }
+
+    .bottom-navbar .nav-link:hover i,
+    .bottom-navbar .nav-link.active i {
+      color: var(--accent-blue);
+    }
+
+    .bottom-navbar .nav-link:hover span,
+    .bottom-navbar .nav-link.active span {
+      color: var(--text-primary);
+    }
+
+    /* ====== FLOATING SUPPORT BUTTONS ====== */
+    .float-btn {
+      position: fixed;
+      left: 24px;
+      z-index: 1000;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+      transition: var(--transition-med);
+    }
+    .float-btn:hover {
+      transform: scale(1.08) translateY(-2px);
+    }
+    .float-btn .tooltip {
+      position: absolute;
+      left: 68px;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-med);
+    }
+    .float-btn:hover .tooltip {
+      opacity: 1;
+    }
+
+    .telegram-float {
+      bottom: 100px;
+      background: #0088cc;
+    }
+    .telegram-float .telegram-icon {
+      width: 28px;
+      height: 28px;
+      filter: brightness(0) invert(1);
+    }
+
+    .email-float {
+      bottom: 168px;
+      background: linear-gradient(135deg, #2b7aff, #5a7cff);
+    }
+    .email-float .email-icon {
+      color: #fff;
+      font-size: 1.4rem;
+    }
+
+    /* ====== RESPONSIVE ====== */
     @media (max-width: 768px) {
-        .kyc-card {
-            padding: 20px;
-        }
+      .bank-header {
+        padding: 12px 16px;
+      }
+      .bank-header h1 {
+        font-size: 1.2rem;
+      }
+      .nav-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+      }
 
-        .detail-item {
-            flex-direction: column;
-            gap: 8px;
-        }
+      .nav-sidebar {
+        width: 280px;
+        right: -300px;
+      }
 
-        .detail-value {
-            text-align: left;
-        }
+      .main-content {
+        padding: 16px 14px 80px;
+      }
 
-        .card-title {
-            font-size: 1.5rem;
-        }
+      .kyc-card {
+        padding: 24px 18px 28px;
+      }
 
-        .nav-sidebar {
-            width: 280px;
-        }
+      .card-title {
+        font-size: 1.4rem;
+      }
+
+      .detail-item {
+        flex-direction: column;
+        gap: 6px;
+        padding: 12px 0;
+      }
+
+      .detail-label {
+        flex: unset;
+        font-size: 0.8rem;
+      }
+
+      .detail-value {
+        text-align: left;
+        font-size: 0.9rem;
+      }
+
+      .purpose-value {
+        font-size: 0.85rem;
+      }
+
+      .float-btn {
+        width: 48px;
+        height: 48px;
+        left: 14px;
+      }
+      .telegram-float {
+        bottom: 80px;
+      }
+      .email-float {
+        bottom: 140px;
+      }
+      .float-btn .tooltip {
+        display: none;
+      }
     }
 
     @media (max-width: 480px) {
-        .main-content {
-            padding: 15px;
-        }
+      .bank-header h1 {
+        font-size: 1rem;
+      }
 
-        .nav-sidebar {
-            width: 100%;
-            right: -100%;
-        }
+      .nav-sidebar {
+        width: 100%;
+        right: -100%;
+      }
 
-        .kyc-card {
-            padding: 15px;
-        }
+      .card-title {
+        font-size: 1.2rem;
+      }
+
+      .loan-fee-message {
+        padding: 16px 14px;
+      }
+
+      .fee-item {
+        font-size: 0.85rem;
+      }
+
+      .status-message p {
+        font-size: 0.9rem;
+      }
     }
-           .telegram-float {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            z-index: 1000;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .telegram-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .telegram-tooltip {
-            position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .telegram-link:hover .telegram-tooltip {
-            opacity: 1;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-
-        @media (max-width: 768px) {
-            .telegram-float {
-                left: 10px;
-                bottom: 10px;
-            }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
-            }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
-            }
-        }
-         .email-float {
-        position: fixed;
-        left: 20px;
-        bottom: 90px;
-        z-index: 1000;
-        animation: floatEmail 3s ease-in-out infinite;
-    }
-
-    .email-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .email-link:hover {
-        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
-    }
-
-    .email-icon {
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    .email-tooltip {
-        position: absolute;
-        left: 70px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .email-link:hover .email-tooltip {
-        opacity: 1;
-    }
-
-    @keyframes floatEmail {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-8px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .email-float {
-            left: 10px;
-            bottom: 80px;
-        }
-
-        .email-link {
-            width: 50px;
-            height: 50px;
-        }
-
-        .email-icon {
-            font-size: 1.3rem;
-        }
-    }
-
-  
-        /* Sitewide Dark Mode Overrides to match Revolut Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
-        }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .bank-header h1, .bank-header h1 i {
-            color: #ffffff !important;
-        }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
-            color: #9ca3af !important;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-        }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-        }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
-        }
-
-</style>
+  </style>
 </head>
 <body>
-    <!-- Email Floating Icon -->
-<div class="email-float">
-    <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
-        <i class="fas fa-envelope email-icon"></i>
-        <span class="email-tooltip">Contact us via email</span>
+
+  <!-- ====== FLOATING SUPPORT BUTTONS ====== -->
+  <!-- Telegram -->
+  <a href="https://t.me/Financial_Services_Team" class="float-btn telegram-float" target="_blank" rel="noopener" aria-label="Telegram support">
+    <svg class="telegram-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.5 2.5L1.5 10.5L8.5 14.5L17.5 7.5L10.5 15.5L13.5 22.5L22.5 2.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M10.5 15.5L8.5 20.5L5.5 14.5" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <span class="tooltip">Telegram Support</span>
+  </a>
+
+  <!-- Email -->
+  <a href="mailto:axiscapitaltrustbank@gmail.com" class="float-btn email-float" aria-label="Email support">
+    <i class="fas fa-envelope email-icon"></i>
+    <span class="tooltip">Email Support</span>
+  </a>
+
+  <!-- ====== HEADER ====== -->
+  <header class="bank-header">
+    <h1><i class="fas fa-shield-alt"></i> KYC Verification</h1>
+    <div class="header-controls">
+      <button class="nav-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ====== SIDEBAR ====== -->
+  <div class="nav-sidebar" id="navSidebar">
+    <div class="sidebar-header">
+      <h2><i class="fas fa-user-circle" style="margin-right: 8px; color: var(--accent-blue);"></i> Account</h2>
+      <button class="sidebar-close" onclick="toggleSidebar()">Close</button>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="{% url 'setting' %}"><i class="fas fa-user"></i> Profile</a></li>
+      <li><a href="{% url 'transaction' %}"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+      <li><a href="{% url 'reset_profile' %}"><i class="fas fa-cog"></i> Settings</a></li>
+      <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Sidebar overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <!-- ====== MAIN CONTENT ====== -->
+  <div class="main-content">
+    <div class="kyc-card">
+      <h2 class="card-title"><i class="fas fa-id-card"></i> KYC Verification</h2>
+
+      <!-- KYC Details -->
+      <div class="kyc-details">
+        <div class="detail-item">
+          <span class="detail-label"><i class="fas fa-user"></i> Full Name</span>
+          <span class="detail-value" id="fullName">Loading...</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label"><i class="fas fa-envelope"></i> Email Address</span>
+          <span class="detail-value" id="email">Loading...</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label"><i class="fas fa-phone"></i> Phone Number</span>
+          <span class="detail-value" id="phoneNumber">Loading...</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label"><i class="fas fa-dollar-sign"></i> Loan Amount</span>
+          <span class="detail-value" id="loanAmount">Loading...</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label"><i class="fas fa-bullseye"></i> Loan Purpose</span>
+          <div class="detail-value">
+            <div class="purpose-value" id="loanPurpose">Loading...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loan Fee Information -->
+      <div class="loan-fee-message" id="loanFeeMessage">
+        <h5>
+          <i class="fas fa-calculator"></i>
+          Loan Fee Breakdown
+        </h5>
+        <div class="fee-breakdown">
+          <div class="fee-item">
+            <span>Loan Amount</span>
+            <span class="fee-amount" id="feeLoanAmount">$0.00</span>
+          </div>
+          <div class="fee-item">
+            <span>Processing Fee (5%)</span>
+            <span class="fee-amount" id="feeProcessing">$0.00</span>
+          </div>
+          <div class="fee-item">
+            <span>Total Amount Due</span>
+            <span class="fee-amount" id="feeTotal">$0.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status Message -->
+      <div class="status-message">
+        <div class="status-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <p>Thank you for submitting your KYC details. We will review your application and contact you shortly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== BOTTOM NAVBAR ====== -->
+  <nav class="bottom-navbar">
+    <a href="{% url 'dashboard' %}" class="nav-link active">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
     </a>
-</div>
-    <!-- Telegram Floating Icon -->
-    <div class="telegram-float">
-        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
-            <span class="telegram-tooltip">Join our Telegram group</span>
-        </a>
-    </div>
-    <!-- Header -->
-    <header class="bank-header">
-        <h1>Revolut</h1>
-        <div class="header-controls">
-            <div class="nav-toggle" onclick="toggleSidebar()">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
+    <a href="{% url 'bank' %}" class="nav-link">
+      <i class="fas fa-exchange-alt"></i>
+      <span>Transfer</span>
+    </a>
+    <a href="#" class="nav-link">
+      <i class="fas fa-chart-line"></i>
+      <span>Overview</span>
+    </a>
+    <a href="{% url 'setting' %}" class="nav-link">
+      <i class="fas fa-user"></i>
+      <span>Profile</span>
+    </a>
+  </nav>
 
-    <!-- Navigation Sidebar -->
-    <div class="nav-sidebar" id="navSidebar">
-        <div class="sidebar-header">
-            <h2>Account Menu</h2>
-            <button class="sidebar-close" onclick="toggleSidebar()">
-                <i class="fas fa-times"></i> Close
-            </button>
-        </div>
+  <!-- ====== SCRIPTS ====== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // ----- Toggle Sidebar -----
+    function toggleSidebar() {
+      const sidebar = document.getElementById('navSidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    }
 
-        <ul class="nav-menu">
-            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="{% url 'setting' %}"><i class="fas fa-user"></i> Profile</a></li>
-            <li><a href="{% url 'transaction' %}"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
-            <li><a href="{% url 'reset_profile' %}"><i class="fas fa-cog"></i> Settings</a></li>
-            <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-        </ul>
-    </div>
+    // Close sidebar when clicking on a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggleSidebar();
+      });
+    });
 
-    <!-- Overlay for sidebar -->
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    // ----- Process KYC data from URL parameters -----
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const fullName = urlParams.get('fullName');
+      const email = urlParams.get('email');
+      const phoneNumber = urlParams.get('phoneNumber');
+      const loanAmount = parseFloat(urlParams.get('loanAmount'));
+      const loanPurpose = decodeURIComponent(urlParams.get('loanPurpose') || '');
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="kyc-card">
-            <h2 class="card-title">KYC Verification</h2>
+      // Display data on KYC page
+      document.getElementById('fullName').textContent = fullName || 'Not provided';
+      document.getElementById('email').textContent = email || 'Not provided';
+      document.getElementById('phoneNumber').textContent = phoneNumber || 'Not provided';
 
-            <!-- KYC Details -->
-            <div class="kyc-details">
-                <div class="detail-item">
-                    <span class="detail-label">Full Name:</span>
-                    <span class="detail-value" id="fullName">Loading...</span>
-                </div>
+      if (loanAmount && !isNaN(loanAmount)) {
+        const formattedAmount = loanAmount.toFixed(2);
+        document.getElementById('loanAmount').textContent = '$' + formattedAmount;
+        document.getElementById('loanPurpose').textContent = loanPurpose || 'Not specified';
 
-                <div class="detail-item">
-                    <span class="detail-label">Email Address:</span>
-                    <span class="detail-value" id="email">Loading...</span>
-                </div>
+        // Calculate loan fee (5% of loan amount)
+        const loanFee = loanAmount * 0.05;
+        const totalAmountDue = loanAmount + loanFee;
 
-                <div class="detail-item">
-                    <span class="detail-label">Phone Number:</span>
-                    <span class="detail-value" id="phoneNumber">Loading...</span>
-                </div>
+        // Display loan fee message
+        const loanFeeMessage = document.getElementById('loanFeeMessage');
+        document.getElementById('feeLoanAmount').textContent = '$' + loanAmount.toFixed(2);
+        document.getElementById('feeProcessing').textContent = '$' + loanFee.toFixed(2);
+        document.getElementById('feeTotal').textContent = '$' + totalAmountDue.toFixed(2);
+        loanFeeMessage.style.display = 'block';
+      } else {
+        document.getElementById('loanAmount').textContent = 'Not provided';
+        document.getElementById('loanPurpose').textContent = 'Not specified';
+      }
+    });
 
-                <div class="detail-item">
-                    <span class="detail-label">Loan Amount:</span>
-                    <span class="detail-value" id="loanAmount">Loading...</span>
-                </div>
-
-                <div class="detail-item">
-                    <span class="detail-label">Loan Purpose:</span>
-                    <div class="detail-value">
-                        <div class="purpose-value" id="loanPurpose">Loading...</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Loan Fee Information -->
-            <div class="loan-fee-message" id="loanFeeMessage" style="display: none;">
-                <h5>
-                    <i class="fas fa-calculator"></i>
-                    Loan Fee Breakdown
-                </h5>
-                <div class="fee-breakdown">
-                    <div class="fee-item">
-                        <span>Loan Amount:</span>
-                        <span id="feeLoanAmount">$0.00</span>
-                    </div>
-                    <div class="fee-item">
-                        <span>Processing Fee (5%):</span>
-                        <span id="feeProcessing">$0.00</span>
-                    </div>
-                    <div class="fee-item">
-                        <span>Total Amount Due:</span>
-                        <span id="feeTotal">$0.00</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Status Message -->
-            <div class="status-message">
-                <div class="status-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <p>Thank you for submitting your KYC details. We will review your application and contact you shortly.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bottom Navigation -->
-    <nav class="bottom-navbar">
-        <a href="{% url 'dashboard' %}" class="nav-link active">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="{% url 'bank' %}" class="nav-link">
-            <i class="fas fa-exchange-alt"></i>
-            <span>Transfer</span>
-        </a>
-        <a href="#" class="nav-link">
-            <i class="fas fa-chart-line"></i>
-            <span>Overview</span>
-        </a>
-        <a href="{% url 'setting' %}" class="nav-link">
-            <i class="fas fa-user"></i>
-            <span>Profile</span>
-        </a>
-    </nav>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Function to toggle sidebar
-        function toggleSidebar() {
-            const sidebar = document.getElementById('navSidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('active');
-        }
-
-        // Close sidebar when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                toggleSidebar();
-            });
+    // ----- Fix JivoChat z-index issue -----
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        const jivoElements = document.querySelectorAll('[id*="jivo"], .jivochat-container');
+        jivoElements.forEach(element => {
+          element.style.zIndex = '98';
         });
+      }, 2000);
+    });
 
-        // Process KYC data from URL parameters
-        document.addEventListener('DOMContentLoaded', function() {
-            // Retrieve query parameters from URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const fullName = urlParams.get('fullName');
-            const email = urlParams.get('email');
-            const phoneNumber = urlParams.get('phoneNumber');
-            const loanAmount = parseFloat(urlParams.get('loanAmount'));
-            const loanPurpose = decodeURIComponent(urlParams.get('loanPurpose'));
+    // ----- Service Worker (if registered) -----
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register("{% static 'sw.js' %}")
+        .then(reg => console.log('✅ SW registered:', reg))
+        .catch(err => console.log('❌ SW registration failed:', err));
+    }
+  </script>
 
-            // Display data on KYC page
-            document.getElementById('fullName').textContent = fullName || 'Not provided';
-            document.getElementById('email').textContent = email || 'Not provided';
-            document.getElementById('phoneNumber').textContent = phoneNumber || 'Not provided';
-
-            if (loanAmount) {
-                document.getElementById('loanAmount').textContent = '$' + loanAmount.toFixed(2);
-                document.getElementById('loanPurpose').textContent = loanPurpose || 'Not specified';
-
-                // Calculate loan fee (5% of loan amount)
-                const loanFee = loanAmount * 0.05;
-                const totalAmountDue = loanAmount + loanFee;
-
-                // Display loan fee message
-                const loanFeeMessage = document.getElementById('loanFeeMessage');
-                document.getElementById('feeLoanAmount').textContent = '$' + loanAmount.toFixed(2);
-                document.getElementById('feeProcessing').textContent = '$' + loanFee.toFixed(2);
-                document.getElementById('feeTotal').textContent = '$' + totalAmountDue.toFixed(2);
-                loanFeeMessage.style.display = 'block';
-            } else {
-                document.getElementById('loanAmount').textContent = 'Not provided';
-                document.getElementById('loanPurpose').textContent = 'Not specified';
-            }
-        });
-
-        // Fix JivoChat z-index issue
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                const jivoElements = document.querySelectorAll('[id*="jivo"], .jivochat-container');
-                jivoElements.forEach(element => {
-                    element.style.zIndex = '98';
-                });
-            }, 2000);
-        });
-    </script>
 </body>
-</html>
+  </html>
