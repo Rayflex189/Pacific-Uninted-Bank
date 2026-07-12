@@ -58,10 +58,13 @@ def investment_detail(request, investment_id):
     if investment_status.lower() == 'active' and days_remaining <= 0:
         investment_status = 'Completed'
 
-    # Get interest rate and calculate expected return
+    # Convert Decimal to float for calculations
+    amount_invested = float(investment.amount_invested)
     rate = float(investment.investment_plan.interest_rate)
-    profit_amount = investment.amount_invested * (rate / 100)
-    expected_return = investment.amount_invested + profit_amount
+
+    # Calculate expected return and profit
+    profit_amount = amount_invested * (rate / 100)
+    expected_return = amount_invested + profit_amount
 
     # Calculate current value based on days passed
     if investment_status.lower() == 'completed':
@@ -70,16 +73,16 @@ def investment_detail(request, investment_id):
         # Calculate daily growth
         daily_profit = profit_amount / total_days if total_days > 0 else 0
         current_profit = daily_profit * days_passed if days_passed > 0 else 0
-        current_value = investment.amount_invested + current_profit
+        current_value = amount_invested + current_profit
 
-    profit_loss = current_value - investment.amount_invested
+    profit_loss = current_value - amount_invested
 
     # Generate daily growth data for timeline
     daily_growth = []
     daily_profit = profit_amount / total_days if total_days > 0 else 0
 
     for day in range(1, total_days + 1):
-        day_value = investment.amount_invested + (daily_profit * day)
+        day_value = amount_invested + (daily_profit * day)
         day_profit = daily_profit * day
 
         if day < days_passed:
@@ -112,8 +115,8 @@ def investment_detail(request, investment_id):
         'daily_growth': daily_growth,
     }
 
-    return render(request, 'bank_app/investment_detail.html', context)
-
+    return render(request, 'bank_app/investment_detail.html', context) 
+    
 @login_required
 def investment_plans(request):
     plans = InvestmentPlan.objects.filter(is_active=True)
@@ -121,12 +124,14 @@ def investment_plans(request):
     
     # Calculate expected return and profit for each investment dynamically
     for investment in user_investments:
-        # Get the interest rate from the investment plan
-        rate = investment.investment_plan.interest_rate
+        # Convert Decimal to float for calculations
+        amount_invested = float(investment.amount_invested)
+        rate = float(investment.investment_plan.interest_rate)
+        
         # Calculate profit: amount * (rate / 100)
-        investment.profit = investment.amount_invested * (rate / 100)
+        investment.profit = amount_invested * (rate / 100)
         # Calculate expected return: amount + profit
-        investment.expected_return = investment.amount_invested + investment.profit
+        investment.expected_return = amount_invested + investment.profit
 
     context = {
         'plans': plans,
@@ -198,22 +203,24 @@ def investment_dashboard(request):
     )
     
     # Calculate totals for active investments only
-    total_invested = sum(inv.amount_invested for inv in active_investments)
+    total_invested = sum(float(inv.amount_invested) for inv in active_investments)
     
     # Calculate expected return and profit for each investment
     for investment in active_investments:
-        # Profit = amount * (interest_rate / 100)
-        investment.profit = investment.amount_invested * (investment.investment_plan.interest_rate / 100)
-        # Expected Return = amount + profit
-        investment.expected_return = investment.amount_invested + investment.profit
+        amount_invested = float(investment.amount_invested)
+        rate = float(investment.investment_plan.interest_rate)
+        investment.profit = amount_invested * (rate / 100)
+        investment.expected_return = amount_invested + investment.profit
     
     for investment in completed_investments:
-        investment.profit = investment.amount_invested * (investment.investment_plan.interest_rate / 100)
-        investment.expected_return = investment.amount_invested + investment.profit
+        amount_invested = float(investment.amount_invested)
+        rate = float(investment.investment_plan.interest_rate)
+        investment.profit = amount_invested * (rate / 100)
+        investment.expected_return = amount_invested + investment.profit
     
     # Calculate totals for active investments
-    total_expected_return = sum(inv.expected_return for inv in active_investments)
-    total_profit = sum(inv.profit for inv in active_investments)
+    total_expected_return = sum(float(inv.expected_return) for inv in active_investments)
+    total_profit = sum(float(inv.profit) for inv in active_investments)
 
     context = {
         'active_investments': active_investments,
@@ -223,6 +230,7 @@ def investment_dashboard(request):
         'total_profit': total_profit,
     }
     return render(request, 'bank_app/investment_dashboard.html', context)
+    
 @login_required
 def application_for_credit_card(request):
     user_profile = UserProfile.objects.get(user=request.user)
