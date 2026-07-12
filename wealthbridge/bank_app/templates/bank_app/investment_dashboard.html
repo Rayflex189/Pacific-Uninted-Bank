@@ -870,15 +870,21 @@
             <p>Track and manage your investment portfolio</p>
         </div>
 
-        <!-- Stats Grid -->
+        <!-- Stats Grid with Correct Calculations -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-label">Total Invested</div>
                 <div class="stat-value">{{ user_profile.currency }}{{ total_invested|intcomma }}</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Expected Returns</div>
-                <div class="stat-value">{{ user_profile.currency }}{{ total_expected|intcomma }}</div>
+                <div class="stat-label">Total Expected Return</div>
+                <div class="stat-value">{{ user_profile.currency }}{{ total_expected_return|intcomma }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Profit</div>
+                <div class="stat-value" style="color: var(--success); background: linear-gradient(135deg, var(--success), #66bb6a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    {{ user_profile.currency }}{{ total_profit|intcomma }}
+                </div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">Active Investments</div>
@@ -898,8 +904,9 @@
                         <thead>
                             <tr>
                                 <th>Plan</th>
-                                <th>Amount</th>
+                                <th>Amount Invested</th>
                                 <th>Expected Return</th>
+                                <th>Profit</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>Days Left</th>
@@ -917,6 +924,9 @@
                                 </td>
                                 <td>{{ user_profile.currency }}{{ investment.amount_invested|intcomma }}</td>
                                 <td>{{ user_profile.currency }}{{ investment.expected_return|intcomma }}</td>
+                                <td style="color: var(--success); font-weight: 600;">
+                                    {{ user_profile.currency }}{{ investment.profit|intcomma }}
+                                </td>
                                 <td>{{ investment.start_date|date:"M d, Y" }}</td>
                                 <td>{{ investment.end_date|date:"M d, Y" }}</td>
                                 <td>
@@ -950,8 +960,9 @@
                         <thead>
                             <tr>
                                 <th>Plan</th>
-                                <th>Amount</th>
-                                <th>Return</th>
+                                <th>Amount Invested</th>
+                                <th>Total Return</th>
+                                <th>Profit</th>
                                 <th>Period</th>
                                 <th>Status</th>
                                 <th class="action-column">Action</th>
@@ -968,6 +979,9 @@
                                 </td>
                                 <td>{{ user_profile.currency }}{{ investment.amount_invested|intcomma }}</td>
                                 <td>{{ user_profile.currency }}{{ investment.expected_return|intcomma }}</td>
+                                <td style="color: var(--success); font-weight: 600;">
+                                    {{ user_profile.currency }}{{ investment.profit|intcomma }}
+                                </td>
                                 <td>{{ investment.start_date|date:"M d, Y" }} - {{ investment.end_date|date:"M d, Y" }}</td>
                                 <td>
                                     <span class="status-badge status-completed">
@@ -1006,7 +1020,7 @@
             <i class="fas fa-home nav-icon"></i>
             <span class="nav-label">Home</span>
         </a>
-        <a href="{% url 'investment_plans' %}" class="nav-item">
+        <a href="{% url 'investment_plans' %}" class="nav-item active">
             <i class="fas fa-chart-line nav-icon"></i>
             <span class="nav-label">Invest</span>
         </a>
@@ -1014,7 +1028,7 @@
             <i class="fas fa-exchange-alt nav-icon"></i>
             <span class="nav-label">Transfer</span>
         </a>
-        <a href="{% url 'setting' %}" class="nav-item active">
+        <a href="{% url 'setting' %}" class="nav-item">
             <i class="fas fa-user nav-icon"></i>
             <span class="nav-label">Profile</span>
         </a>
