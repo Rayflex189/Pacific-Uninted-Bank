@@ -6,628 +6,740 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - Revolut</title>
-    <!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-  appId : '6a43a2901fd734cd86c8645d',
-};
-
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Chaport Live Chat -->
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = { appId: '6a43a2901fd734cd86c8645d' };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* Base styles */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f7fa;
-            height: 100%;
-            overflow-x: hidden;
+        /* ============================================================
+               REVOLUT MODERN DARK UI — SETTINGS
+               Consistent with all other pages
+               ============================================================ */
+        :root {
+            --bg-primary: #0b0b0f;
+            --bg-secondary: #14141a;
+            --bg-card: #1a1a24;
+            --bg-input: #1e1e2a;
+            --bg-input-focus: #28283a;
+            --text-primary: #f1f3f7;
+            --text-secondary: #a8b0c8;
+            --text-muted: #6a7290;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-focus: rgba(255, 255, 255, 0.18);
+            --accent-blue: #2b7aff;
+            --accent-glow: rgba(43, 122, 255, 0.25);
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --error: #e74c3c;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.55);
+            --shadow-input: 0 0 0 3px rgba(43, 122, 255, 0.12);
+            --transition-fast: 0.15s ease;
+            --transition-med: 0.25s ease;
+            --transition-slow: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Header */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            padding-bottom: 80px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ====== HEADER ====== */
         .bank-header {
-            background-color: #003366;
-            color: white;
-            padding: 15px;
+            background: rgba(11, 11, 15, 0.88);
+            backdrop-filter: blur(16px) saturate(1.2);
+            -webkit-backdrop-filter: blur(16px) saturate(1.2);
+            padding: 14px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .bank-header h1 {
-            font-size: 1.8rem;
-            margin: 0;
-            padding-left: 20px;
-        }
-        .notification-bell, .open-sidebar-btn {
-            cursor: pointer;
-            color: white;
-            font-size: 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            z-index: 110;
         }
 
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #002244;
-            position: fixed;
-            right: -250px;
-            top: 0;
-            transition: right 0.4s ease;
-            color: #fff;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
+        .bank-header h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: var(--text-primary);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
+        .bank-header h1 i {
+            color: var(--accent-blue);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-controls .icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition-med);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .header-controls .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.10);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .header-controls .icon-btn:active {
+            transform: scale(0.94);
+        }
+
+        .header-controls .icon-btn .badge-dot::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--error);
+            border: 2px solid var(--bg-primary);
+        }
+
+        /* ====== SIDEBAR ====== */
+        .sidebar {
+            width: 320px;
+            height: 100vh;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border-subtle);
+            position: fixed;
+            right: -340px;
+            top: 0;
+            transition: right var(--transition-slow);
+            z-index: 1200;
+            overflow-y: auto;
+            padding: 0;
+            box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
+        }
+
         .sidebar.open {
             right: 0;
         }
-        .sidebar-header, .user-details, .sidebar ul li {
-            padding: 15px 20px;
-            border-bottom: 1px solid #004080;
+
+        .sidebar-header {
+            padding: 22px 28px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
+        .sidebar-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            letter-spacing: -0.2px;
+        }
+
+        .sidebar-header .close-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: none;
+            color: var(--text-secondary);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        .sidebar-header .close-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+        }
+
+        .user-details {
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .user-details p {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .user-details p strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .user-details .user-avatar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+        .user-details .user-avatar .avatar-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), #6c5ce7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
         .sidebar ul {
             list-style: none;
-            padding: 0;
+            padding: 8px 0;
             margin: 0;
         }
         .sidebar ul li a {
-            color: white;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 28px;
+            color: var(--text-secondary);
             text-decoration: none;
-            display: block;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+            border-left: 3px solid transparent;
+        }
+        .sidebar ul li a i {
+            width: 20px;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-muted);
         }
         .sidebar ul li a:hover {
-            background-color: #003366;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+            border-left-color: var(--accent-blue);
+        }
+        .sidebar ul li a:hover i {
+            color: var(--accent-blue);
         }
 
-        /* Main Content */
+        /* ====== MARQUEE ====== */
+        .marquee {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 5;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scrollMarquee 32s linear infinite;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 0.3px;
+        }
+
+        .marquee-content span {
+            margin: 0 24px;
+        }
+        .marquee-content .text-success {
+            color: var(--success) !important;
+        }
+        .marquee-content .text-danger {
+            color: var(--error) !important;
+        }
+
+        @keyframes scrollMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ====== MAIN CONTENT ====== */
         .main-content {
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            max-width: 1200px;
+            padding: 24px;
+            max-width: 1000px;
             margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out;
         }
 
-        /* Page Header */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ====== PAGE HEADER ====== */
         .page-header {
             margin-bottom: 30px;
         }
         .page-header h1 {
-            color: #003366;
+            color: var(--text-primary);
             font-size: 2rem;
-            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
         }
         .page-header p {
-            color: #6c757d;
+            color: var(--text-secondary);
             font-size: 1rem;
+            margin: 0;
         }
 
-        /* Card Container */
+        /* ====== MESSAGES ====== */
+        .message-container {
+            margin-bottom: 24px;
+        }
+        .message {
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .message-success {
+            color: #7ddfa8;
+            background: rgba(46, 204, 113, 0.10);
+            border-left: 4px solid var(--success);
+        }
+        .message-error {
+            color: #f5b0a0;
+            background: rgba(231, 76, 60, 0.08);
+            border-left: 4px solid var(--error);
+        }
+
+        /* ====== CARD CONTAINER ====== */
         .card-container {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+            margin-bottom: 24px;
             overflow: hidden;
-            margin-bottom: 25px;
+            position: relative;
         }
 
-        /* Card Header */
-        .card-header {
-            background-color: #003366;
-            color: white;
-            padding: 20px;
+        .card-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), #6c5ce7);
         }
+
+        .card-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border-subtle);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
         .card-header h2 {
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.2px;
         }
 
-        /* Card Body */
         .card-body {
-            padding: 25px;
+            padding: 20px 24px 24px;
         }
 
-        /* Settings Grid */
+        /* ====== SETTINGS GRID ====== */
         .settings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 4px;
         }
 
-        /* Settings Item */
         .settings-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #e9ecef;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-subtle);
         }
         .settings-item:last-child {
             border-bottom: none;
         }
+
         .settings-label {
-            font-weight: bold;
-            color: #495057;
-            flex: 1;
-        }
-        .settings-value {
-            color: #6c757d;
-            flex: 1;
-            text-align: right;
-        }
-        .settings-action {
-            flex: 0 0 auto;
-            margin-left: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            flex: 0 0 45%;
+            font-size: 0.9rem;
         }
 
-        /* Form Elements */
+        .settings-value {
+            color: var(--text-primary);
+            flex: 1;
+            text-align: right;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .settings-action {
+            flex: 0 0 auto;
+            margin-left: 12px;
+        }
+
+        /* ====== FORM ELEMENTS ====== */
         .form-control {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            padding: 10px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+            font-family: 'Inter', sans-serif;
+            appearance: none;
         }
         .form-control:focus {
             outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+            border-color: var(--accent-blue);
+            background: var(--bg-input-focus);
+            box-shadow: var(--shadow-input);
         }
 
-        /* Buttons */
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
+        select.form-control {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236a7290' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 12px;
+            padding-right: 36px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+        }
+
+        /* ====== BUTTONS ====== */
+        .btn {
+            padding: 8px 18px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition-med);
             text-decoration: none;
             display: inline-block;
             text-align: center;
+            font-family: 'Inter', sans-serif;
         }
+
         .btn-primary {
-            background-color: #003366;
-            color: white;
+            background: linear-gradient(135deg, var(--accent-blue), #5a7cff);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(43, 122, 255, 0.2);
         }
         .btn-primary:hover {
-            background-color: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(43, 122, 255, 0.3);
+            color: #fff;
         }
-        .btn-danger {
-            background-color: #dc3545;
-            color: white;
-        }
-        .btn-danger:hover {
-            background-color: #c82333;
-        }
+
         .btn-warning {
-            background-color: #ffc107;
-            color: #212529;
+            background: var(--warning);
+            color: #0b0b0f;
         }
         .btn-warning:hover {
-            background-color: #e0a800;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(243, 156, 18, 0.3);
         }
 
-        /* Select Styling */
-        select.form-control {
-            background-color: white;
-            cursor: pointer;
+        .btn-danger {
+            background: var(--error);
+            color: #fff;
+        }
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(231, 76, 60, 0.3);
         }
 
-        /* Messages */
-        .message-container {
-            margin-bottom: 20px;
-        }
-        .message {
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-        }
-        .message-success {
-            color: #155724;
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
-        }
-        .message-error {
-            color: #721c24;
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-        }
-
-        /* Bottom Navbar */
+        /* ====== BOTTOM NAVBAR ====== */
         .bottom-navbar {
             position: fixed;
             bottom: 0;
             width: 100%;
-            background-color: #003366;
-            color: white;
+            background: rgba(11, 11, 15, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             display: flex;
             justify-content: space-around;
-            padding: 10px 0;
+            padding: 10px 0 8px;
+            border-top: 1px solid var(--border-subtle);
             z-index: 100;
         }
-        .nav-item {
+
+        .bottom-navbar .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-decoration: none;
-            color: white;
+            color: var(--text-muted);
+            transition: var(--transition-fast);
+            flex: 1;
+            padding: 4px 0;
         }
-        .nav-icon {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+        .bottom-navbar .nav-item .nav-icon {
+            font-size: 1.3rem;
+            margin-bottom: 2px;
+            color: var(--text-muted);
+            transition: var(--transition-fast);
         }
-        .nav-label {
-            font-size: 0.8rem;
+        .bottom-navbar .nav-item .nav-label {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition-fast);
         }
-
-
-
-        /* Marquee */
-        .marquee {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            font-weight: bold;
-            padding: 10px;
-            white-space: nowrap;
-            overflow: hidden;
+        .bottom-navbar .nav-item:hover {
+            color: var(--text-primary);
         }
-        .marquee-content {
-            display: inline-block;
-            animation: scrollLeft 10s linear infinite;
+        .bottom-navbar .nav-item:hover .nav-icon {
+            color: var(--accent-blue);
         }
-        @keyframes scrollLeft {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(-100%);
-            }
+        .bottom-navbar .nav-item:hover .nav-label {
+            color: var(--text-primary);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .settings-grid {
-                grid-template-columns: 1fr;
-            }
-            .settings-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .settings-value {
-                text-align: left;
-                margin: 5px 0;
-            }
-            .settings-action {
-                margin-left: 0;
-                margin-top: 10px;
-                align-self: flex-end;
-            }
-        }
-                .telegram-float {
+        /* ====== FLOATING SUPPORT BUTTONS ====== */
+        .float-btn {
             position: fixed;
-            left: 20px;
-            bottom: 20px;
+            left: 24px;
             z-index: 1000;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .telegram-link {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
             text-decoration: none;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-med);
         }
-
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        .float-btn:hover {
+            transform: scale(1.08) translateY(-2px);
         }
-
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .telegram-tooltip {
+        .float-btn .tooltip {
             position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
+            left: 68px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
             white-space: nowrap;
             opacity: 0;
-            transition: opacity 0.3s ease;
             pointer-events: none;
+            transition: var(--transition-med);
         }
-
-        .telegram-link:hover .telegram-tooltip {
+        .float-btn:hover .tooltip {
             opacity: 1;
         }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
+        .telegram-float {
+            bottom: 100px;
+            background: #0088cc;
+        }
+        .telegram-float .telegram-icon {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
         }
 
-
-        @media (max-width: 768px) {
-            .telegram-float {
-                left: 10px;
-                bottom: 10px;
-            }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
-            }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
-            }
-        }
-            .email-float {
-        position: fixed;
-        left: 20px;
-        bottom: 90px;
-        z-index: 1000;
-        animation: floatEmail 3s ease-in-out infinite;
-    }
-
-    .email-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .email-link:hover {
-        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
-    }
-
-    .email-icon {
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    .email-tooltip {
-        position: absolute;
-        left: 70px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .email-link:hover .email-tooltip {
-        opacity: 1;
-    }
-
-    @keyframes floatEmail {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-8px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
         .email-float {
-            left: 10px;
-            bottom: 80px;
+            bottom: 168px;
+            background: linear-gradient(135deg, #2b7aff, #5a7cff);
+        }
+        .email-float .email-icon {
+            color: #fff;
+            font-size: 1.4rem;
         }
 
-        .email-link {
-            width: 50px;
-            height: 50px;
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .bank-header {
+                padding: 12px 16px;
+            }
+            .bank-header h1 {
+                font-size: 1.2rem;
+            }
+            .header-controls .icon-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+
+            .sidebar {
+                width: 280px;
+                right: -300px;
+            }
+
+            .main-content {
+                padding: 16px;
+            }
+
+            .page-header h1 {
+                font-size: 1.6rem;
+            }
+
+            .card-body {
+                padding: 16px 16px 20px;
+            }
+            .card-header {
+                padding: 14px 16px;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px 0;
+            }
+            .settings-value {
+                text-align: left;
+                margin: 4px 0;
+                width: 100%;
+            }
+            .settings-action {
+                margin-left: 0;
+                margin-top: 8px;
+                align-self: flex-start;
+                width: 100%;
+            }
+            .settings-action .btn,
+            .settings-action select {
+                width: 100%;
+            }
+
+            .float-btn {
+                width: 48px;
+                height: 48px;
+                left: 14px;
+            }
+            .telegram-float {
+                bottom: 80px;
+            }
+            .email-float {
+                bottom: 140px;
+            }
+            .float-btn .tooltip {
+                display: none;
+            }
         }
 
-        .email-icon {
-            font-size: 1.3rem;
+        @media (max-width: 480px) {
+            .bank-header h1 {
+                font-size: 1rem;
+            }
+            .page-header h1 {
+                font-size: 1.3rem;
+            }
+            .settings-label {
+                font-size: 0.85rem;
+            }
+            .settings-value {
+                font-size: 0.85rem;
+            }
+            .btn {
+                font-size: 0.8rem;
+                padding: 8px 14px;
+            }
         }
-    }
-    
-        /* Sitewide Dark Mode Overrides to match Revolut Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
-        }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .bank-header h1, .bank-header h1 i {
-            color: #ffffff !important;
-        }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
-            color: #9ca3af !important;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-        }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-        }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
-        }
-
-</style>
+    </style>
 </head>
 <body>
-    <!-- Email Floating Icon -->
-<div class="email-float">
-    <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
-        <i class="fas fa-envelope email-icon"></i>
-        <span class="email-tooltip">Contact us via email</span>
-    </a>
-</div>
-  <!-- Telegram Floating Icon -->
-    <div class="telegram-float">
-        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
-            <span class="telegram-tooltip">Join our Telegram group</span>
-        </a>
-    </div>
 
+    <!-- ====== HEADER ====== -->
     <header class="bank-header">
-        <h1>Revolut</h1>
-        <div class="notification-bell" onclick="toggleSidebar()">
-            <i class="fas fa-bell"></i>
-        </div>
-        <div class="open-sidebar-btn" onclick="toggleSidebar()">
-            <i class="fas fa-bars"></i>
+        <h1><i class="fas fa-cog"></i> Settings</h1>
+        <div class="header-controls">
+            <button class="icon-btn" onclick="toggleSidebar()" aria-label="Notifications">
+                <span class="badge-dot"><i class="fas fa-bell"></i></span>
+            </button>
+            <button class="icon-btn" onclick="toggleSidebar()" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <!-- Sidebar -->
+    <!-- ====== SIDEBAR ====== -->
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header">
-            <h2>Account Menu</h2>
-            <button onclick="toggleSidebar()">Close</button>
+            <h2><i class="fas fa-user-circle" style="margin-right: 8px; color: var(--accent-blue);"></i> Account</h2>
+            <button class="close-btn" onclick="toggleSidebar()">Close</button>
         </div>
         <div class="user-details">
-            <p>Username: <strong>{{ request.user }}</strong></p>
-            <p>Email: <strong>{{ user_profile.email }}</strong></p>
+            <div class="user-avatar">
+                <div class="avatar-circle">{{ request.user.username|first|upper|default:"U" }}</div>
+                <div>
+                    <div style="font-weight: 600; color: var(--text-primary);">{{ request.user }}</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted);">{{ user_profile.email }}</div>
+                </div>
+            </div>
         </div>
         <ul>
-            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-            <li><a href="{% url 'setting' %}">Profile</a></li>
-            <li><a href="{% url 'transaction' %}">Transactions</a></li>
-            <li><a href="{% url 'loans' %}">Loans</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="{% url 'setting' %}"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="{% url 'transaction' %}"><i class="fas fa-list-ul"></i> Transactions</a></li>
+            <li><a href="{% url 'loans' %}"><i class="fas fa-hand-holding-dollar"></i> Loans</a></li>
+            <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
 
-    <!-- Marquee for Stock Market -->
+    <!-- ====== MARQUEE (Stock Ticker) ====== -->
     <div class="marquee">
         <div class="marquee-content" id="stockMarquee">
-            Loading stock market data...
+            Loading market data …
         </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- ====== MAIN CONTENT ====== -->
     <div class="main-content">
+
         <!-- Page Header -->
         <div class="page-header">
             <h1>Account Settings</h1>
@@ -645,81 +757,81 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         </div>
         {% endif %}
 
-        <!-- Profile Information Section -->
+        <!-- ====== PROFILE INFORMATION ====== -->
         <div class="card-container">
             <div class="card-header">
-                <h2>Profile Information</h2>
+                <h2><i class="fas fa-user" style="margin-right: 8px; color: var(--accent-blue);"></i> Profile Information</h2>
             </div>
             <div class="card-body">
                 <div class="settings-grid">
                     <div class="settings-item">
-                        <div class="settings-label">Username:</div>
+                        <div class="settings-label">Username</div>
                         <div class="settings-value">{{ request.user }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Email:</div>
+                        <div class="settings-label">Email</div>
                         <div class="settings-value">{{ user_profile.email }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">First Name:</div>
+                        <div class="settings-label">First Name</div>
                         <div class="settings-value">{{ user_profile.first_name }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Middle Name:</div>
-                        <div class="settings-value">{{ user_profile.middle_name }}</div>
+                        <div class="settings-label">Middle Name</div>
+                        <div class="settings-value">{{ user_profile.middle_name|default:"—" }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Last Name:</div>
+                        <div class="settings-label">Last Name</div>
                         <div class="settings-value">{{ user_profile.last_name }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Mobile Number:</div>
+                        <div class="settings-label">Mobile Number</div>
                         <div class="settings-value">{{ user_profile.phone_number }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Date of Birth:</div>
+                        <div class="settings-label">Date of Birth</div>
                         <div class="settings-value">{{ user_profile.date_of_birth }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Employment Status:</div>
+                        <div class="settings-label">Employment Status</div>
                         <div class="settings-value">{{ user_profile.status }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Country:</div>
+                        <div class="settings-label">Country</div>
                         <div class="settings-value">{{ user_profile.country }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Currency:</div>
+                        <div class="settings-label">Currency</div>
                         <div class="settings-value">{{ user_profile.currency }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Gender:</div>
+                        <div class="settings-label">Gender</div>
                         <div class="settings-value">{{ user_profile.Gender }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Account Type:</div>
+                        <div class="settings-label">Account Type</div>
                         <div class="settings-value">{{ user_profile.account_type }}</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Security Settings Section -->
+        <!-- ====== SECURITY SETTINGS ====== -->
         <div class="card-container">
             <div class="card-header">
-                <h2>Security Settings</h2>
+                <h2><i class="fas fa-shield-alt" style="margin-right: 8px; color: var(--accent-blue);"></i> Security Settings</h2>
             </div>
             <div class="card-body">
                 <div class="settings-item">
-                    <div class="settings-label">Profile Reset:</div>
+                    <div class="settings-label">Profile Reset</div>
                     <div class="settings-action">
                         <a href="{% url 'reset_profile' %}" class="btn btn-primary">Reset Profile</a>
                     </div>
                 </div>
                 <div class="settings-item">
-                    <div class="settings-label">Two-Factor Authentication:</div>
+                    <div class="settings-label">Two-Factor Authentication</div>
                     <div class="settings-action">
-                        <select class="form-control">
+                        <select class="form-control" style="width: 150px;">
                             <option value="enabled">Enabled</option>
                             <option value="disabled">Disabled</option>
                         </select>
@@ -728,25 +840,25 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             </div>
         </div>
 
-        <!-- Notification Preferences Section -->
+        <!-- ====== NOTIFICATION PREFERENCES ====== -->
         <div class="card-container">
             <div class="card-header">
-                <h2>Notification Preferences</h2>
+                <h2><i class="fas fa-bell" style="margin-right: 8px; color: var(--accent-blue);"></i> Notification Preferences</h2>
             </div>
             <div class="card-body">
                 <div class="settings-item">
-                    <div class="settings-label">Email Notifications:</div>
+                    <div class="settings-label">Email Notifications</div>
                     <div class="settings-action">
-                        <select class="form-control">
+                        <select class="form-control" style="width: 150px;">
                             <option value="enabled">Enabled</option>
                             <option value="disabled">Disabled</option>
                         </select>
                     </div>
                 </div>
                 <div class="settings-item">
-                    <div class="settings-label">SMS Notifications:</div>
+                    <div class="settings-label">SMS Notifications</div>
                     <div class="settings-action">
-                        <select class="form-control">
+                        <select class="form-control" style="width: 150px;">
                             <option value="enabled">Enabled</option>
                             <option value="disabled">Disabled</option>
                         </select>
@@ -755,29 +867,30 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             </div>
         </div>
 
-        <!-- Account Management Section -->
+        <!-- ====== ACCOUNT MANAGEMENT ====== -->
         <div class="card-container">
             <div class="card-header">
-                <h2>Account Management</h2>
+                <h2><i class="fas fa-exclamation-triangle" style="margin-right: 8px; color: var(--warning);"></i> Account Management</h2>
             </div>
             <div class="card-body">
                 <div class="settings-item">
-                    <div class="settings-label">Deactivate Account:</div>
+                    <div class="settings-label">Deactivate Account</div>
                     <div class="settings-action">
-                        <button class="btn btn-warning">Deactivate</button>
+                        <button class="btn btn-warning" onclick="alert('Deactivate account functionality.')">Deactivate</button>
                     </div>
                 </div>
                 <div class="settings-item">
-                    <div class="settings-label">Delete Account:</div>
+                    <div class="settings-label">Delete Account</div>
                     <div class="settings-action">
-                        <button class="btn btn-danger">Delete</button>
+                        <button class="btn btn-danger" onclick="alert('Delete account functionality.')">Delete</button>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
-    <!-- Bottom Navigation Bar -->
+    <!-- ====== BOTTOM NAVBAR ====== -->
     <nav class="bottom-navbar">
         <a href="{% url 'dashboard' %}" class="nav-item">
             <i class="fas fa-home nav-icon"></i>
@@ -797,35 +910,86 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         </a>
     </nav>
 
+    <!-- ====== FLOATING SUPPORT BUTTONS ====== -->
+    <!-- Telegram -->
+    <a href="https://t.me/Financial_Services_Team" class="float-btn telegram-float" target="_blank" rel="noopener" aria-label="Telegram support">
+        <svg class="telegram-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.5 2.5L1.5 10.5L8.5 14.5L17.5 7.5L10.5 15.5L13.5 22.5L22.5 2.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M10.5 15.5L8.5 20.5L5.5 14.5" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <span class="tooltip">Telegram Support</span>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:axiscapitaltrustbank@gmail.com" class="float-btn email-float" aria-label="Email support">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="tooltip">Email Support</span>
+    </a>
+
+    <!-- ====== SCRIPTS ====== -->
     <script>
+        // ----- Toggle Sidebar -----
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('open');
         }
 
-        // Mock API Data for stocks
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                }
+            }
+        });
+
+        // ----- Stock Marquee (mock data) -----
         const stockData = [
-            { symbol: "AAPL", price: 178.23 },
-            { symbol: "GOOGL", price: 123.45 },
-            { symbol: "AMZN", price: 99.12 },
-            { symbol: "TSLA", price: 246.78 }
+            { symbol: "AAPL", price: 178.23, change: 1.25 },
+            { symbol: "GOOGL", price: 123.45, change: -0.75 },
+            { symbol: "AMZN", price: 99.12, change: 2.10 },
+            { symbol: "TSLA", price: 246.78, change: -1.50 },
+            { symbol: "MSFT", price: 335.21, change: 0.85 },
+            { symbol: "NFLX", price: 485.33, change: 3.20 },
+            { symbol: "NVDA", price: 112.50, change: 4.10 },
+            { symbol: "META", price: 298.45, change: -0.30 }
         ];
 
-        // Update stock marquee dynamically
-        function updateStockMarquee() {
-            const marquee = document.getElementById("stockMarquee");
-            const stockText = stockData.map(stock => `${stock.symbol}: $${stock.price.toFixed(2)}`).join(" | ");
-            marquee.innerHTML = stockText;
+        function updateMarquee() {
+            const el = document.getElementById('stockMarquee');
+            if (!el) return;
+
+            const html = stockData.map(stock => {
+                const cls = stock.change >= 0 ? 'text-success' : 'text-danger';
+                const arrow = stock.change >= 0 ? '↑' : '↓';
+                return `<span class="${cls}">${stock.symbol} $${stock.price.toFixed(2)} ${arrow} ${Math.abs(stock.change).toFixed(2)}%</span>`;
+            }).join(' ');
+
+            el.innerHTML = html + ' ' + html;
         }
 
-        // Call functions after the DOM is loaded
-        document.addEventListener("DOMContentLoaded", () => {
-            setTimeout(updateStockMarquee, 1000);
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(updateMarquee, 200);
         });
 
-        document.getElementById("telegramBtn").addEventListener("click", function() {
-            window.open("https://t.me/CRESTLINE_BANK_11", "_blank");
+        // ----- Service Worker (if registered) -----
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("{% static 'sw.js' %}")
+                .then(reg => console.log('✅ SW registered:', reg))
+                .catch(err => console.log('❌ SW registration failed:', err));
+        }
+
+        // ----- Auto-close sidebar on outside click -----
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar.classList.contains('open')) return;
+            const isClickInside = sidebar.contains(e.target);
+            const isToggleBtn = e.target.closest('.icon-btn');
+            if (!isClickInside && !isToggleBtn) {
+                sidebar.classList.remove('open');
+            }
         });
     </script>
+
 </body>
 </html>
