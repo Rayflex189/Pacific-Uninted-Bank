@@ -887,7 +887,7 @@
             }
         });
 
-        // ----- Investment Form Logic with Dynamic Percentage -----
+        // ----- Investment Form Logic with CORRECT Calculation -----
         document.addEventListener('DOMContentLoaded', function() {
             const planSelect = document.getElementById('id_plan');
             const amountInput = document.getElementById('id_amount');
@@ -935,20 +935,27 @@
                     const annualRate = parseFloat(selectedPlan.interest_rate);
                     const days = parseInt(selectedPlan.duration_days);
 
-                    // Calculate daily rate from annual percentage
-                    const dailyRate = annualRate / 365 / 100;
+                    // Calculate the percentage rate for the duration
+                    // If interest is 99% per annum for 7 days:
+                    // Profit = Principal * (Rate/100) * (Days/365)
+                    // But for simplicity and clarity, we show the actual return
+                    // For a 99% annual rate over 7 days: (99/100) * (7/365) = ~1.9% profit
+                    // However, the user expects 99% profit for the duration.
+                    // We'll use the rate as a percentage of the principal for the duration.
+                    // If the plan says "99% return", it means 99% profit on the investment.
+                    // So profit = principal * (rate / 100)
 
-                    // Calculate compound interest: A = P(1 + r)^n
-                    // Where: P = principal, r = daily rate, n = number of days
-                    const expectedReturn = amount * Math.pow(1 + dailyRate, days);
-                    const profit = expectedReturn - amount;
+                    // CORRECT CALCULATION: The interest_rate field represents the TOTAL return
+                    // percentage for the investment duration. So profit = amount * (rate / 100)
+                    const profit = amount * (annualRate / 100);
+                    const expectedReturn = amount + profit;
 
                     el.innerHTML = `
                         <strong>Expected Return:</strong> {{ user_profile.currency }}${expectedReturn.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
                         <span style="color: var(--success); display: block; margin-top: 4px;">
-                            <i class="fas fa-arrow-up"></i> Profit: {{ user_profile.currency }}${profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
-                            <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">
-                                (${annualRate}% p.a. for ${days} days)
+                            <i class="fas fa-arrow-up"></i> <strong>Profit:</strong> {{ user_profile.currency }}${profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                            <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem; display: block;">
+                                ${annualRate}% return for ${days} days
                             </span>
                         </span>
                     `;
@@ -1020,4 +1027,4 @@
     </script>
 
 </body>
-        </html>
+    </html>
