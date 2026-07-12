@@ -887,12 +887,13 @@
             }
         });
 
-        // ----- Investment Form Logic -----
+        // ----- Investment Form Logic with Dynamic Percentage -----
         document.addEventListener('DOMContentLoaded', function() {
             const planSelect = document.getElementById('id_plan');
             const amountInput = document.getElementById('id_amount');
             const planDetails = document.getElementById('plan-details');
 
+            // Plans data from Django with dynamic interest rate
             const plans = {
                 {% for plan in form.fields.plan.queryset %}
                 '{{ plan.id }}': {
@@ -914,7 +915,7 @@
                     document.getElementById('max-amount').innerHTML =
                         `<strong>Maximum:</strong> {{ user_profile.currency }}${parseFloat(selectedPlan.max_amount).toLocaleString()}`;
                     document.getElementById('interest-rate').innerHTML =
-                        `<strong>Interest Rate:</strong> ${selectedPlan.interest_rate}% per annum`;
+                        `<strong>Interest Rate:</strong> ${selectedPlan.interest_rate}% per annum (dynamic rate from admin)`;
                     document.getElementById('duration').innerHTML =
                         `<strong>Duration:</strong> ${selectedPlan.duration_days} days`;
 
@@ -930,12 +931,27 @@
                 const el = document.getElementById('expected-return');
 
                 if (selectedPlan && amount > 0) {
-                    const dailyRate = parseFloat(selectedPlan.interest_rate) / 365 / 100;
+                    // Get the dynamic interest rate from the selected plan
+                    const annualRate = parseFloat(selectedPlan.interest_rate);
                     const days = parseInt(selectedPlan.duration_days);
-                    const expectedReturn = amount * (1 + dailyRate * days);
+
+                    // Calculate daily rate from annual percentage
+                    const dailyRate = annualRate / 365 / 100;
+
+                    // Calculate compound interest: A = P(1 + r)^n
+                    // Where: P = principal, r = daily rate, n = number of days
+                    const expectedReturn = amount * Math.pow(1 + dailyRate, days);
                     const profit = expectedReturn - amount;
 
-                    el.innerHTML = `<strong>Expected Return:</strong> {{ user_profile.currency }}${expectedReturn.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} <span style="color: var(--success);">(Profit: {{ user_profile.currency }}${profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})})</span>`;
+                    el.innerHTML = `
+                        <strong>Expected Return:</strong> {{ user_profile.currency }}${expectedReturn.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                        <span style="color: var(--success); display: block; margin-top: 4px;">
+                            <i class="fas fa-arrow-up"></i> Profit: {{ user_profile.currency }}${profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                            <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">
+                                (${annualRate}% p.a. for ${days} days)
+                            </span>
+                        </span>
+                    `;
                     el.style.display = 'block';
                 } else {
                     el.innerHTML = `<strong>Expected Return:</strong> {{ user_profile.currency }}0.00`;
@@ -1004,4 +1020,4 @@
     </script>
 
 </body>
-</html>
+        </html>
