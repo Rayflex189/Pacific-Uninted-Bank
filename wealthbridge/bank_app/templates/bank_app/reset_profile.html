@@ -5,137 +5,295 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile - Revolut</title>
-<!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-  appId : '6a43a2901fd734cd86c8645d',
-};
-
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->    <link rel="icon" href="{% static 'images/web_logo.jpg' %}" type="image/x-icon" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Chaport Live Chat -->
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = { appId: '6a43a2901fd734cd86c8645d' };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <link rel="icon" href="{% static 'images/web_logo.jpg' %}" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* Base styles */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
-            height: 100%;
-            overflow-x: hidden;
+        /* ============================================================
+               REVOLUT MODERN DARK UI — EDIT PROFILE
+               Consistent with all other pages
+               ============================================================ */
+        :root {
+            --bg-primary: #0b0b0f;
+            --bg-secondary: #14141a;
+            --bg-card: #1a1a24;
+            --bg-input: #1e1e2a;
+            --bg-input-focus: #28283a;
+            --text-primary: #f1f3f7;
+            --text-secondary: #a8b0c8;
+            --text-muted: #6a7290;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-focus: rgba(255, 255, 255, 0.18);
+            --accent-blue: #2b7aff;
+            --accent-gold: #f1a10e;
+            --accent-glow: rgba(43, 122, 255, 0.25);
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --error: #e74c3c;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.55);
+            --shadow-input: 0 0 0 3px rgba(43, 122, 255, 0.12);
+            --transition-fast: 0.15s ease;
+            --transition-med: 0.25s ease;
+            --transition-slow: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Header */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            padding-bottom: 80px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ====== HEADER ====== */
         .bank-header {
-            background: linear-gradient(135deg, #002244 0%, #003366 100%);
-            color: white;
-            padding: 15px 20px;
+            background: rgba(11, 11, 15, 0.88);
+            backdrop-filter: blur(16px) saturate(1.2);
+            -webkit-backdrop-filter: blur(16px) saturate(1.2);
+            padding: 14px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            position: relative;
-            z-index: 100;
-        }
-        .bank-header h1 {
-            font-size: 1.8rem;
-            margin: 0;
-            font-weight: 700;
-            background: linear-gradient(45deg, #fff, #f1a10e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .header-controls {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        .notification-bell, .open-sidebar-btn {
-            cursor: pointer;
-            color: white;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-            padding: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .notification-bell:hover, .open-sidebar-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            z-index: 110;
         }
 
-        /* Sidebar */
-        .sidebar {
-            width: 300px;
-            height: 100vh;
-            background: linear-gradient(180deg, #002244 0%, #001933 100%);
-            position: fixed;
-            right: -300px;
-            top: 0;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            color: #fff;
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
+        .bank-header h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: var(--text-primary);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
+        .bank-header h1 i {
+            color: var(--accent-gold);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-controls .icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition-med);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .header-controls .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.10);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .header-controls .icon-btn:active {
+            transform: scale(0.94);
+        }
+
+        .header-controls .icon-btn .badge-dot::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--error);
+            border: 2px solid var(--bg-primary);
+        }
+
+        /* ====== SIDEBAR ====== */
+        .sidebar {
+            width: 320px;
+            height: 100vh;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border-subtle);
+            position: fixed;
+            right: -340px;
+            top: 0;
+            transition: right var(--transition-slow);
+            z-index: 1200;
+            overflow-y: auto;
+            padding: 0;
+            box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
+        }
+
         .sidebar.open {
             right: 0;
         }
+
         .sidebar-header {
-            padding: 25px;
-            background: rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid #004080;
-        }
-        .sidebar-header h2 {
-            margin: 0;
-            font-size: 1.4rem;
-            color: #f1a10e;
-        }
-        .close-sidebar {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            float: right;
-            padding: 5px;
-        }
-        .user-details {
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid #004080;
-        }
-        .user-details p {
-            margin: 8px 0;
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .sidebar ul li {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .sidebar ul li a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 15px 25px;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-        .sidebar ul li a:hover {
-            background: linear-gradient(90deg, #f1a10e, #d8910a);
-            color: #002244;
-            padding-left: 30px;
+            padding: 22px 28px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Main Content */
+        .sidebar-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            letter-spacing: -0.2px;
+        }
+
+        .sidebar-header .close-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: none;
+            color: var(--text-secondary);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        .sidebar-header .close-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+        }
+
+        .user-details {
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .user-details p {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .user-details p strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .user-details .user-avatar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+        .user-details .user-avatar .avatar-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-gold), #d8910a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 8px 0;
+            margin: 0;
+        }
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 28px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+            border-left: 3px solid transparent;
+        }
+        .sidebar ul li a i {
+            width: 20px;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .sidebar ul li a:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+            border-left-color: var(--accent-gold);
+        }
+        .sidebar ul li a:hover i {
+            color: var(--accent-gold);
+        }
+
+        /* ====== MARQUEE ====== */
+        .marquee {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 5;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scrollMarquee 32s linear infinite;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 0.3px;
+        }
+
+        .marquee-content span {
+            margin: 0 24px;
+        }
+        .marquee-content .text-success {
+            color: var(--success) !important;
+        }
+        .marquee-content .text-danger {
+            color: var(--error) !important;
+        }
+
+        @keyframes scrollMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ====== MAIN CONTENT ====== */
         .main-content {
             display: flex;
             flex-direction: column;
@@ -144,201 +302,263 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             min-height: calc(100vh - 80px);
         }
 
-        /* Card Container */
+        /* ====== CARD CONTAINER ====== */
         .card-container {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
             width: 100%;
             max-width: 1000px;
             overflow: hidden;
             margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        /* Card Header */
-        .card-header {
-            background: linear-gradient(135deg, #003366 0%, #002244 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
             position: relative;
         }
-        .card-header::before {
-            content: '';
+
+        .card-container::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #f1a10e, #ffb52e);
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), #d8910a);
         }
+
+        /* ====== CARD HEADER ====== */
+        .card-header {
+            padding: 24px 30px;
+            border-bottom: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
         .card-header h2 {
             margin: 0;
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
         }
 
-        /* Card Body */
+        .card-header h2 i {
+            color: var(--accent-gold);
+            margin-right: 10px;
+        }
+
+        /* ====== CARD BODY ====== */
         .card-body {
-            padding: 40px;
+            padding: 30px 32px 36px;
         }
 
-        /* Form Layout */
+        /* ====== SUCCESS MESSAGES ====== */
+        .success-messages {
+            background: rgba(46, 204, 113, 0.08);
+            color: var(--success);
+            padding: 14px 20px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 24px;
+            border-left: 4px solid var(--success);
+            font-weight: 500;
+        }
+
+        .success-messages i {
+            margin-right: 8px;
+        }
+
+        /* ====== FORM GRID ====== */
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px 24px;
+            margin-bottom: 24px;
         }
 
-        /* Professional Form Elements - SPECIFIC FOR DJANGO INPUTS */
+        /* ====== FORM ELEMENTS ====== */
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 0;
             position: relative;
         }
+
         .form-label {
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             display: block;
-            color: #003366;
-            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        /* Improved Input with icons - FIXED VERSION */
-.input-with-icon {
-    position: relative;
-    width: 100%;
-}
-.input-icon {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #6c757d;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-    z-index: 1; /* Lower z-index to stay behind text */
-    pointer-events: none; /* Allow clicks to pass through to input */
-}
-.input-with-icon input:not([type="file"]),
-.input-with-icon select,
-.input-with-icon textarea {
-    padding-left: 45px !important; /* Ensure consistent padding */
-    width: 100%;
-    position: relative;
-    z-index: 2; /* Higher z-index to ensure text is above */
-    background: transparent; /* Make sure background doesn't cover icon */
-}
 
-/* Focus states with proper visibility */
-.input-with-icon input:not([type="file"]):focus,
-.input-with-icon select:focus,
-.input-with-icon textarea:focus {
-    outline: none;
-    border-color: #003366;
-    background: rgba(255, 255, 255, 0.03);
-    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
-    transform: translateY(-1px);
-    padding-left: 45px !important; /* Maintain padding on focus */
-}
+        .form-label i {
+            color: var(--accent-gold);
+            margin-right: 6px;
+        }
 
-/* Ensure all Django form inputs have proper styling and visibility */
-.form-group input:not([type="file"]),
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 14px 16px;
-    border: 2px solid #e8ecef;
-    border-radius: 10px;
-    font-size: 15px;
-    transition: all 0.3s ease;
-    background: #fafbfc;
-    font-family: inherit;
-    box-sizing: border-box;
-    position: relative;
-}
+        .input-with-icon {
+            position: relative;
+            width: 100%;
+        }
 
-/* Specific fix for text visibility */
-.form-group input:not([type="file"]) {
-    text-indent: 0; /* Ensure no text indentation */
-    overflow: visible; /* Ensure text doesn't get clipped */
-}
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
 
-/* Additional safety for textarea */
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-    padding-left: 45px !important;
-}
+        .form-control,
+        .input-with-icon input:not([type="file"]),
+        .input-with-icon select,
+        .input-with-icon textarea {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+            font-family: 'Inter', sans-serif;
+            appearance: none;
+            position: relative;
+            z-index: 1;
+        }
 
-/* Select element specific fixes */
-.form-group select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23003366' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 16px center;
-    background-size: 16px;
-    padding-right: 45px;
-    appearance: none;
-    cursor: pointer;
-    padding-left: 45px !important;
-}
-        /* Profile Picture Section */
+        .input-with-icon select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236a7290' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 12px;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .form-control::placeholder,
+        .input-with-icon input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        .form-control:focus,
+        .input-with-icon input:not([type="file"]):focus,
+        .input-with-icon select:focus,
+        .input-with-icon textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: var(--bg-input-focus);
+            box-shadow: 0 0 0 3px rgba(241, 161, 14, 0.12);
+        }
+
+        .form-control:focus + .input-icon,
+        .input-with-icon input:focus + .input-icon,
+        .input-with-icon select:focus + .input-icon,
+        .input-with-icon textarea:focus + .input-icon {
+            color: var(--accent-gold);
+        }
+
+        /* Textarea */
+        .input-with-icon textarea {
+            padding-left: 44px;
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        /* Error messages */
+        .error-message {
+            color: var(--error);
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .field-error {
+            border-color: var(--error) !important;
+        }
+        .field-error:focus {
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.12) !important;
+        }
+
+        /* ====== PROFILE PICTURE SECTION ====== */
         .profile-picture-section {
-            border-top: 1px solid #e9ecef;
-            padding-top: 30px;
-            margin-top: 30px;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 28px;
+            margin-top: 28px;
         }
+
         .profile-picture-title {
-            font-size: 1.3rem;
-            color: #003366;
-            margin-bottom: 20px;
+            font-size: 1.1rem;
             font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
         }
+
+        .profile-picture-title i {
+            color: var(--accent-gold);
+            margin-right: 8px;
+        }
+
         .profile-picture-upload {
             display: flex;
             align-items: center;
-            gap: 25px;
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 12px;
-            border: 2px dashed #dee2e6;
+            gap: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px 24px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
         }
+
         .current-profile-pic {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #003366;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--accent-gold);
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(241, 161, 14, 0.2);
         }
+
         .upload-controls {
             flex: 1;
         }
+
+        .upload-controls .form-label {
+            text-transform: none;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
         .file-upload-wrapper {
             position: relative;
             overflow: hidden;
             display: inline-block;
-            width: 100%;
         }
+
         .file-upload-btn {
-            background: linear-gradient(135deg, #003366, #002244);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-primary);
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+            border: 1px solid var(--border-subtle);
         }
+
         .file-upload-btn:hover {
+            background: rgba(255, 255, 255, 0.10);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
         }
+
         .file-upload-wrapper input[type="file"] {
             position: absolute;
             left: 0;
@@ -349,478 +569,266 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             cursor: pointer;
         }
 
-        /* Error Messages */
-        .error-message {
-            color: #dc3545;
-            font-size: 0.85rem;
-            margin-top: 6px;
-            display: block;
-            font-weight: 500;
-        }
-        .field-error {
-            border-color: #dc3545 !important;
-        }
-        .field-error:focus {
-            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
-        }
-
-        /* Success Messages */
-        .success-messages {
-            background: linear-gradient(135deg, #d4edda, #c3e6cb);
-            color: #155724;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            border: 1px solid #c3e6cb;
-            font-weight: 500;
-            box-shadow: 0 2px 10px rgba(21, 87, 36, 0.1);
-        }
-
-        /* Submit Button */
+        /* ====== SUBMIT BUTTON ====== */
         .submit-section {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #e9ecef;
+            margin-top: 32px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-subtle);
         }
+
         .btn-submit {
-            background: linear-gradient(135deg, #f1a10e 0%, #d8910a 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--accent-gold), #d8910a);
+            color: #0b0b0f;
             border: none;
-            border-radius: 12px;
-            padding: 16px 50px;
-            font-size: 16px;
+            border-radius: var(--radius-sm);
+            padding: 14px 48px;
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(241, 161, 14, 0.3);
-            position: relative;
-            overflow: hidden;
+            transition: var(--transition-med);
+            box-shadow: 0 4px 20px rgba(241, 161, 14, 0.25);
+            font-family: 'Inter', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
+
         .btn-submit:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(241, 161, 14, 0.4);
+            box-shadow: 0 8px 30px rgba(241, 161, 14, 0.35);
+            color: #0b0b0f;
         }
         .btn-submit:active {
             transform: translateY(-1px);
         }
 
-        /* Bottom Navbar */
+        /* ====== BOTTOM NAVBAR ====== */
         .bottom-navbar {
             position: fixed;
             bottom: 0;
             width: 100%;
-            background: linear-gradient(135deg, #002244 0%, #003366 100%);
-            color: white;
+            background: rgba(11, 11, 15, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             display: flex;
             justify-content: space-around;
-            padding: 12px 0;
-            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
-            z-index: 90;
+            padding: 10px 0 8px;
+            border-top: 1px solid var(--border-subtle);
+            z-index: 100;
         }
-        .nav-item {
+
+        .bottom-navbar .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-decoration: none;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            color: var(--text-muted);
+            transition: var(--transition-fast);
+            flex: 1;
+            padding: 4px 0;
         }
-        .nav-item.active, .nav-item:hover {
-            background: rgba(241, 161, 14, 0.2);
-            transform: translateY(-2px);
-        }
-        .nav-icon {
+        .bottom-navbar .nav-item .nav-icon {
             font-size: 1.3rem;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
+            color: var(--text-muted);
+            transition: var(--transition-fast);
         }
-        .nav-label {
-            font-size: 0.75rem;
+        .bottom-navbar .nav-item .nav-label {
+            font-size: 0.65rem;
             font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition-fast);
+        }
+        .bottom-navbar .nav-item:hover {
+            color: var(--text-primary);
+        }
+        .bottom-navbar .nav-item:hover .nav-icon {
+            color: var(--accent-gold);
+        }
+        .bottom-navbar .nav-item:hover .nav-label {
+            color: var(--text-primary);
         }
 
-
-
-        /* Marquee */
-        .marquee {
-            background: linear-gradient(90deg, #002244, #003366, #002244);
+        /* ====== FLOATING SUPPORT BUTTONS ====== */
+        .float-btn {
+            position: fixed;
+            left: 24px;
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-med);
+        }
+        .float-btn:hover {
+            transform: scale(1.08) translateY(-2px);
+        }
+        .float-btn .tooltip {
+            position: absolute;
+            left: 68px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
             color: #fff;
-            font-weight: 600;
-            padding: 12px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
             white-space: nowrap;
-            overflow: hidden;
-            position: relative;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-med);
         }
-        .marquee-content {
-            display: inline-block;
-            animation: scrollLeft 15s linear infinite;
-            padding-left: 100%;
-        }
-        @keyframes scrollLeft {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
+        .float-btn:hover .tooltip {
+            opacity: 1;
         }
 
-        /* Responsive Design */
+        .telegram-float {
+            bottom: 100px;
+            background: #0088cc;
+        }
+        .telegram-float .telegram-icon {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
+        }
+
+        .email-float {
+            bottom: 168px;
+            background: linear-gradient(135deg, #2b7aff, #5a7cff);
+        }
+        .email-float .email-icon {
+            color: #fff;
+            font-size: 1.4rem;
+        }
+
+        /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
+            .bank-header {
+                padding: 12px 16px;
+            }
+            .bank-header h1 {
+                font-size: 1.2rem;
+            }
+            .header-controls .icon-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+
+            .sidebar {
+                width: 280px;
+                right: -300px;
+            }
+
+            .main-content {
+                padding: 20px 16px;
+            }
+
+            .card-body {
+                padding: 20px 16px 24px;
+            }
+
+            .card-header {
+                padding: 18px 20px;
+            }
+            .card-header h2 {
+                font-size: 1.3rem;
+            }
+
             .form-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 16px;
             }
+
             .profile-picture-upload {
                 flex-direction: column;
                 text-align: center;
-                gap: 20px;
+                gap: 16px;
+                padding: 16px;
             }
-            .card-body {
-                padding: 25px 20px;
+
+            .current-profile-pic {
+                width: 80px;
+                height: 80px;
             }
-            .card-header {
-                padding: 25px 20px;
+
+            .btn-submit {
+                padding: 12px 32px;
+                width: 100%;
+                justify-content: center;
             }
-            .card-header h2 {
-                font-size: 1.6rem;
+
+            .float-btn {
+                width: 48px;
+                height: 48px;
+                left: 14px;
             }
-            .bank-header h1 {
-                font-size: 1.5rem;
+            .telegram-float {
+                bottom: 80px;
+            }
+            .email-float {
+                bottom: 140px;
+            }
+            .float-btn .tooltip {
+                display: none;
             }
         }
 
         @media (max-width: 480px) {
-            .main-content {
-                padding: 20px 15px;
+            .bank-header h1 {
+                font-size: 1rem;
             }
-            .card-body {
-                padding: 20px 15px;
+            .card-header h2 {
+                font-size: 1.1rem;
             }
-            .form-group input:not([type="file"]),
-            .form-group select,
-            .form-group textarea {
-                padding: 12px 14px;
+            .form-control,
+            .input-with-icon input:not([type="file"]),
+            .input-with-icon select,
+            .input-with-icon textarea {
+                font-size: 0.9rem;
+                padding: 10px 14px 10px 40px;
             }
             .btn-submit {
-                padding: 14px 40px;
-                width: 100%;
+                font-size: 0.9rem;
+                padding: 12px 24px;
             }
         }
-
-        .telegram-float {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            z-index: 1000;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .telegram-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .telegram-tooltip {
-            position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .telegram-link:hover .telegram-tooltip {
-            opacity: 1;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .telegram-float {
-                left: 10px;
-                bottom: 10px;
-            }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
-            }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
-            }
-        }
-            .email-float {
-        position: fixed;
-        left: 20px;
-        bottom: 90px;
-        z-index: 1000;
-        animation: floatEmail 3s ease-in-out infinite;
-    }
-
-    .email-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .email-link:hover {
-        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
-    }
-
-    .email-icon {
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    .email-tooltip {
-        position: absolute;
-        left: 70px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .email-link:hover .email-tooltip {
-        opacity: 1;
-    }
-
-    @keyframes floatEmail {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-8px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .email-float {
-            left: 10px;
-            bottom: 80px;
-        }
-
-        .email-link {
-            width: 50px;
-            height: 50px;
-        }
-
-        .email-icon {
-            font-size: 1.3rem;
-        }
-    }
-    
-        /* Sitewide Dark Mode Overrides to match Revolut Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
-        }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .bank-header h1, .bank-header h1 i {
-            color: #ffffff !important;
-        }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
-            color: #9ca3af !important;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-        }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-        }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
-        }
-
-</style>
+    </style>
 </head>
 <body>
-    <!-- Email Floating Icon -->
-<div class="email-float">
-    <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
-        <i class="fas fa-envelope email-icon"></i>
-        <span class="email-tooltip">Contact us via email</span>
-    </a>
-</div>
-<!-- Telegram Floating Icon -->
-    <div class="telegram-float">
-        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
-            <span class="telegram-tooltip">Join our Telegram group</span>
-        </a>
-    </div>
 
+    <!-- ====== HEADER ====== -->
     <header class="bank-header">
-        <h1>Revolut</h1>
+        <h1><i class="fas fa-edit"></i> Edit Profile</h1>
         <div class="header-controls">
-            <div class="notification-bell" onclick="toggleSidebar()">
-                <i class="fas fa-bell"></i>
-            </div>
-            <div class="open-sidebar-btn" onclick="toggleSidebar()">
+            <button class="icon-btn" onclick="toggleSidebar()" aria-label="Notifications">
+                <span class="badge-dot"><i class="fas fa-bell"></i></span>
+            </button>
+            <button class="icon-btn" onclick="toggleSidebar()" aria-label="Menu">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
         </div>
     </header>
 
-    <!-- Sidebar -->
+    <!-- ====== SIDEBAR ====== -->
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header">
-            <h2>Account Menu</h2>
-            <button class="close-sidebar" onclick="toggleSidebar()">
-                <i class="fas fa-times"></i>
-            </button>
+            <h2><i class="fas fa-user-circle" style="margin-right: 8px; color: var(--accent-gold);"></i> Account</h2>
+            <button class="close-btn" onclick="toggleSidebar()">Close</button>
         </div>
         <div class="user-details">
-            <p><i class="fas fa-user"></i> Username: <strong>{{ request.user }}</strong></p>
-            <p><i class="fas fa-envelope"></i> Email: <strong>{{ user_profile.email }}</strong></p>
+            <div class="user-avatar">
+                <div class="avatar-circle">{{ request.user.username|first|upper|default:"U" }}</div>
+                <div>
+                    <div style="font-weight: 600; color: var(--text-primary);">{{ request.user }}</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted);">{{ user_profile.email }}</div>
+                </div>
+            </div>
         </div>
         <ul>
             <li><a href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
@@ -831,20 +839,22 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         </ul>
     </div>
 
-    <!-- Marquee for Stock Market -->
+    <!-- ====== MARQUEE (Stock Ticker) ====== -->
     <div class="marquee">
         <div class="marquee-content" id="stockMarquee">
-            Loading stock market data...
+            Loading market data …
         </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- ====== MAIN CONTENT ====== -->
     <div class="main-content">
+
         <div class="card-container">
             <div class="card-header">
                 <h2><i class="fas fa-user-edit"></i> Edit Profile Information</h2>
             </div>
             <div class="card-body">
+
                 <!-- Success Messages -->
                 {% if messages %}
                 <div class="success-messages">
@@ -889,7 +899,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
                         <!-- Last Name -->
                         <div class="form-group">
-<label for="{{ form.last_name.id_for_label }}" class="form-label">
+                            <label for="{{ form.last_name.id_for_label }}" class="form-label">
                                 <i class="fas fa-user"></i> Last Name
                             </label>
                             <div class="input-with-icon">
@@ -962,7 +972,10 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                             <label for="{{ form.status.id_for_label }}" class="form-label">
                                 <i class="fas fa-briefcase"></i> Employment Status
                             </label>
-                            {{ form.status }}
+                            <div class="input-with-icon">
+                                {{ form.status }}
+                                <i class="fas fa-briefcase input-icon"></i>
+                            </div>
                             {% if form.status.errors %}
                                 <span class="error-message">{{ form.status.errors }}</span>
                             {% endif %}
@@ -973,7 +986,10 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                             <label for="{{ form.country.id_for_label }}" class="form-label">
                                 <i class="fas fa-globe"></i> Country
                             </label>
-                            {{ form.country }}
+                            <div class="input-with-icon">
+                                {{ form.country }}
+                                <i class="fas fa-globe input-icon"></i>
+                            </div>
                             {% if form.country.errors %}
                                 <span class="error-message">{{ form.country.errors }}</span>
                             {% endif %}
@@ -984,7 +1000,10 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                             <label for="{{ form.currency.id_for_label }}" class="form-label">
                                 <i class="fas fa-money-bill-wave"></i> Currency
                             </label>
-                            {{ form.currency }}
+                            <div class="input-with-icon">
+                                {{ form.currency }}
+                                <i class="fas fa-money-bill-wave input-icon"></i>
+                            </div>
                             {% if form.currency.errors %}
                                 <span class="error-message">{{ form.currency.errors }}</span>
                             {% endif %}
@@ -995,7 +1014,10 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                             <label for="{{ form.Gender.id_for_label }}" class="form-label">
                                 <i class="fas fa-venus-mars"></i> Gender
                             </label>
-                            {{ form.Gender }}
+                            <div class="input-with-icon">
+                                {{ form.Gender }}
+                                <i class="fas fa-venus-mars input-icon"></i>
+                            </div>
                             {% if form.Gender.errors %}
                                 <span class="error-message">{{ form.Gender.errors }}</span>
                             {% endif %}
@@ -1020,7 +1042,10 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                             <label for="{{ form.two_factor_auth.id_for_label }}" class="form-label">
                                 <i class="fas fa-lock"></i> 2FAuth
                             </label>
-                            {{ form.two_factor_auth }}
+                            <div class="input-with-icon">
+                                {{ form.two_factor_auth }}
+                                <i class="fas fa-lock input-icon"></i>
+                            </div>
                             {% if form.two_factor_auth.errors %}
                                 <span class="error-message">{{ form.two_factor_auth.errors }}</span>
                             {% endif %}
@@ -1031,7 +1056,10 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                             <label for="{{ form.account_type.id_for_label }}" class="form-label">
                                 <i class="fas fa-credit-card"></i> Account Type
                             </label>
-                            {{ form.account_type }}
+                            <div class="input-with-icon">
+                                {{ form.account_type }}
+                                <i class="fas fa-credit-card input-icon"></i>
+                            </div>
                             {% if form.account_type.errors %}
                                 <span class="error-message">{{ form.account_type.errors }}</span>
                             {% endif %}
@@ -1075,7 +1103,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         </div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
+    <!-- ====== BOTTOM NAVBAR ====== -->
     <nav class="bottom-navbar">
         <a href="{% url 'dashboard' %}" class="nav-item">
             <i class="fas fa-home nav-icon"></i>
@@ -1095,77 +1123,107 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         </a>
     </nav>
 
+    <!-- ====== FLOATING SUPPORT BUTTONS ====== -->
+    <!-- Telegram -->
+    <a href="https://t.me/Financial_Services_Team" class="float-btn telegram-float" target="_blank" rel="noopener" aria-label="Telegram support">
+        <svg class="telegram-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.5 2.5L1.5 10.5L8.5 14.5L17.5 7.5L10.5 15.5L13.5 22.5L22.5 2.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M10.5 15.5L8.5 20.5L5.5 14.5" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <span class="tooltip">Telegram Support</span>
+    </a>
 
+    <!-- Email -->
+    <a href="mailto:axiscapitaltrustbank@gmail.com" class="float-btn email-float" aria-label="Email support">
+        <i class="fas fa-envelope email-icon"></i>
+        <span class="tooltip">Email Support</span>
+    </a>
+
+    <!-- ====== SCRIPTS ====== -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    // Add error classes to fields with errors
-    const errorFields = document.querySelectorAll('.error-message');
-    errorFields.forEach(errorField => {
-        const input = errorField.closest('.form-group').querySelector('input, select, textarea');
-        if (input) {
-            input.classList.add('field-error');
+        // ----- Toggle Sidebar -----
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
         }
-    });
 
-    // Enhanced file upload display
-    const fileInputs = document.querySelectorAll('input[type="file"]');
-    fileInputs.forEach(input => {
-        input.addEventListener('change', function(e) {
-            const fileName = e.target.files[0]?.name || 'No file chosen';
-            const button = this.previousElementSibling;
-            if (button && button.classList.contains('file-upload-btn')) {
-                button.innerHTML = `<i class="fas fa-check"></i> ${fileName}`;
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                }
             }
         });
-    });
 
-    // Enhanced input field initialization for better text visibility
-    const djangoInputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
-    djangoInputs.forEach(input => {
-        // Ensure proper styling and text visibility
-        input.style.width = '100%';
-        input.style.boxSizing = 'border-box';
+        // ----- Stock Marquee (mock data) -----
+        const stockData = [
+            { symbol: "AAPL", price: 178.23, change: 1.25 },
+            { symbol: "GOOGL", price: 123.45, change: -0.75 },
+            { symbol: "AMZN", price: 99.12, change: 2.10 },
+            { symbol: "TSLA", price: 246.78, change: -1.50 },
+            { symbol: "MSFT", price: 335.21, change: 0.85 },
+            { symbol: "NFLX", price: 485.33, change: 3.20 },
+            { symbol: "NVDA", price: 112.50, change: 4.10 },
+            { symbol: "META", price: 298.45, change: -0.30 }
+        ];
 
-        // Add focus enhancement for better UX
-        input.addEventListener('focus', function() {
-            this.style.backgroundColor = 'white';
-            this.style.borderColor = '#003366';
-            this.style.boxShadow = '0 0 0 3px rgba(0, 51, 102, 0.1)';
+        function updateMarquee() {
+            const el = document.getElementById('stockMarquee');
+            if (!el) return;
+
+            const html = stockData.map(stock => {
+                const cls = stock.change >= 0 ? 'text-success' : 'text-danger';
+                const arrow = stock.change >= 0 ? '↑' : '↓';
+                return `<span class="${cls}">${stock.symbol} $${stock.price.toFixed(2)} ${arrow} ${Math.abs(stock.change).toFixed(2)}%</span>`;
+            }).join(' ');
+
+            el.innerHTML = html + ' ' + html;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(updateMarquee, 200);
+
+            // ----- Form field error handling -----
+            const errorFields = document.querySelectorAll('.error-message');
+            errorFields.forEach(errorField => {
+                const input = errorField.closest('.form-group').querySelector('input, select, textarea');
+                if (input) {
+                    input.classList.add('field-error');
+                }
+            });
+
+            // ----- File upload display -----
+            const fileInputs = document.querySelectorAll('input[type="file"]');
+            fileInputs.forEach(input => {
+                input.addEventListener('change', function(e) {
+                    const fileName = e.target.files[0]?.name || 'No file chosen';
+                    const button = this.previousElementSibling;
+                    if (button && button.classList.contains('file-upload-btn')) {
+                        button.innerHTML = `<i class="fas fa-check"></i> ${fileName}`;
+                    }
+                });
+            });
         });
 
-        input.addEventListener('blur', function() {
-            this.style.backgroundColor = '#fafbfc';
-            this.style.borderColor = '#e8ecef';
-            this.style.boxShadow = 'none';
+        // ----- Service Worker (if registered) -----
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("{% static 'sw.js' %}")
+                .then(reg => console.log('✅ SW registered:', reg))
+                .catch(err => console.log('❌ SW registration failed:', err));
+        }
+
+        // ----- Auto-close sidebar on outside click -----
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar.classList.contains('open')) return;
+            const isClickInside = sidebar.contains(e.target);
+            const isToggleBtn = e.target.closest('.icon-btn');
+            if (!isClickInside && !isToggleBtn) {
+                sidebar.classList.remove('open');
+            }
         });
-    });
-
-    // Force proper padding for icon inputs on load
-    const iconInputs = document.querySelectorAll('.input-with-icon input, .input-with-icon select, .input-with-icon textarea');
-    iconInputs.forEach(input => {
-        input.style.paddingLeft = '45px';
-    });
-
-    // Mock API Data for stocks
-    const stockData = [
-        { symbol: "AAPL", price: 178.23, change: "+1.2%" },
-        { symbol: "GOOGL", price: 123.45, change: "+0.8%" },
-        { symbol: "AMZN", price: 99.12, change: "-0.3%" },
-        { symbol: "TSLA", price: 246.78, change: "+2.1%" },
-        { symbol: "MSFT", price: 345.67, change: "+1.5%" }
-    ];
-
-    // Update stock marquee dynamically
-    function updateStockMarquee() {
-        const marquee = document.getElementById("stockMarquee");
-        const stockText = stockData.map(stock =>
-            `${stock.symbol}: $${stock.price.toFixed(2)} ${stock.change}`
-        ).join(" | ");
-        marquee.innerHTML = stockText;
-    }
-
-    updateStockMarquee();
-});
     </script>
+
 </body>
 </html>
