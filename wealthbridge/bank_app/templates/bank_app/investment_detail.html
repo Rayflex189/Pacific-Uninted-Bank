@@ -64,7 +64,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ====== HEADER ====== */
         .bank-header {
             background: rgba(11, 11, 15, 0.88);
             backdrop-filter: blur(16px) saturate(1.2);
@@ -134,7 +133,6 @@
             border: 2px solid var(--bg-primary);
         }
 
-        /* ====== SIDEBAR ====== */
         .sidebar {
             width: 320px;
             height: 100vh;
@@ -252,7 +250,6 @@
             color: var(--accent-blue);
         }
 
-        /* ====== MARQUEE ====== */
         .marquee {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-subtle);
@@ -288,7 +285,6 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* ====== MAIN CONTENT ====== */
         .main-content {
             padding: 24px 20px 80px;
             max-width: 900px;
@@ -301,7 +297,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ====== BACK BUTTON ====== */
         .btn-back {
             display: inline-flex;
             align-items: center;
@@ -325,7 +320,6 @@
             text-decoration: none;
         }
 
-        /* ====== PAGE HEADER ====== */
         .page-header {
             margin-bottom: 24px;
         }
@@ -343,7 +337,6 @@
             color: var(--text-secondary);
         }
 
-        /* ====== BALANCE DISPLAY ====== */
         .balance-display {
             background: var(--bg-card);
             border-radius: var(--radius-md);
@@ -372,10 +365,9 @@
             background-clip: text;
         }
 
-        /* ====== METRICS GRID ====== */
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 16px;
             margin-bottom: 24px;
         }
@@ -419,7 +411,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* ====== INVESTMENT DETAILS CARD ====== */
         .investment-details-card {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
@@ -460,10 +451,9 @@
             padding: 24px;
         }
 
-        /* ====== INFO ITEMS ====== */
         .investment-info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
             margin-bottom: 24px;
         }
@@ -471,7 +461,7 @@
         .info-item {
             display: flex;
             flex-direction: column;
-            padding: 16px 18px;
+            padding: 14px 16px;
             background: rgba(255, 255, 255, 0.02);
             border-radius: var(--radius-sm);
             border-left: 4px solid var(--accent-blue);
@@ -494,7 +484,6 @@
             color: var(--text-primary);
         }
 
-        /* ====== PROGRESS ====== */
         .progress-container {
             margin: 20px 0 24px;
             padding: 16px 20px;
@@ -526,7 +515,96 @@
             transition: width 0.8s ease;
         }
 
-        /* ====== DESCRIPTION ====== */
+        /* Daily Growth Timeline */
+        .growth-timeline {
+            margin: 20px 0 24px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .growth-timeline h4 {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        .growth-timeline h4 i {
+            color: var(--accent-blue);
+            margin-right: 8px;
+        }
+
+        .growth-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+        }
+
+        .growth-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-sm);
+            padding: 12px 10px;
+            text-align: center;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition-med);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .growth-item.completed {
+            border-color: var(--success);
+            background: rgba(46, 204, 113, 0.05);
+        }
+
+        .growth-item.completed::before {
+            content: '✓';
+            position: absolute;
+            top: 2px;
+            right: 6px;
+            font-size: 10px;
+            color: var(--success);
+        }
+
+        .growth-item.current {
+            border-color: var(--accent-blue);
+            background: rgba(43, 122, 255, 0.08);
+            box-shadow: 0 0 20px rgba(43, 122, 255, 0.05);
+        }
+
+        .growth-item.pending {
+            opacity: 0.5;
+        }
+
+        .growth-day {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .growth-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 4px;
+        }
+
+        .growth-value .currency {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .growth-profit {
+            font-size: 0.7rem;
+            color: var(--success);
+            margin-top: 2px;
+        }
+
+        .growth-profit.negative {
+            color: var(--error);
+        }
+
         .investment-description {
             margin-top: 20px;
             padding: 18px 20px;
@@ -549,7 +627,6 @@
             margin: 0;
         }
 
-        /* ====== TRANSACTIONS ====== */
         .transactions-section {
             margin-top: 28px;
         }
@@ -590,7 +667,6 @@
             padding: 20px 24px 24px;
         }
 
-        /* ====== TABLE ====== */
         .table-container {
             overflow-x: auto;
         }
@@ -636,7 +712,6 @@
             margin: 0;
         }
 
-        /* ====== STATUS BADGES ====== */
         .status-badge {
             display: inline-block;
             padding: 4px 14px;
@@ -676,7 +751,6 @@
             border: 1px solid rgba(231, 76, 60, 0.15);
         }
 
-        /* ====== BOTTOM NAVBAR ====== */
         .bottom-navbar {
             position: fixed;
             bottom: 0;
@@ -732,7 +806,6 @@
             color: var(--text-primary);
         }
 
-        /* ====== FLOATING SUPPORT BUTTONS ====== */
         .float-btn {
             position: fixed;
             left: 24px;
@@ -788,7 +861,6 @@
             font-size: 1.4rem;
         }
 
-        /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
             .bank-header {
                 padding: 12px 16px;
@@ -837,6 +909,18 @@
             }
             .investment-body {
                 padding: 18px 16px;
+            }
+
+            .growth-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+
+            .growth-item {
+                padding: 10px 6px;
+            }
+            .growth-value {
+                font-size: 0.85rem;
             }
 
             .card-body {
@@ -895,6 +979,11 @@
                 font-size: 1.6rem;
             }
 
+            .growth-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
+            }
+
             .transactions-table {
                 font-size: 0.8rem;
             }
@@ -913,7 +1002,6 @@
 <body>
 
     <!-- ====== FLOATING SUPPORT BUTTONS ====== -->
-    <!-- Telegram -->
     <a href="https://t.me/Financial_Services_Team" class="float-btn telegram-float" target="_blank" rel="noopener" aria-label="Telegram support">
         <svg class="telegram-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M22.5 2.5L1.5 10.5L8.5 14.5L17.5 7.5L10.5 15.5L13.5 22.5L22.5 2.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
@@ -922,7 +1010,6 @@
         <span class="tooltip">Telegram Support</span>
     </a>
 
-    <!-- Email -->
     <a href="mailto:axiscapitaltrustbank@gmail.com" class="float-btn email-float" aria-label="Email support">
         <i class="fas fa-envelope email-icon"></i>
         <span class="tooltip">Email Support</span>
@@ -992,7 +1079,7 @@
             <div class="balance-amount">{{ user_profile.currency }}{{ user_profile.balance|intcomma }}</div>
         </div>
 
-        <!-- Investment Performance Metrics with Correct Calculations -->
+        <!-- Investment Performance Metrics -->
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="metric-value">{{ user_profile.currency }}{{ current_value|intcomma }}</div>
@@ -1064,6 +1151,29 @@
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill" style="width: {{ progress_percentage }}%"></div>
+                    </div>
+                </div>
+
+                <!-- Daily Growth Timeline -->
+                <div class="growth-timeline">
+                    <h4><i class="fas fa-chart-line"></i> Daily Investment Growth</h4>
+                    <div class="growth-grid">
+                        {% for day in daily_growth %}
+                        <div class="growth-item {% if day.status == 'completed' %}completed{% elif day.status == 'current' %}current{% else %}pending{% endif %}">
+                            <div class="growth-day">Day {{ day.day }}</div>
+                            <div class="growth-value">
+                                <span class="currency">{{ user_profile.currency }}</span>{{ day.value|floatformat:2 }}
+                            </div>
+                            <div class="growth-profit {% if day.profit >= 0 %}positive{% else %}negative{% endif %}">
+                                {% if day.profit >= 0 %}+{% endif %}{{ user_profile.currency }}{{ day.profit|floatformat:2 }}
+                            </div>
+                            {% if day.status == 'current' %}
+                            <div style="font-size: 0.55rem; color: var(--accent-blue); margin-top: 2px;">
+                                <i class="fas fa-arrow-right"></i> Current
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
 
@@ -1141,7 +1251,6 @@
 
     <!-- ====== SCRIPTS ====== -->
     <script>
-        // ----- Toggle Sidebar -----
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('open');
@@ -1156,7 +1265,6 @@
             }
         });
 
-        // ----- Stock Marquee (mock data) -----
         const stockData = [
             { symbol: "AAPL", price: 178.23, change: 1.23 },
             { symbol: "GOOGL", price: 123.45, change: -0.45 },
@@ -1185,14 +1293,12 @@
             setTimeout(updateMarquee, 200);
         });
 
-        // ----- Service Worker (if registered) -----
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register("{% static 'sw.js' %}")
                 .then(reg => console.log('✅ SW registered:', reg))
                 .catch(err => console.log('❌ SW registration failed:', err));
         }
 
-        // ----- Auto-close sidebar on outside click -----
         document.addEventListener('click', function(e) {
             const sidebar = document.getElementById('sidebar');
             if (!sidebar.classList.contains('open')) return;
