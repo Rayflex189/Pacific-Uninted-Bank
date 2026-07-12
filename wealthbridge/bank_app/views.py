@@ -156,6 +156,7 @@ def create_investment(request):
     return render(request, 'bank_app/investment_create.html', context)
 
 
+
 @login_required
 def investment_dashboard(request):
     active_investments = UserInvestment.objects.filter(
@@ -166,17 +167,33 @@ def investment_dashboard(request):
         user=request.user,
         status='COMPLETED'
     )
+    
+    # Calculate totals for active investments only
     total_invested = sum(inv.amount_invested for inv in active_investments)
-    total_expected = sum(inv.expected_return for inv in active_investments)
+    
+    # Calculate expected return and profit for each investment
+    for investment in active_investments:
+        # Profit = amount * (interest_rate / 100)
+        investment.profit = investment.amount_invested * (investment.investment_plan.interest_rate / 100)
+        # Expected Return = amount + profit
+        investment.expected_return = investment.amount_invested + investment.profit
+    
+    for investment in completed_investments:
+        investment.profit = investment.amount_invested * (investment.investment_plan.interest_rate / 100)
+        investment.expected_return = investment.amount_invested + investment.profit
+    
+    # Calculate totals for active investments
+    total_expected_return = sum(inv.expected_return for inv in active_investments)
+    total_profit = sum(inv.profit for inv in active_investments)
 
     context = {
         'active_investments': active_investments,
         'completed_investments': completed_investments,
         'total_invested': total_invested,
-        'total_expected': total_expected,
+        'total_expected_return': total_expected_return,
+        'total_profit': total_profit,
     }
     return render(request, 'bank_app/investment_dashboard.html', context)
-
 @login_required
 def application_for_credit_card(request):
     user_profile = UserProfile.objects.get(user=request.user)
