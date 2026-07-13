@@ -1,6 +1,6 @@
 
 
-const CACHE_NAME = 'axiscapitaltrust-v2.0.1';
+const CACHE_NAME = 'revolut-v2.0.1';
 const STATIC_ASSETS = [
   '/',
   // Original and all resized icons
