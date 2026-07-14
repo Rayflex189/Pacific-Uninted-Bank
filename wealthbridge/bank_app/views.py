@@ -119,6 +119,7 @@ def investment_detail(request, investment_id):
     
 @login_required
 def investment_plans(request):
+    user_profile = UserProfile.objects.get(user=request.user)
     plans = InvestmentPlan.objects.filter(is_active=True)
     user_investments = UserInvestment.objects.filter(user=request.user)
     
@@ -135,6 +136,7 @@ def investment_plans(request):
 
     context = {
         'plans': plans,
+        'user_profile': user_profile,
         'user_investments': user_investments,
     }
     return render(request, 'bank_app/investment_plan.html', context) 
@@ -193,6 +195,8 @@ def create_investment(request):
 
 @login_required
 def investment_dashboard(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+
     active_investments = UserInvestment.objects.filter(
         user=request.user,
         status='ACTIVE'
@@ -228,6 +232,7 @@ def investment_dashboard(request):
         'total_invested': total_invested,
         'total_expected_return': total_expected_return,
         'total_profit': total_profit,
+        'user_profile': user_profile,
     }
     return render(request, 'bank_app/investment_dashboard.html', context)
     
